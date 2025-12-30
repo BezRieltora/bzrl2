@@ -1,0 +1,54 @@
+$bog_bzrl_app_profile $mol_view
+	sub /
+		<= Button $mol_button_minor
+			click? <=> opened? false
+			sub /
+				<= Avatar $mol_avatar
+					uri <= avatar_uri \
+		<= Panel $mol_float
+			showed? <=> opened?
+			bubble_content /
+				<= Card $mol_card
+					Content <= Menu $mol_list
+						rows /
+							<= Header $mol_view
+								sub /
+									<= Avatar_large $mol_avatar
+										uri <= avatar_uri
+									<= Name $mol_view
+										sub / <= name @ \Dev-cmyser
+									<= Email $mol_dimmer
+										haystack / <= email @ \Kirill Novgorodtsev
+							<= Divider_1 $mol_separator
+							<= Bio $mol_view
+								sub /
+									<= Bio_icon $mol_icon_code
+									<= Bio_text $mol_dimmer
+										haystack / <= bio @ \Sometimes use gitlab ;)
+							<= Divider_2 $mol_separator
+							<= Menu_profile $mol_button_minor
+								click? <=> navigate_profile?
+								sub /
+									<= Menu_profile_icon $mol_icon_account
+									<= Menu_profile_label @ \Profile
+							<= Menu_repos $mol_button_minor
+								click? <=> navigate_repos?
+								sub /
+									<= Menu_repos_icon $mol_icon_file_code
+									<= Menu_repos_label @ \Repositories
+							<= Menu_stars $mol_button_minor
+								click? <=> navigate_stars?
+								sub /
+									<= Menu_stars_icon $mol_icon_star
+									<= Menu_stars_label @ \Stars
+							<= Menu_gists $mol_button_minor
+								click? <=> navigate_gists?
+								sub /
+									<= Menu_gists_icon $mol_icon_code
+									<= Menu_gists_label @ \Gists
+							<= Divider_3 $mol_separator
+							<= Menu_settings $mol_button_minor
+								click? <=> navigate_settings?
+								sub /
+									<= Menu_settings_icon $mol_icon_settings
+									<= Menu_settings_label @ \Settings
