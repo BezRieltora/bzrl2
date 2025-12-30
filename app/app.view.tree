@@ -5,9 +5,8 @@ $bog_bzrl_app $mol_page
 			theme_light \$mol_theme_light
 			theme_dark \$mol_theme_dark
 	tools /
-		<= Theme_toggle $bog_theme_toggle
-			theme_auto <= Theme
 		<= Profile $bog_bzrl_app_profile
+			theme_auto <= Theme
 	body /
 		<= Content $mol_view
 			sub /

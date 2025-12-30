@@ -1,6 +1,7 @@
 $bog_bzrl_app_profile $mol_view
 	opened? false
 	toggle? null
+	theme_auto $bog_theme_auto
 	sub /
 		<= Panel $mol_pop
 			showed? <=> opened?
@@ -18,6 +19,8 @@ $bog_bzrl_app_profile $mol_view
 								sub /
 									<= Avatar_large $mol_avatar
 										id <= avatar_id
+									<= Theme_toggle $bog_theme_toggle
+										theme_auto <= theme_auto
 									<= Name $mol_view
 										sub / <= name @ \Dev-cmyser
 									<= Email $mol_dimmer
