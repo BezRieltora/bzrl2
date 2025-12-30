@@ -4,8 +4,6 @@ $bog_bzrl_app $mol_page
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_light
 			theme_dark \$mol_theme_dark
-		<= Favicon $bog_favicon
-			Icon <= favicon_icon $mol_icon_app
 	tools /
 		<= Theme_toggle $bog_theme_toggle
 			theme_auto <= Theme

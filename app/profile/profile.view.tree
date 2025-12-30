@@ -19,13 +19,13 @@ $bog_bzrl_app_profile $mol_view
 										sub / <= name @ \Dev-cmyser
 									<= Email $mol_dimmer
 										haystack / <= email @ \Kirill Novgorodtsev
-							<= Divider_1 $mol_separator
+							<= Divider_1 $mol_divider
 							<= Bio $mol_view
 								sub /
 									<= Bio_icon $mol_icon_code
 									<= Bio_text $mol_dimmer
 										haystack / <= bio @ \Sometimes use gitlab ;)
-							<= Divider_2 $mol_separator
+							<= Divider_2 $mol_divider
 							<= Menu_profile $mol_button_minor
 								click? <=> navigate_profile?
 								sub /
@@ -46,7 +46,7 @@ $bog_bzrl_app_profile $mol_view
 								sub /
 									<= Menu_gists_icon $mol_icon_code
 									<= Menu_gists_label @ \Gists
-							<= Divider_3 $mol_separator
+							<= Divider_3 $mol_divider
 							<= Menu_settings $mol_button_minor
 								click? <=> navigate_settings?
 								sub /

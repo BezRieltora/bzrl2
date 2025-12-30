@@ -52,7 +52,7 @@ namespace $.$$ {
 		},
 
 		Bio_icon: {
-			flexShrink: 0,
+			flexShrink: '0',
 		},
 
 		Menu_profile: {
