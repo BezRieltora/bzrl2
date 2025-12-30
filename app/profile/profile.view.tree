@@ -17,10 +17,12 @@ $bog_bzrl_app_profile $mol_view
 						rows /
 							<= Header $mol_view
 								sub /
-									<= Avatar_large $mol_avatar
-										id <= avatar_id
-									<= Theme_toggle $bog_theme_toggle
-										theme_auto <= theme_auto
+									<= Header_top $mol_view
+										sub /
+											<= Avatar_large $mol_avatar
+												id <= avatar_id
+											<= Theme_toggle $bog_theme_toggle
+												theme_auto <= theme_auto
 									<= Name $mol_view
 										sub / <= name @ \Dev-cmyser
 									<= Email $mol_dimmer

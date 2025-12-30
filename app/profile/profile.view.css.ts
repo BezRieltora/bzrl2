@@ -31,6 +31,14 @@ namespace $.$$ {
 			padding: $mol_gap.block,
 		},
 
+		Header_top: {
+			display: 'flex',
+			flexDirection: 'row',
+			gap: $mol_gap.text,
+			alignItems: 'flex-start',
+			justifyContent: 'space-between',
+		},
+
 		Avatar_large: {
 			width: '4rem',
 			height: '4rem',
