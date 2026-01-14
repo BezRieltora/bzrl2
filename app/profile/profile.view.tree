@@ -10,7 +10,6 @@ $bog_bzrl_app_profile $mol_view
 				sub /
 					<= Avatar $mol_avatar
 						id <= avatar_id \
-			align \bottom_left
 			bubble_content /
 				<= Card $mol_card
 					Content <= Menu $mol_list
