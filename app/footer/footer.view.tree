@@ -34,30 +34,72 @@ $bog_bzrl_app_footer $mol_view
 						<= nav_main_title @ \Навигация
 						<= Nav_main_links $mol_list
 							rows /
-								<= nav_home @ \Главная
-								<= nav_profile @ \Профиль
-								<= nav_all @ \Все квартиры
-								<= nav_rent @ \Сдать квартиру
-								<= nav_get @ \Снять квартиру
+								<= nav_home $mol_link
+									uri <= nav_home_link \
+									sub /
+										@ \Главная
+								<= nav_profile $mol_link
+									uri <= nav_profile_link \
+									sub /
+										@ \Профиль
+								<= nav_all $mol_link
+									uri <= nav_all_link \
+									sub /
+										@ \Все квартиры
+								<= nav_rent $mol_link
+									uri <= nav_rent_link \
+									sub /
+										@ \Сдать квартиру
+								<= nav_get $mol_link
+									uri <= nav_get_link \
+									sub /
+										@ \Снять квартиру
 				<= Nav_catalog $mol_view
 					sub /
 						<= nav_catalog_title @ \Каталог
 						<= Nav_catalog_links $mol_list
 							rows /
-								<= nav_districts @ \Районы
-								<= nav_new @ \Новые
-								<= nav_furnished @ \С мебелью
-								<= nav_pets @ \Можно с животными
-								<= nav_studio @ \Студии
+								<= nav_districts $mol_link
+									uri <= nav_districts_link \
+									sub /
+										@ \Районы
+								<= nav_new $mol_link
+									uri <= nav_new_link \
+									sub /
+										@ \Новые
+								<= nav_furnished $mol_link
+									uri <= nav_furnished_link \
+									sub /
+										@ \С мебелью
+								<= nav_pets $mol_link
+									uri <= nav_pets_link \
+									sub /
+										@ \Можно с животными
+								<= nav_studio $mol_link
+									uri <= nav_studio_link \
+									sub /
+										@ \Студии
 				<= Nav_docs $mol_view
 					sub /
 						<= nav_docs_title @ \Документы
 						<= Nav_docs_links $mol_list
 							rows /
-								<= nav_privacy @ \Политика конфиденциальности
-								<= nav_terms @ \Пользовательское соглашение / оферта
-								<= nav_consent @ \Согласие на обработку персональных данных
-								<= nav_cookies @ \Политика cookies
+								<= nav_privacy $mol_link
+									uri <= nav_privacy_link \
+									sub /
+										@ \Политика конфиденциальности
+								<= nav_terms $mol_link
+									uri <= nav_terms_link \
+									sub /
+										@ \Пользовательское соглашение / оферта
+								<= nav_consent $mol_link
+									uri <= nav_consent_link \
+									sub /
+										@ \Согласие на обработку персональных данных
+								<= nav_cookies $mol_link
+									uri <= nav_cookies_link \
+									sub /
+										@ \Политика cookies
 		<= Bottom $mol_view
 			sub /
 				<= Copyright $mol_paragraph

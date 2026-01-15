@@ -3,15 +3,16 @@ $bog_bzrl_app_slider $mol_view
 		<= Prev $mol_button_minor
 			click? <=> prev? null
 			sub / <= Prev_icon $mol_icon_chevron_left
-		<= Slides $mol_view
-			sub /
-				<= Slide* $mol_image
-					uri <= slide_uri* \
+	<= Slides $mol_view
+		sub /
+			<= Slide $mol_image
+				uri <= current_slide_uri \
 		<= Next $mol_button_minor
 			click? <=> next? null
 			sub / <= Next_icon $mol_icon_chevron_right
-		<= Dots $mol_view
-			sub <= dots /
-				<= Dot* $mol_view
-					attr *
-						bog_bzrl_app_slider_dot_active <= dot_active* false
+	<= Dots $mol_view
+		sub <= dots /
+			<= Dot* $mol_button_minor
+				click? <=> dot_select*? null
+				attr *
+					bog_bzrl_app_slider_dot_active <= dot_active* false

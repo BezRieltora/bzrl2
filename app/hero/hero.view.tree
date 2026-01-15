@@ -25,6 +25,11 @@ $bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
 	title @ \ценим ваши персональные данные
 	description @ \Вся ваша личная информация надежно зашифрована на вашем устройстве. Мы не храним её на наших серверах и обращаемся к ней только через ваше устройство.
 
+$bog_bzrl_app_hero_let $bog_bzrl_app_hero
+	title @ \сдавайте квартиру без лишних комиссий
+	description @ \Соберём анкету, проверим документы и поможем найти ответственных арендаторов без посредников.
+	action_label @ \Оставить заявку
+
 $bog_bzrl_app_hero_team $mol_view
 	sub /
 		<= Photo $mol_image

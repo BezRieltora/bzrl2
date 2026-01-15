@@ -1,6 +1,5 @@
 namespace $.$$ {
 	export class $bog_bzrl_app_slider extends $.$bog_bzrl_app_slider {
-
 		@$mol_mem
 		slides_data() {
 			return [
@@ -31,9 +30,21 @@ namespace $.$$ {
 			this.current_index((current + 1) % total)
 		}
 
-		@$mol_mem_key
-		slide_uri(index: number) {
-			return this.slides_data()[index] ?? ''
+		@$mol_mem
+		current_slide_uri() {
+			this.autoplay_task()
+			return this.slides_data()[this.current_index()] ?? ''
+		}
+
+		@$mol_mem
+		autoplay_task() {
+			if (this.slides_data().length < 2) return null
+			this.current_index()
+			return new this.$.$mol_after_timeout(this.autoplay_delay(), () => this.next())
+		}
+
+		autoplay_delay() {
+			return 5000
 		}
 
 		@$mol_mem
@@ -46,5 +57,9 @@ namespace $.$$ {
 			return index === this.current_index()
 		}
 
+		@$mol_action
+		dot_select(index: number) {
+			this.current_index(index)
+		}
 	}
 }

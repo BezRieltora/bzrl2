@@ -60,6 +60,7 @@ namespace $.$$ {
 		Dot: {
 			width: '.625rem',
 			height: '.625rem',
+			padding: 0,
 			border: {
 				radius: '50%',
 			},

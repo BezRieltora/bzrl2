@@ -16,24 +16,36 @@ $bog_bzrl_app $mol_page
 		<= Profile $bog_bzrl_app_profile
 			theme_auto <= Theme
 	body /
-		<= Title_section $mol_paragraph
-			title @ \аренда в Казани напрямую от собственника
-		<= Filter $bog_bzrl_app_filter
-			district? <=> filter_district? \all
-			rooms? <=> filter_rooms? \studio
-			price_from? <=> filter_price? \
-			search? <=> apartments_search? null
-		<= Apartments $mol_view
-			sub <= apartment_rows /
-				<= Apartment* $bog_bzrl_app_card
-					district <= apartment_district* \
-					photo <= apartment_photo* \
-					area <= apartment_area* \
-					floor <= apartment_floor* \
-					price <= apartment_price* \
-		<= Promo $bog_bzrl_app_hero_promo
-			action? <=> promo_action? null
+		<= Rent_section $mol_view
+			attr *
+				id \top
+			sub /
+				<= Title_section $mol_paragraph
+					title @ \аренда в Казани напрямую от собственника
+				<= Filter $bog_bzrl_app_filter
+					district? <=> filter_district? \all
+					rooms? <=> filter_rooms? \studio
+					price_from? <=> filter_price? \
+					search? <=> apartments_search? null
+				<= Apartments $mol_view
+					attr *
+						id \apartments
+					sub <= apartment_rows /
+						<= Apartment* $bog_bzrl_app_card
+							district <= apartment_district* \
+							photo <= apartment_photo* \
+							area <= apartment_area* \
+							floor <= apartment_floor* \
+							price <= apartment_price* \
+				<= Promo $bog_bzrl_app_hero_promo
+					action? <=> promo_action? null
+		<= Let_section $mol_view
+			sub /
+				<= Let_hero $bog_bzrl_app_hero_let
+					action? <=> let_action? null
 		<= How_it_works $mol_view
+			attr *
+				id \how
 			sub /
 				<= How_title $mol_paragraph
 					title @ \как это работает
@@ -43,10 +55,14 @@ $bog_bzrl_app $mol_page
 						<= Step_request $bog_bzrl_app_step_request
 						<= Step_pay $bog_bzrl_app_step_pay
 		<= Privacy $mol_view
+			attr *
+				id \privacy
 			sub /
 				<= Privacy_slider $bog_bzrl_app_slider
 				<= Privacy_content $bog_bzrl_app_hero_privacy
 		<= Benefits $mol_view
+			attr *
+				id \benefits
 			sub /
 				<= Benefits_title $mol_paragraph
 					title @ \преимущества
@@ -56,5 +72,9 @@ $bog_bzrl_app $mol_page
 						<= Benefit_verified $bog_bzrl_app_benefit_verified
 						<= Benefit_secure $bog_bzrl_app_benefit_secure
 		<= Team $bog_bzrl_app_hero_team
+			attr *
+				id \team
 			photo \https://picsum.photos/600/400?random=10
 		<= Footer $bog_bzrl_app_footer
+			attr *
+				id \contact

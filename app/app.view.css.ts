@@ -1,6 +1,6 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app, {
-		maxWidth: '1200px',
+		maxWidth: 'none',
 		margin: 'auto',
 
 		Head: {
@@ -36,6 +36,20 @@ namespace $.$$ {
 			},
 			gap: '3rem',
 			padding: '2rem',
+		},
+
+		Rent_section: {
+			flex: {
+				direction: 'column',
+			},
+			gap: '2rem',
+		},
+
+		Let_section: {
+			flex: {
+				direction: 'column',
+			},
+			gap: '2rem',
 		},
 
 		Title_section: {
