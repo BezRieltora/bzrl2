@@ -16,7 +16,7 @@ $bog_bzrl_app $mol_page
 		<= Profile $bog_bzrl_app_profile
 			theme_auto <= Theme
 	body /
-		<= Rent_section $mol_view
+		<= Rent_section? $mol_view
 			attr *
 				id \top
 			sub /
@@ -39,11 +39,11 @@ $bog_bzrl_app $mol_page
 							price <= apartment_price* \
 				<= Promo $bog_bzrl_app_hero_promo
 					action? <=> promo_action? null
-		<= Let_section $mol_view
+		<= Let_section? $mol_view
 			sub /
 				<= Let_hero $bog_bzrl_app_hero_let
 					action? <=> let_action? null
-		<= How_it_works $mol_view
+		<= How_it_works? $mol_view
 			attr *
 				id \how
 			sub /
@@ -54,13 +54,13 @@ $bog_bzrl_app $mol_page
 						<= Step_match $bog_bzrl_app_step_match
 						<= Step_request $bog_bzrl_app_step_request
 						<= Step_pay $bog_bzrl_app_step_pay
-		<= Privacy $mol_view
+		<= Privacy? $mol_view
 			attr *
 				id \privacy
 			sub /
 				<= Privacy_slider $bog_bzrl_app_slider
 				<= Privacy_content $bog_bzrl_app_hero_privacy
-		<= Benefits $mol_view
+		<= Benefits? $mol_view
 			attr *
 				id \benefits
 			sub /
@@ -71,10 +71,10 @@ $bog_bzrl_app $mol_page
 						<= Benefit_owners $bog_bzrl_app_benefit_owners
 						<= Benefit_verified $bog_bzrl_app_benefit_verified
 						<= Benefit_secure $bog_bzrl_app_benefit_secure
-		<= Team $bog_bzrl_app_hero_team
+		<= Team? $bog_bzrl_app_hero_team
 			attr *
 				id \team
 			photo \https://picsum.photos/600/400?random=10
-		<= Footer $bog_bzrl_app_footer
+		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact
