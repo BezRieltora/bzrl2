@@ -14,17 +14,17 @@ $bog_bzrl_app_step $mol_view
 $bog_bzrl_app_step_match $bog_bzrl_app_step
 	number 1
 	icon <= Icon_match $mol_icon_magnify
-	title @ \система матчей
-	description @ \Все квартиры посмотрели — найдите это «Интересно». Ваш профиль (вместе с арендатором) появится у собственника в списке кандидатов.
+	title @ \matching system
+	description @ \Browse all listings and mark what you like. Your profile (together with the renter) appears in the owner's candidate list.
 
 $bog_bzrl_app_step_request $bog_bzrl_app_step
 	number 2
 	icon <= Icon_request $mol_icon_email_outline
-	title @ \оставьте заявку
-	description @ \Мы передадим ваши данные собственнику и устроим бесплатную вашу связь. Мы берём минимальную комиссию на рынке — 20% от стоимости месячной аренды.
+	title @ \submit a request
+	description @ \We pass your details to the owner and arrange free contact. We charge the lowest commission on the market: 20% of one month's rent.
 
 $bog_bzrl_app_step_pay $bog_bzrl_app_step
 	number 3
 	icon <= Icon_pay $mol_icon_currency_rub
-	title @ \оплата квартиры
-	description @ \После оплаты мы передадим ваши данные арендодателю и поможем оформить договор.
+	title @ \apartment payment
+	description @ \After payment, we pass your details to the landlord and help finalize the agreement.

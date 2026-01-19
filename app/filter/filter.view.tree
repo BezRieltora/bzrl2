@@ -3,22 +3,22 @@ $bog_bzrl_app_filter $mol_view
 		<= District $mol_select
 			value? <=> district? \all
 			dictionary *
-				all @ \Новостройки
-				vahitovsky @ \Вахитовский
-				sovetsky @ \Советский
-				novo_savinovsky @ \Ново-Савиновский
+				all @ \New builds
+				vahitovsky @ \Vakhitovsky
+				sovetsky @ \Sovetsky
+				novo_savinovsky @ \Novo-Savinovsky
 		<= Rooms $mol_switch
 			value? <=> rooms? \studio
 			options *
-				studio @ \Студия
+				studio @ \Studio
 				r1 \1
 				r2 \2
 				r3 \3
 				r4 \4+
 		<= Price_from $mol_string
-			hint @ \Стоимость от
+			hint @ \Price from
 			value? <=> price_from? \
 		<= Search $mol_button_major
 			click? <=> search? null
 			sub /
-				<= search_label @ \Смотреть квартиры
+				<= search_label @ \View apartments

@@ -9,13 +9,13 @@ $bog_bzrl_app_footer $mol_view
 							sub /
 								\example@example.com
 						<= Email_hint $mol_paragraph
-							title @ \Почта для обратной связи
+							title @ \Feedback email
 						<= Phone $mol_link
 							uri \tel:+79876543211
 							sub /
 								\+7 987 654 32 11
 						<= Phone_hint $mol_paragraph
-							title @ \По вопросам аренды жилья
+							title @ \For rental inquiries
 				<= Social $mol_view
 					sub /
 						<= Vk $mol_link
@@ -31,64 +31,64 @@ $bog_bzrl_app_footer $mol_view
 			sub /
 				<= Nav_main $mol_view
 					sub /
-						<= nav_main_title @ \Навигация
+						<= nav_main_title @ \Navigation
 						<= Nav_main_links $mol_list
 							rows /
 								<= nav_home $mol_link
 									uri <= nav_home_link \
-									title @ \Главная
+									title @ \Home
 								<= nav_profile $mol_link
 									uri <= nav_profile_link \
-									title @ \Профиль
+									title @ \Profile
 								<= nav_all $mol_link
 									uri <= nav_all_link \
-									title @ \Все квартиры
+									title @ \All apartments
 								<= nav_rent $mol_link
 									uri <= nav_rent_link \
-									title @ \Сдать квартиру
+									title @ \Rent out an apartment
 								<= nav_get $mol_link
 									uri <= nav_get_link \
-									title @ \Снять квартиру
+									title @ \Rent an apartment
 				<= Nav_catalog $mol_view
 					sub /
-						<= nav_catalog_title @ \Каталог
+						<= nav_catalog_title @ \Catalog
 						<= Nav_catalog_links $mol_list
 							rows /
 								<= nav_districts $mol_link
 									uri <= nav_districts_link \
-									title @ \Районы
+									title @ \Districts
 								<= nav_new $mol_link
 									uri <= nav_new_link \
-									title @ \Новые
+									title @ \New
 								<= nav_furnished $mol_link
 									uri <= nav_furnished_link \
-									title @ \С мебелью
+									title @ \Furnished
 								<= nav_pets $mol_link
 									uri <= nav_pets_link \
-									title @ \Можно с животными
+									title @ \Pets allowed
 								<= nav_studio $mol_link
 									uri <= nav_studio_link \
-									title @ \Студии
+									title @ \Studios
 				<= Nav_docs $mol_view
 					sub /
-						<= nav_docs_title @ \Документы
+						<= nav_docs_title @ \Documents
 						<= Nav_docs_links $mol_list
 							rows /
 								<= nav_privacy $mol_link
 									uri <= nav_privacy_link \
-									title @ \Политика конфиденциальности
+									title @ \Privacy policy
 								<= nav_terms $mol_link
 									uri <= nav_terms_link \
-									title @ \Пользовательское соглашение / оферта
+									title @ \User agreement / offer
 								<= nav_consent $mol_link
 									uri <= nav_consent_link \
-									title @ \Согласие на обработку персональных данных
+									title @ \Consent to personal data processing
 								<= nav_cookies $mol_link
 									uri <= nav_cookies_link \
-									title @ \Политика cookies
+									title @ \Cookies policy
 		<= Bottom $mol_view
 			sub /
 				<= Copyright $mol_paragraph
 					title <= copyright \© HomeRent, 2024
 				<= Address $mol_paragraph
-					title @ \123456, г. Москва, ул. Тверская, д. 10, оф. 125
+					title @ \123456, Moscow, Tverskaya St., 10, office 125

@@ -1,4 +1,9 @@
 {
-	"$bog_bzrl_app_title": "Bzrl App",
-	"$bog_bzrl_app_Welcome_title": "Добро пожаловать в Bzrl!"
+	"$bog_bzrl_app_title": "HomeRent",
+	"$bog_bzrl_app_Welcome_title": "Добро пожаловать в Bzrl!",
+	"$bog_bzrl_app_Tabs_options_rent": "Снять",
+	"$bog_bzrl_app_Tabs_options_let": "Сдать",
+	"$bog_bzrl_app_Title_section_title": "аренда в Казани напрямую от собственника",
+	"$bog_bzrl_app_How_title_title": "как это работает",
+	"$bog_bzrl_app_Benefits_title_title": "преимущества"
 }

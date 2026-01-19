@@ -16,19 +16,19 @@ $bog_bzrl_app_hero $mol_view
 
 $bog_bzrl_app_hero_promo $bog_bzrl_app_hero
 	variant \promo
-	title @ \квартиры без риелторов в Казани
-	description @ \Только квартиры от собственников, согласованные напрямую. Проверяем вручную и бережно относимся к данным.
-	action_label @ \Смотреть квартиры
+	title @ \Apartments in Kazan without brokers
+	description @ \Only owner-listed apartments, arranged directly. We verify manually and handle data carefully.
+	action_label @ \View apartments
 
 $bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
 	variant \privacy
-	title @ \ценим ваши персональные данные
-	description @ \Вся ваша личная информация надежно зашифрована на вашем устройстве. Мы не храним её на наших серверах и обращаемся к ней только через ваше устройство.
+	title @ \We value your personal data
+	description @ \All your personal information is securely encrypted on your device. We do not store it on our servers and access it only through your device.
 
 $bog_bzrl_app_hero_let $bog_bzrl_app_hero
-	title @ \сдавайте квартиру без лишних комиссий
-	description @ \Соберём анкету, проверим документы и поможем найти ответственных арендаторов без посредников.
-	action_label @ \Оставить заявку
+	title @ \Rent out your apartment without extra fees
+	description @ \We will collect the form, verify documents, and help find responsible tenants without intermediaries.
+	action_label @ \Submit a request
 
 $bog_bzrl_app_hero_team $mol_view
 	sub /
@@ -37,6 +37,6 @@ $bog_bzrl_app_hero_team $mol_view
 		<= Content $mol_view
 			sub /
 				<= Title $mol_paragraph
-					title @ \мы—команда энтузиастов из разных городов России
+					title @ \We are a team of enthusiasts from cities across Russia
 				<= Description $mol_paragraph
-					title @ \Делаем сервис, который помогает снимать жильё в Казани напрямую у собственников, без лишних посредников, с ручной проверкой квартир и уважением к приватности.
+					title @ \We are building a service that helps you rent in Kazan directly from owners, without unnecessary intermediaries, with manual verification and respect for privacy.

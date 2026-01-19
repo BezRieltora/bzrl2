@@ -45,7 +45,8 @@ namespace $.$$ {
 			bog_bzrl_app_hero_variant: {
 				promo: {
 					background: {
-						image: 'url(/bog/bzrl/app/hero/promo-bg.jpg)' as any,
+						// Keep a visual background without relying on a missing asset.
+						image: 'linear-gradient(135deg, #ffe4b5 0%, #ffb347 100%)' as any,
 						size: ['cover'] as any,
 						position: 'center',
 					},

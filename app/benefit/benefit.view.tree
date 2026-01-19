@@ -10,15 +10,15 @@ $bog_bzrl_app_benefit $mol_view
 
 $bog_bzrl_app_benefit_owners $bog_bzrl_app_benefit
 	icon <= Icon_owners $mol_icon_home_account
-	title @ \только собственники
-	description @ \Без посредников и цепочек
+	title @ \owners only
+	description @ \No brokers or chains
 
 $bog_bzrl_app_benefit_verified $bog_bzrl_app_benefit
 	icon <= Icon_verified $mol_icon_magnify
-	title @ \ручная проверка
-	description @ \Квартиры и арендодатели согласованы нами
+	title @ \manual verification
+	description @ \Listings and landlords are verified by us
 
 $bog_bzrl_app_benefit_secure $bog_bzrl_app_benefit
 	icon <= Icon_secure $mol_icon_lock_outline
-	title @ \безопасность данных
-	description @ \Децентрализованное хранение и шифрование
+	title @ \data security
+	description @ \Decentralized storage and encryption

@@ -11,8 +11,8 @@ $bog_bzrl_app $mol_page
 		<= Tabs $mol_switch
 			value? <=> tab? \rent
 			options *
-				rent @ \Снять
-				let @ \Сдать
+				rent @ \Rent
+				let @ \Let
 		<= Profile $bog_bzrl_app_profile
 			theme_auto <= Theme
 	body /
@@ -21,7 +21,7 @@ $bog_bzrl_app $mol_page
 				id \top
 			sub /
 				<= Title_section $mol_paragraph
-					title @ \аренда в Казани напрямую от собственника
+					title @ \Rent in Kazan directly from owners
 				<= Filter $bog_bzrl_app_filter
 					district? <=> filter_district? \all
 					rooms? <=> filter_rooms? \studio
@@ -48,7 +48,7 @@ $bog_bzrl_app $mol_page
 				id \how
 			sub /
 				<= How_title $mol_paragraph
-					title @ \как это работает
+					title @ \how it works
 				<= Steps $mol_view
 					sub /
 						<= Step_match $bog_bzrl_app_step_match
@@ -65,7 +65,7 @@ $bog_bzrl_app $mol_page
 				id \benefits
 			sub /
 				<= Benefits_title $mol_paragraph
-					title @ \преимущества
+					title @ \benefits
 				<= Benefits_list $mol_view
 					sub /
 						<= Benefit_owners $bog_bzrl_app_benefit_owners
