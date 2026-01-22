@@ -252,6 +252,7 @@ namespace $.$$ {
 			return this.section_visible('contact') ? super.Footer() : null!
 		}
 
+		// Navigation handlers for header buttons
 		@$mol_action
 		let_click() {
 			this.tab('let')
