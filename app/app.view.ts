@@ -222,6 +222,19 @@ namespace $.$$ {
 			return this.tab() === 'let' ? super.Let_section() : null!
 		}
 
+		// Navigation handlers for header buttons
+		@$mol_action
+		let_click(next?: any) {
+			this.tab('let')
+			this.section('let')
+		}
+
+		@$mol_action
+		rent_click(next?: any) {
+			this.tab('rent')
+			this.section('rent')
+		}
+
 		private parse_price(value: string) {
 			const normalized = value.replace(/[^\d]/g, '')
 			if (!normalized) return null

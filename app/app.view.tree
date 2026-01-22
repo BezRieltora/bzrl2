@@ -1,5 +1,7 @@
 $bog_bzrl_app $mol_page
 	title @ \HomeRent
+	rent_click? null
+	let_click? null
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_homerent_light
@@ -19,13 +21,13 @@ $bog_bzrl_app $mol_page
 		<= Nav $mol_view
 			sub /
 				<= Rent_button $mol_button_major
-					- click? <=> rent_click?
+					click? <=> rent_click?
 					sub /
-						<= rent_label @ \Снять
+						<= rent_label @ \Rent
 				<= Let_link $mol_button_minor
-					- click? <=> let_click?
+					click? <=> let_click?
 					sub /
-						<= let_label @ \Сдать
+						<= let_label @ \Let
 				<= Home_icon $mol_button_minor
 					sub /
 						<= home_icon_img $mol_image
