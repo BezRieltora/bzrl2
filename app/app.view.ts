@@ -18,20 +18,12 @@ namespace $.$$ {
 				if (this.section()) this.section(next)
 				return next
 			}
-			const section = this.section()
-			if (section === 'let') return 'let'
-			if (section && section !== 'let') return 'rent'
 			return $mol_state_session.value<string>(`${this}.tab()`) ?? 'rent'
 		}
 
 		@$mol_mem
 		section(next?: string | null) {
 			return this.$.$mol_state_arg.value('section', next) ?? ''
-		}
-
-		section_visible(section: string) {
-			const current = this.section()
-			return !current || current === section
 		}
 
 		@$mol_mem
@@ -223,33 +215,11 @@ namespace $.$$ {
 		}
 
 		Rent_section() {
-			if (!this.section_visible('rent')) return null!
 			return this.tab() === 'rent' ? super.Rent_section() : null!
 		}
 
 		Let_section() {
-			if (!this.section_visible('let')) return null!
 			return this.tab() === 'let' ? super.Let_section() : null!
-		}
-
-		How_it_works() {
-			return this.section_visible('how') ? super.How_it_works() : null!
-		}
-
-		Privacy() {
-			return this.section_visible('privacy') ? super.Privacy() : null!
-		}
-
-		Benefits() {
-			return this.section_visible('benefits') ? super.Benefits() : null!
-		}
-
-		Team() {
-			return this.section_visible('team') ? super.Team() : null!
-		}
-
-		Footer() {
-			return this.section_visible('contact') ? super.Footer() : null!
 		}
 
 		// Navigation handlers for header buttons
