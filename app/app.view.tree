@@ -26,12 +26,12 @@ $bog_bzrl_app $mol_page
 					- click? <=> let_click?
 					sub /
 						<= let_label @ \Сдать
-		<= Actions $mol_view
-			sub /
 				<= Home_icon $mol_button_minor
 					sub /
 						<= home_icon_img $mol_image
 							uri \bog/bzrl/assets/HomeRent Design System Frame 71.png
+		<= Actions $mol_view
+			sub /
 				<= Profile $bog_bzrl_app_profile
 					theme_auto <= Theme
 	body /
