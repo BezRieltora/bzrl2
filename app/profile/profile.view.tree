@@ -23,36 +23,21 @@ $bog_bzrl_app_profile $mol_view
 												profile <= profile_entity
 											<= Theme_toggle $bog_theme_toggle
 												theme_auto <= theme_auto
-									<= Name $mol_view
-										sub / <= name @ \Dev-cmyser
-									<= Email $mol_dimmer
-										haystack <= email @ \Kirill Novgorodtsev
+									<= Name $mol_string_button
+										value? <=> name? @ \Click on me
+									<= Email $mol_string_button
+										value? <=> email? @ \Fill me
 									<= Id $mol_dimmer
 										haystack <= profile_id \
 							<= Divider_1 $mol_view
-							<= Bio $mol_view
-								sub /
-									<= Bio_icon $mol_icon_github
-									<= Bio_text $mol_dimmer
-										haystack <= bio @ \Sometimes use gitlab ;)
-							<= Divider_2 $mol_view
 							<= Menu_profile $mol_button_minor
 								sub /
 									<= Menu_profile_icon $mol_icon_account
 									<= Menu_profile_label @ \Profile
-							<= Menu_repos $mol_button_minor
-								sub /
-									<= Menu_repos_icon $mol_icon_file_code
-									<= Menu_repos_label @ \Repositories
 							<= Menu_stars $mol_button_minor
 								sub /
 									<= Menu_stars_icon $mol_icon_star
 									<= Menu_stars_label @ \Stars
-							<= Menu_gists $mol_button_minor
-								sub /
-									<= Menu_gists_icon $mol_icon_github
-									<= Menu_gists_label @ \Gists
-							<= Divider_3 $mol_view
 							<= Menu_settings $mol_button_minor
 								sub /
 									<= Menu_settings_icon $mol_icon_settings

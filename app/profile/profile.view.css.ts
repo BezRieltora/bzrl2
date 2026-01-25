@@ -62,17 +62,6 @@ namespace $.$$ {
 			wordBreak: 'break-all',
 		},
 
-		Bio: {
-			display: 'flex',
-			gap: $mol_gap.text,
-			padding: $mol_gap.block,
-			alignItems: 'center',
-		},
-
-		Bio_icon: {
-			flexShrink: '0',
-		},
-
 		Divider_1: {
 			height: '1px',
 			background: {
@@ -80,33 +69,7 @@ namespace $.$$ {
 			},
 		},
 
-		Divider_2: {
-			height: '1px',
-			background: {
-				color: $mol_theme.line,
-			},
-		},
-
-		Divider_3: {
-			height: '1px',
-			background: {
-				color: $mol_theme.line,
-			},
-		},
-
 		Menu_profile: {
-			justifyContent: 'flex-start',
-		},
-
-		Menu_repos: {
-			justifyContent: 'flex-start',
-		},
-
-		Menu_stars: {
-			justifyContent: 'flex-start',
-		},
-
-		Menu_gists: {
 			justifyContent: 'flex-start',
 		},
 

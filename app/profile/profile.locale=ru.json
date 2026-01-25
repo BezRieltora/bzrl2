@@ -1,10 +1,7 @@
 {
-  "$bog_bzrl_app_profile_name": "Dev-cmyser",
-  "$bog_bzrl_app_profile_email": "Кирилл Новгородцев",
-  "$bog_bzrl_app_profile_bio": "Иногда использую gitlab ;)",
-  "$bog_bzrl_app_profile_Menu_profile_label": "Профиль",
-  "$bog_bzrl_app_profile_Menu_repos_label": "Репозитории",
-  "$bog_bzrl_app_profile_Menu_stars_label": "Избранное",
-  "$bog_bzrl_app_profile_Menu_gists_label": "Gists",
-  "$bog_bzrl_app_profile_Menu_settings_label": "Настройки"
+	"$bog_bzrl_app_profile_name": "Кликни, что бы заполнить",
+	"$bog_bzrl_app_profile_email": "Заполни меня для связи",
+	"$bog_bzrl_app_profile_Menu_profile_label": "Профиль",
+	"$bog_bzrl_app_profile_Menu_settings_label": "Настройки",
+	"$bog_bzrl_app_profile_Menu_stars_label": "Избранное"
 }
