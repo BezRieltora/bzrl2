@@ -58,6 +58,7 @@ namespace $.$$ {
 				weight: 600,
 			},
 			color: '#333',
+			width: 'min-content',
 		},
 
 		Nav: {

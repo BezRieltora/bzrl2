@@ -17,6 +17,7 @@ $bog_bzrl_app $mol_page
 				<= Logo_text $mol_view
 					sub /
 						<= logo_home \home
+						<= l \ 
 						<= logo_rent \rent
 		<= Nav $mol_view
 			sub /
