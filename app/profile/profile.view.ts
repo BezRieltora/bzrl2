@@ -10,6 +10,37 @@ namespace $.$$ {
 			return this.$.$giper_baza_glob.home().land().Node($bog_bzrl_baza_profile).Data()
 		}
 
+		protected profile_text(
+			ensure: (profile: $bog_bzrl_baza_profile) => $giper_baza_atom_text | null,
+			next?: string,
+			fallback?: string,
+		) {
+			const profile = this.profile_entity()
+			const atom = ensure(profile)
+			if (!atom) return fallback ?? ''
+
+			if (next !== undefined) {
+				atom.val(next)
+				return next
+			}
+
+			return atom.val() ?? fallback ?? ''
+		}
+
+		@$mol_mem
+		name(next?: string) {
+			return this.profile_text(profile => profile.Name(next === undefined ? undefined : null), next, super.name())
+		}
+
+		@$mol_mem
+		email(next?: string) {
+			return this.profile_text(
+				profile => profile.Email(next === undefined ? undefined : null),
+				next,
+				super.email(),
+			)
+		}
+
 		@$mol_mem
 		profile_id() {
 			return `ID: ${this.profile_entity().link().str}`
