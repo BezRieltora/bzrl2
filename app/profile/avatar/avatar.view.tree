@@ -1,0 +1,9 @@
+$bog_bzrl_app_profile_avatar $mol_button_open
+	profile null
+	sub /
+		<= Image $mol_image
+			uri <= image_uri \
+		<= Native $mol_button_open_native
+			files? <=> files_handled? <=> files? /File
+			accept <= accept \
+			multiple <= multiple false

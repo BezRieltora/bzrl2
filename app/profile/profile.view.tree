@@ -2,14 +2,15 @@ $bog_bzrl_app_profile $mol_view
 	opened? false
 	toggle? null
 	theme_auto $bog_theme_auto
+	profile_entity null
 	sub /
 		<= Panel $mol_pop
 			showed? <=> opened?
 			Anchor <= Button $mol_button_minor
 				click? <=> toggle?
 				sub /
-					<= Avatar $mol_avatar
-						id <= avatar_id \
+					<= Avatar $mol_image
+						uri <= avatar_uri \
 			bubble_content /
 				<= Card $mol_card
 					Content <= Menu $mol_list
@@ -18,14 +19,16 @@ $bog_bzrl_app_profile $mol_view
 								sub /
 									<= Header_top $mol_view
 										sub /
-											<= Avatar_large $mol_avatar
-												id <= avatar_id
+											<= Avatar_large $bog_bzrl_app_profile_avatar
+												profile <= profile_entity
 											<= Theme_toggle $bog_theme_toggle
 												theme_auto <= theme_auto
 									<= Name $mol_view
 										sub / <= name @ \Dev-cmyser
 									<= Email $mol_dimmer
 										haystack <= email @ \Kirill Novgorodtsev
+									<= Id $mol_dimmer
+										haystack <= profile_id \
 							<= Divider_1 $mol_view
 							<= Bio $mol_view
 								sub /

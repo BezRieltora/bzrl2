@@ -1,6 +1,5 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app_profile, {
-
 		Button: {
 			padding: 0,
 			border: {
@@ -9,8 +8,11 @@ namespace $.$$ {
 		},
 
 		Avatar: {
-			width: '2rem',
-			height: '2rem',
+			border: {
+				radius: '50%',
+			},
+			objectFit: 'cover',
+			display: 'block',
 		},
 
 		Panel: {
@@ -42,6 +44,8 @@ namespace $.$$ {
 		Avatar_large: {
 			width: '4rem',
 			height: '4rem',
+			padding: 0,
+			overflow: 'hidden',
 			border: {
 				radius: '50%',
 			},
@@ -52,6 +56,10 @@ namespace $.$$ {
 				size: '1.25rem',
 				weight: 'bold',
 			},
+		},
+
+		Id: {
+			wordBreak: 'break-all',
 		},
 
 		Bio: {
@@ -105,6 +113,5 @@ namespace $.$$ {
 		Menu_settings: {
 			justifyContent: 'flex-start',
 		},
-
 	})
 }

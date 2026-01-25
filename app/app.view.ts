@@ -222,7 +222,6 @@ namespace $.$$ {
 			return this.tab() === 'let' ? super.Let_section() : null!
 		}
 
-		// Navigation handlers for header buttons
 		@$mol_action
 		let_click(next?: any) {
 			this.tab('let')
