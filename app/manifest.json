@@ -1,0 +1,20 @@
+{
+  "name": "Bzrl App",
+  "short_name": "Bzrl",
+  "description": "Bzrl Application",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./favicon.png",
+      "sizes": "23x23",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity"],
+  "lang": "ru",
+  "dir": "ltr"
+}

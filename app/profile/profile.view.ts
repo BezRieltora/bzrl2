@@ -7,7 +7,7 @@ namespace $.$$ {
 
 		@$mol_mem
 		profile_entity() {
-			return this.$.$giper_baza_glob.home().land().Node($bog_bzrl_baza_profile).Data()
+			return this.$.$giper_baza_glob.home().land().Data($bog_bzrl_baza_profile)
 		}
 
 		protected profile_text(

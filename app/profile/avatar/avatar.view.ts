@@ -3,7 +3,7 @@ namespace $.$$ {
 		@$mol_mem
 		profile(next?: $bog_bzrl_baza_profile | null) {
 			if (next !== undefined) return next
-			return this.$.$giper_baza_glob.home().land().Node($bog_bzrl_baza_profile).Data()
+			return this.$.$giper_baza_glob.home().land().Data($bog_bzrl_baza_profile)
 		}
 
 		accept() {
