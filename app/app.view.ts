@@ -14,11 +14,11 @@ namespace $.$$ {
 		@$mol_mem
 		tab(next?: string): string {
 			if (next !== undefined) {
-				$mol_state_session.value<string>(`${this}.tab()`, next)
+				this.$.$mol_state_arg.value('tab', next)
 				if (this.section()) this.section(next)
 				return next
 			}
-			return $mol_state_session.value<string>(`${this}.tab()`) ?? 'rent'
+			return this.$.$mol_state_arg.value('tab') ?? 'rent'
 		}
 
 		@$mol_mem
@@ -214,12 +214,12 @@ namespace $.$$ {
 			this.section('let')
 		}
 
-		Rent_section() {
-			return this.tab() === 'rent' ? super.Rent_section() : null!
+		Rent_page() {
+			return this.tab() === 'rent' ? super.Rent_page() : null!
 		}
 
-		Let_section() {
-			return this.tab() === 'let' ? super.Let_section() : null!
+		Let_page() {
+			return this.tab() === 'let' ? super.Let_page() : null!
 		}
 
 		@$mol_action

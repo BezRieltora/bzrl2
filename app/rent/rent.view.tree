@@ -1,0 +1,32 @@
+$bog_bzrl_app_rent $mol_view
+	district? \all
+	rooms? \studio
+	price_from? \
+	search? null
+	apartment_rows /string
+	apartment_district* \
+	apartment_photo* \
+	apartment_area* \
+	apartment_floor* \
+	apartment_price* \
+	promo_action? null
+	sub /
+		<= Title_section $mol_paragraph
+			title @ \Rent in Kazan directly from owners
+		<= Filter $bog_bzrl_app_filter
+			district? <=> district? \all
+			rooms? <=> rooms? \studio
+			price_from? <=> price_from? \
+			search? <=> search? null
+		<= Apartments $mol_view
+			attr *
+				id \apartments
+			sub <= apartment_rows /
+				<= Apartment* $bog_bzrl_app_card
+					district <= apartment_district* \
+					photo <= apartment_photo* \
+					area <= apartment_area* \
+					floor <= apartment_floor* \
+					price <= apartment_price* \
+		<= Promo $bog_bzrl_app_hero_promo
+			action? <=> promo_action? null

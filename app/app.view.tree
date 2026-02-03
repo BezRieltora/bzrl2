@@ -1,7 +1,5 @@
 $bog_bzrl_app $mol_page
 	title @ \HomeRent
-	rent_click? null
-	let_click? null
 	plugins /
 		<= Theme $bog_theme_auto
 			theme_light \$mol_theme_homerent_light
@@ -21,12 +19,16 @@ $bog_bzrl_app $mol_page
 						<= logo_rent \rent
 		<= Nav $mol_view
 			sub /
-				<= Rent_button $mol_button_major
-					click? <=> rent_click?
+				<= Rent_button $mol_link
+					arg *
+						tab \rent
+						section \rent
 					sub /
 						<= rent_label @ \Rent
-				<= Let_link $mol_button_minor
-					click? <=> let_click?
+				<= Let_link $mol_link
+					arg *
+						tab \let
+						section \let
 					sub /
 						<= let_label @ \Let
 				<= Home_icon $mol_button_minor
@@ -38,33 +40,22 @@ $bog_bzrl_app $mol_page
 				<= Profile $bog_bzrl_app_profile
 					theme_auto <= Theme
 	body /
-		<= Rent_section? $mol_view
+		<= Rent_page? $bog_bzrl_app_rent
 			attr *
 				id \top
-			sub /
-				<= Title_section $mol_paragraph
-					title @ \Rent in Kazan directly from owners
-				<= Filter $bog_bzrl_app_filter
-					district? <=> filter_district? \all
-					rooms? <=> filter_rooms? \studio
-					price_from? <=> filter_price? \
-					search? <=> apartments_search? null
-				<= Apartments $mol_view
-					attr *
-						id \apartments
-					sub <= apartment_rows /
-						<= Apartment* $bog_bzrl_app_card
-							district <= apartment_district* \
-							photo <= apartment_photo* \
-							area <= apartment_area* \
-							floor <= apartment_floor* \
-							price <= apartment_price* \
-				<= Promo $bog_bzrl_app_hero_promo
-					action? <=> promo_action? null
-		<= Let_section? $mol_view
-			sub /
-				<= Let_hero $bog_bzrl_app_hero_let
-					action? <=> let_action? null
+			district? <=> filter_district? \all
+			rooms? <=> filter_rooms? \studio
+			price_from? <=> filter_price? \
+			search? <=> apartments_search? null
+			apartment_rows <= apartment_rows /
+			apartment_district <= apartment_district* \
+			apartment_photo <= apartment_photo* \
+			apartment_area <= apartment_area* \
+			apartment_floor <= apartment_floor* \
+			apartment_price <= apartment_price* \
+			promo_action? <=> promo_action? null
+		<= Let_page? $bog_bzrl_app_let
+			action? <=> let_action? null
 		<= How_it_works? $mol_view
 			attr *
 				id \how

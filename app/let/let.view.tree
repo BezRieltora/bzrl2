@@ -1,0 +1,5 @@
+$bog_bzrl_app_let $mol_view
+	action? null
+	sub /
+		<= Let_hero $bog_bzrl_app_hero_let
+			action? <=> action? null
