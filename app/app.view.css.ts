@@ -2,9 +2,6 @@ namespace $.$$ {
 	$mol_style_define($bog_bzrl_app, {
 		maxWidth: 'none',
 		margin: 'auto',
-		background: {
-			color: '#f5f5f5',
-		},
 
 		Head: {
 			justify: {
@@ -20,6 +17,7 @@ namespace $.$$ {
 				left: '2rem',
 				right: '2rem',
 			},
+			boxShadow: '0 -0.5rem 0.75rem -0.6rem hsla(0,0%,0%,0.12), 0 0.5rem 0.75rem -0.6rem hsla(0,0%,0%,0.12)',
 		},
 
 		Logo: {
