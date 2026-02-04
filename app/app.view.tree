@@ -17,24 +17,7 @@ $bog_bzrl_app $mol_page
 						<= logo_home \home
 						<= l \ 
 						<= logo_rent \rent
-		<= Nav $mol_view
-			sub /
-				<= Rent_button $mol_link
-					arg *
-						tab \rent
-						section \rent
-					sub /
-						<= rent_label @ \Rent
-				<= Let_link $mol_link
-					arg *
-						tab \let
-						section \let
-					sub /
-						<= let_label @ \Let
-				<= Home_icon $mol_button_minor
-					sub /
-						<= home_icon_img $mol_image
-							uri \bog/bzrl/assets/HomeRent-Design-System-Frame-71.png
+		<= Nav $bog_bzrl_app_nav
 		<= Actions $mol_view
 			sub /
 				<= Profile $bog_bzrl_app_profile
