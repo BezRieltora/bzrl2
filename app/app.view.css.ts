@@ -1,8 +1,5 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app, {
-		maxWidth: 'none',
-		margin: 'auto',
-
 		Head: {
 			justify: {
 				content: 'space-between',

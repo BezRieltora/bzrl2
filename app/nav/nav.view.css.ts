@@ -4,14 +4,14 @@ namespace $.$$ {
 		align: {
 			items: 'center',
 		},
-		gap: '1.5rem',
+		gap: '0.5rem',
 		backgroundColor: '#f5f5f5',
 		borderRadius: '2rem',
 		padding: '5px',
 
 		Rent_button: {
 			background: {
-				color: '#8BC34A',
+				color: '#FFFFFF',
 			},
 			border: {
 				radius: '2rem',
@@ -26,40 +26,57 @@ namespace $.$$ {
 				size: '1rem',
 				weight: 500,
 			},
-			color: 'white',
+			color: '#555',
 			textDecoration: 'none',
 			cursor: 'pointer',
 			transition: 'all 0.2s',
 			':hover': {
-				background: {
-					color: '#7CB342',
+				color: '#333',
+			},
+			'@': {
+				mol_link_current: {
+					true: {
+						background: {
+							color: '#8BC34A',
+						},
+						color: 'white',
+					},
 				},
 			},
 		},
 
 		Let_link: {
-			font: {
-				size: '1rem',
-				weight: 400,
-			},
-			color: '#666',
-			textDecoration: 'none',
-			cursor: 'pointer',
-			transition: 'color 0.2s',
 			background: {
-				color: 'transparent',
+				color: '#FFFFFF',
 			},
 			border: {
-				width: 0,
+				radius: '2rem',
 			},
 			padding: {
-				left: 0,
-				right: 0,
+				top: '0.75rem',
+				bottom: '0.75rem',
+				left: '2rem',
+				right: '2rem',
 			},
+			font: {
+				size: '1rem',
+				weight: 500,
+			},
+			color: '#555',
+			textDecoration: 'none',
+			cursor: 'pointer',
+			transition: 'all 0.2s',
 			':hover': {
 				color: '#333',
-				background: {
-					color: 'transparent',
+			},
+			'@': {
+				mol_link_current: {
+					true: {
+						background: {
+							color: '#8BC34A',
+						},
+						color: 'white',
+					},
 				},
 			},
 		},
