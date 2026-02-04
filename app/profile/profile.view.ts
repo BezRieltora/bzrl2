@@ -33,15 +33,6 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		email(next?: string) {
-			return this.profile_text(
-				profile => profile.Email(next === undefined ? undefined : null),
-				next,
-				super.email(),
-			)
-		}
-
-		@$mol_mem
 		profile_id() {
 			return `ID: ${this.profile_entity().link().str}`
 		}

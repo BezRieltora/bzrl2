@@ -82,7 +82,7 @@ namespace $.$$ {
 		},
 
 		Home_icon: {
-			width: '2.5rem',
+			width: '3.1rem',
 			height: '2.5rem',
 			border: {
 				radius: '50%',

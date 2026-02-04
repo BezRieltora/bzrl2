@@ -61,20 +61,5 @@ namespace $.$$ {
 		Id: {
 			wordBreak: 'break-all',
 		},
-
-		Divider_1: {
-			height: '1px',
-			background: {
-				color: $mol_theme.line,
-			},
-		},
-
-		Menu_profile: {
-			justifyContent: 'flex-start',
-		},
-
-		Menu_settings: {
-			justifyContent: 'flex-start',
-		},
 	})
 }

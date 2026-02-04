@@ -24,21 +24,7 @@ $bog_bzrl_app_profile $mol_view
 											<= Theme_toggle $bog_theme_toggle
 												theme_auto <= theme_auto
 									<= Name $mol_string_button
-										value? <=> name? @ \Click on me
-									<= Email $mol_string_button
-										value? <=> email? @ \Fill me
+										value? <=> name? \
+										hint @ \Click on me
 									<= Id $mol_dimmer
 										haystack <= profile_id \
-							<= Divider_1 $mol_view
-							<= Menu_profile $mol_button_minor
-								sub /
-									<= Menu_profile_icon $mol_icon_account
-									<= Menu_profile_label @ \Profile
-							<= Menu_stars $mol_button_minor
-								sub /
-									<= Menu_stars_icon $mol_icon_star
-									<= Menu_stars_label @ \Stars
-							<= Menu_settings $mol_button_minor
-								sub /
-									<= Menu_settings_icon $mol_icon_settings
-									<= Menu_settings_label @ \Settings

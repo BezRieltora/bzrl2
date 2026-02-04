@@ -69,7 +69,6 @@ namespace $.$$ {
 				direction: 'column',
 			},
 			gap: '3rem',
-			padding: '2rem',
 		},
 	})
 }
