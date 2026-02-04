@@ -39,18 +39,15 @@ $bog_bzrl_app $mol_page
 			sub /
 				<= Profile $bog_bzrl_app_profile
 					theme_auto <= Theme
-		body /
-			<= Rent_page? $bog_bzrl_app_rent
-				attr *
-					id \top
-				district? <=> filter_district? \all
-				rooms? <=> filter_rooms? \studio
-				price_from? <=> filter_price? \
-				search? <=> apartments_search? null
-				apartments <= apartments_filtered /
-				promo_action? <=> promo_action? null
-			<= Let_page? $bog_bzrl_app_let
-				action? <=> let_action? null
-		<= Footer? $bog_bzrl_app_footer
+	body /
+		<= Rent_page? $bog_bzrl_app_rent
 			attr *
-				id \contact
+				id \top
+			district? <=> filter_district? \all
+			rooms? <=> filter_rooms? \studio
+			price_from? <=> filter_price? \
+			search? <=> apartments_search? null
+			apartments <= apartments_filtered /
+			promo_action? <=> promo_action? null
+		<= Let_page? $bog_bzrl_app_let
+			action? <=> let_action? null

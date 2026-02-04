@@ -62,3 +62,6 @@ $bog_bzrl_app_rent $mol_view
 			attr *
 				id \team
 			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
+		<= Footer $bog_bzrl_app_footer
+			attr *
+				id \contact
