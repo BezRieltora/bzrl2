@@ -39,55 +39,18 @@ $bog_bzrl_app $mol_page
 			sub /
 				<= Profile $bog_bzrl_app_profile
 					theme_auto <= Theme
-	body /
-		<= Rent_page? $bog_bzrl_app_rent
-			attr *
-				id \top
-			district? <=> filter_district? \all
-			rooms? <=> filter_rooms? \studio
-			price_from? <=> filter_price? \
-			search? <=> apartments_search? null
-			apartment_rows <= apartment_rows /
-			apartment_district <= apartment_district* \
-			apartment_photo <= apartment_photo* \
-			apartment_area <= apartment_area* \
-			apartment_floor <= apartment_floor* \
-			apartment_price <= apartment_price* \
-			promo_action? <=> promo_action? null
-		<= Let_page? $bog_bzrl_app_let
-			action? <=> let_action? null
-		<= How_it_works? $mol_view
-			attr *
-				id \how
-			sub /
-				<= How_title $mol_paragraph
-					title @ \how it works
-				<= Steps $mol_view
-					sub /
-						<= Step_match $bog_bzrl_app_step_match
-						<= Step_request $bog_bzrl_app_step_request
-						<= Step_pay $bog_bzrl_app_step_pay
-		<= Privacy? $mol_view
-			attr *
-				id \privacy
-			sub /
-				<= Privacy_slider $bog_bzrl_app_slider
-				<= Privacy_content $bog_bzrl_app_hero_privacy
-		<= Benefits? $mol_view
-			attr *
-				id \benefits
-			sub /
-				<= Benefits_title $mol_paragraph
-					title @ \benefits
-				<= Benefits_list $mol_view
-					sub /
-						<= Benefit_owners $bog_bzrl_app_benefit_owners
-						<= Benefit_verified $bog_bzrl_app_benefit_verified
-						<= Benefit_secure $bog_bzrl_app_benefit_secure
-		<= Team? $bog_bzrl_app_hero_team
-			attr *
-				id \team
-			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
+		body /
+			<= Rent_page? $bog_bzrl_app_rent
+				attr *
+					id \top
+				district? <=> filter_district? \all
+				rooms? <=> filter_rooms? \studio
+				price_from? <=> filter_price? \
+				search? <=> apartments_search? null
+				apartments <= apartments_filtered /
+				promo_action? <=> promo_action? null
+			<= Let_page? $bog_bzrl_app_let
+				action? <=> let_action? null
 		<= Footer? $bog_bzrl_app_footer
 			attr *
 				id \contact

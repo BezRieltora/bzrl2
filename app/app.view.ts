@@ -146,8 +146,8 @@ namespace $.$$ {
 		}
 
 		@$mol_mem
-		apartment_rows() {
-			return this.apartments_filtered().map(apt => this.Apartment(apt.id))
+		apartment_ids() {
+			return this.apartments_filtered().map(apt => apt.id)
 		}
 
 		@$mol_mem_key
@@ -223,17 +223,6 @@ namespace $.$$ {
 		}
 
 		@$mol_action
-		let_click(next?: any) {
-			this.tab('let')
-			this.section('let')
-		}
-
-		@$mol_action
-		rent_click(next?: any) {
-			this.tab('rent')
-			this.section('rent')
-		}
-
 		private parse_price(value: string) {
 			const normalized = value.replace(/[^\d]/g, '')
 			if (!normalized) return null

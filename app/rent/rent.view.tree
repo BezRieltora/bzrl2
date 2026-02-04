@@ -3,7 +3,7 @@ $bog_bzrl_app_rent $mol_view
 	rooms? \studio
 	price_from? \
 	search? null
-	apartment_rows /string
+	apartments /
 	apartment_district* \
 	apartment_photo* \
 	apartment_area* \
@@ -21,7 +21,7 @@ $bog_bzrl_app_rent $mol_view
 		<= Apartments $mol_view
 			attr *
 				id \apartments
-			sub <= apartment_rows /
+			sub <= apartment_rows /$mol_view
 				<= Apartment* $bog_bzrl_app_card
 					district <= apartment_district* \
 					photo <= apartment_photo* \
@@ -30,3 +30,35 @@ $bog_bzrl_app_rent $mol_view
 					price <= apartment_price* \
 		<= Promo $bog_bzrl_app_hero_promo
 			action? <=> promo_action? null
+		<= How_it_works $mol_view
+			attr *
+				id \how
+			sub /
+				<= How_title $mol_paragraph
+					title @ \how it works
+				<= Steps $mol_view
+					sub /
+						<= Step_match $bog_bzrl_app_step_match
+						<= Step_request $bog_bzrl_app_step_request
+						<= Step_pay $bog_bzrl_app_step_pay
+		<= Privacy $mol_view
+			attr *
+				id \privacy
+			sub /
+				<= Privacy_slider $bog_bzrl_app_slider
+				<= Privacy_content $bog_bzrl_app_hero_privacy
+		<= Benefits $mol_view
+			attr *
+				id \benefits
+			sub /
+				<= Benefits_title $mol_paragraph
+					title @ \benefits
+				<= Benefits_list $mol_view
+					sub /
+						<= Benefit_owners $bog_bzrl_app_benefit_owners
+						<= Benefit_verified $bog_bzrl_app_benefit_verified
+						<= Benefit_secure $bog_bzrl_app_benefit_secure
+		<= Team $bog_bzrl_app_hero_team
+			attr *
+				id \team
+			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
