@@ -1,741 +1,1936 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BZRL — Аренда недвижимости в Казани · Честная комиссия 20%</title>
-    <meta name="description" content="Сервис аренды квартир и домов в Казани. Прозрачная фиксированная комиссия 20%. Проверенные объекты, договор, сопровождение сделки.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* =================================================================
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BZRL — Аренда недвижимости в Казани · Честная комиссия 20%</title>
+		<meta
+			name="description"
+			content="Сервис аренды квартир и домов в Казани. Прозрачная фиксированная комиссия 20%. Проверенные объекты, договор, сопровождение сделки."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Onest:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			/* =================================================================
            CSS VARIABLES — единый источник стилей
            ================================================================= */
-        :root {
-            --bg-primary: #FAFAF8;
-            --bg-secondary: #F1F0EC;
-            --bg-card: #FFFFFF;
-            --bg-dark: #1A1D23;
-            --bg-dark-lighter: #252830;
-            --text-primary: #1A1D23;
-            --text-secondary: #5A5D66;
-            --text-muted: #8E919A;
-            --text-on-dark: #F1F0EC;
-            --accent: #2D6B4A;
-            --accent-hover: #225839;
-            --accent-light: #E6F2EB;
-            --accent-warm: #C4953A;
-            --accent-warm-light: #FDF6E3;
-            --border: #E4E3DF;
-            --border-light: #EDECE8;
-            --shadow-sm: 0 1px 3px rgba(26,29,35,0.04);
-            --shadow-md: 0 4px 16px rgba(26,29,35,0.06), 0 2px 6px rgba(26,29,35,0.04);
-            --shadow-lg: 0 12px 40px rgba(26,29,35,0.08);
-            --shadow-hover: 0 8px 30px rgba(26,29,35,0.10);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-            --font-display: 'Outfit', sans-serif;
-            --font-body: 'Onest', sans-serif;
-            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+			:root {
+				--bg-primary: #fafaf8;
+				--bg-secondary: #f1f0ec;
+				--bg-card: #ffffff;
+				--bg-dark: #1a1d23;
+				--bg-dark-lighter: #252830;
+				--text-primary: #1a1d23;
+				--text-secondary: #5a5d66;
+				--text-muted: #8e919a;
+				--text-on-dark: #f1f0ec;
+				--accent: #2d6b4a;
+				--accent-hover: #225839;
+				--accent-light: #e6f2eb;
+				--accent-warm: #c4953a;
+				--accent-warm-light: #fdf6e3;
+				--border: #e4e3df;
+				--border-light: #edece8;
+				--shadow-sm: 0 1px 3px rgba(26, 29, 35, 0.04);
+				--shadow-md: 0 4px 16px rgba(26, 29, 35, 0.06), 0 2px 6px rgba(26, 29, 35, 0.04);
+				--shadow-lg: 0 12px 40px rgba(26, 29, 35, 0.08);
+				--shadow-hover: 0 8px 30px rgba(26, 29, 35, 0.1);
+				--radius-sm: 8px;
+				--radius-md: 12px;
+				--radius-lg: 16px;
+				--radius-xl: 24px;
+				--font-display: 'Outfit', sans-serif;
+				--font-body: 'Onest', sans-serif;
+				--transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+			}
 
-        /* ===== RESET ===== */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
-        a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; display: block; }
-        button { cursor: pointer; border: none; background: none; font-family: inherit; }
-        input, select { font-family: inherit; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-        .section-padding { padding: 80px 0; }
+			/* ===== RESET ===== */
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+				font-size: 16px;
+			}
+			body {
+				font-family: var(--font-body);
+				background: var(--bg-primary);
+				color: var(--text-primary);
+				line-height: 1.6;
+				-webkit-font-smoothing: antialiased;
+				overflow-x: hidden;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			img {
+				max-width: 100%;
+				display: block;
+			}
+			button {
+				cursor: pointer;
+				border: none;
+				background: none;
+				font-family: inherit;
+			}
+			input,
+			select {
+				font-family: inherit;
+			}
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.section-padding {
+				padding: 80px 0;
+			}
 
-        /* =================================================================
+			/* =================================================================
            HEADER
            ================================================================= */
-        .header {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(250,250,248,0.88);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-        }
-        .header-inner {
-            display: flex; align-items: center; justify-content: space-between; height: 72px;
-        }
-        .logo {
-            font-family: var(--font-display);
-            font-weight: 800; font-size: 1.45rem;
-            display: flex; align-items: center; gap: 10px; cursor: pointer;
-        }
-        .logo-mark {
-            width: 36px; height: 36px; background: var(--accent);
-            border-radius: var(--radius-sm); display: flex;
-            align-items: center; justify-content: center;
-            color: white; font-size: 0.85rem; font-weight: 800;
-        }
-        .nav { display: flex; align-items: center; gap: 6px; }
-        .nav-link {
-            padding: 8px 16px; border-radius: var(--radius-sm);
-            font-size: 0.9rem; font-weight: 500; color: var(--text-secondary);
-            transition: var(--transition); cursor: pointer;
-        }
-        .nav-link:hover, .nav-link.active { color: var(--text-primary); background: var(--bg-secondary); }
-        .nav-cta {
-            display: inline-flex; align-items: center; gap: 7px;
-            padding: 9px 20px; border-radius: var(--radius-sm);
-            background: #2AABEE; color: white;
-            font-size: 0.88rem; font-weight: 600; transition: var(--transition);
-        }
-        .nav-cta:hover { background: #229ED9; transform: translateY(-1px); }
-        .nav-cta svg { width: 16px; height: 16px; }
+			.header {
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 1000;
+				background: rgba(250, 250, 248, 0.88);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border-bottom: 1px solid var(--border-light);
+			}
+			.header-inner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				height: 72px;
+			}
+			.logo {
+				font-family: var(--font-display);
+				font-weight: 800;
+				font-size: 1.45rem;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				cursor: pointer;
+			}
+			.logo-mark {
+				width: 36px;
+				height: 36px;
+				background: var(--accent);
+				border-radius: var(--radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-size: 0.85rem;
+				font-weight: 800;
+			}
+			.nav {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+			.nav-link {
+				padding: 8px 16px;
+				border-radius: var(--radius-sm);
+				font-size: 0.9rem;
+				font-weight: 500;
+				color: var(--text-secondary);
+				transition: var(--transition);
+				cursor: pointer;
+			}
+			.nav-link:hover,
+			.nav-link.active {
+				color: var(--text-primary);
+				background: var(--bg-secondary);
+			}
+			.nav-cta {
+				display: inline-flex;
+				align-items: center;
+				gap: 7px;
+				padding: 9px 20px;
+				border-radius: var(--radius-sm);
+				background: #2aabee;
+				color: white;
+				font-size: 0.88rem;
+				font-weight: 600;
+				transition: var(--transition);
+			}
+			.nav-cta:hover {
+				background: #229ed9;
+				transform: translateY(-1px);
+			}
+			.nav-cta svg {
+				width: 16px;
+				height: 16px;
+			}
 
-        /* Mobile */
-        .burger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
-        .burger span { width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: var(--transition); }
-        .mobile-nav {
-            display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
-            background: var(--bg-primary); padding: 24px; z-index: 999;
-            flex-direction: column; gap: 8px; overflow-y: auto;
-        }
-        .mobile-nav.open { display: flex; }
-        .mobile-nav .nav-link { font-size: 1.1rem; padding: 14px 16px; }
-        .mobile-nav .nav-cta { margin-top: 12px; text-align: center; padding: 16px; border-radius: var(--radius-md); font-size: 1.05rem; justify-content: center; }
+			/* Mobile */
+			.burger {
+				display: none;
+				flex-direction: column;
+				gap: 5px;
+				padding: 8px;
+			}
+			.burger span {
+				width: 22px;
+				height: 2px;
+				background: var(--text-primary);
+				border-radius: 2px;
+				transition: var(--transition);
+			}
+			.mobile-nav {
+				display: none;
+				position: fixed;
+				top: 72px;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: var(--bg-primary);
+				padding: 24px;
+				z-index: 999;
+				flex-direction: column;
+				gap: 8px;
+				overflow-y: auto;
+			}
+			.mobile-nav.open {
+				display: flex;
+			}
+			.mobile-nav .nav-link {
+				font-size: 1.1rem;
+				padding: 14px 16px;
+			}
+			.mobile-nav .nav-cta {
+				margin-top: 12px;
+				text-align: center;
+				padding: 16px;
+				border-radius: var(--radius-md);
+				font-size: 1.05rem;
+				justify-content: center;
+			}
 
-        /* =================================================================
+			/* =================================================================
            BUTTONS
            ================================================================= */
-        .btn-primary {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 32px; background: var(--accent); color: white;
-            border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; transition: var(--transition);
-        }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .btn-secondary {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 32px; background: var(--bg-card); color: var(--text-primary);
-            border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 500; transition: var(--transition);
-        }
-        .btn-secondary:hover { border-color: var(--text-muted); transform: translateY(-1px); }
-        .btn-telegram {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; background: #2AABEE; color: white;
-            border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; transition: var(--transition);
-        }
-        .btn-telegram:hover { background: #229ED9; transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .btn-phone {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; background: var(--bg-card); color: var(--text-primary);
-            border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 1rem; font-weight: 500; transition: var(--transition);
-        }
-        .btn-phone:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-        .btn-bot {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 14px 28px; background: var(--bg-dark); color: white;
-            border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; transition: var(--transition);
-        }
-        .btn-bot:hover { background: var(--bg-dark-lighter); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .contact-bar { display: flex; flex-wrap: wrap; gap: 12px; }
+			.btn-primary {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 32px;
+				background: var(--accent);
+				color: white;
+				border-radius: var(--radius-sm);
+				font-size: 1rem;
+				font-weight: 600;
+				transition: var(--transition);
+			}
+			.btn-primary:hover {
+				background: var(--accent-hover);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+			}
+			.btn-secondary {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 32px;
+				background: var(--bg-card);
+				color: var(--text-primary);
+				border: 1px solid var(--border);
+				border-radius: var(--radius-sm);
+				font-size: 1rem;
+				font-weight: 500;
+				transition: var(--transition);
+			}
+			.btn-secondary:hover {
+				border-color: var(--text-muted);
+				transform: translateY(-1px);
+			}
+			.btn-telegram {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				background: #2aabee;
+				color: white;
+				border-radius: var(--radius-sm);
+				font-size: 1rem;
+				font-weight: 600;
+				transition: var(--transition);
+			}
+			.btn-telegram:hover {
+				background: #229ed9;
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+			}
+			.btn-phone {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				background: var(--bg-card);
+				color: var(--text-primary);
+				border: 1px solid var(--border);
+				border-radius: var(--radius-sm);
+				font-size: 1rem;
+				font-weight: 500;
+				transition: var(--transition);
+			}
+			.btn-phone:hover {
+				border-color: var(--accent);
+				color: var(--accent);
+				transform: translateY(-1px);
+			}
+			.btn-bot {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 14px 28px;
+				background: var(--bg-dark);
+				color: white;
+				border-radius: var(--radius-sm);
+				font-size: 1rem;
+				font-weight: 600;
+				transition: var(--transition);
+			}
+			.btn-bot:hover {
+				background: var(--bg-dark-lighter);
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-md);
+			}
+			.contact-bar {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 12px;
+			}
 
-        /* =================================================================
+			/* =================================================================
            HERO
            ================================================================= */
-        .hero {
-            padding: 140px 0 80px;
-            background: linear-gradient(165deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--accent-light) 100%);
-            position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: -120px; right: -80px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(45,107,74,0.06) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-        .hero-content { position: relative; z-index: 1; max-width: 720px; }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 6px 16px 6px 8px; background: var(--accent-light);
-            border: 1px solid rgba(45,107,74,0.15); border-radius: 100px;
-            font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-bottom: 28px;
-        }
-        .hero-badge-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse-dot 2s infinite; }
-        @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-        .hero h1 {
-            font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem);
-            font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 20px;
-        }
-        .hero h1 em {
-            font-style: normal;
-            background: linear-gradient(135deg, var(--accent), #3DA066);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero-sub { font-size: 1.12rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; max-width: 560px; }
-        .hero-commission {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 20px; background: var(--accent-warm-light);
-            border: 1px solid rgba(196,149,58,0.2); border-radius: var(--radius-sm);
-            font-size: 0.95rem; font-weight: 600; color: #8B6914; margin-bottom: 32px;
-        }
-        .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-        .stats {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 2px; background: var(--border-light); border-radius: var(--radius-lg);
-            overflow: hidden; margin-top: 56px; position: relative; z-index: 1;
-        }
-        .stat-item { background: var(--bg-card); padding: 28px 24px; text-align: center; }
-        .stat-number { font-family: var(--font-display); font-size: 1.7rem; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
-        .stat-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+			.hero {
+				padding: 140px 0 80px;
+				background: linear-gradient(
+					165deg,
+					var(--bg-primary) 0%,
+					var(--bg-secondary) 50%,
+					var(--accent-light) 100%
+				);
+				position: relative;
+				overflow: hidden;
+			}
+			.hero::before {
+				content: '';
+				position: absolute;
+				top: -120px;
+				right: -80px;
+				width: 500px;
+				height: 500px;
+				background: radial-gradient(circle, rgba(45, 107, 74, 0.06) 0%, transparent 70%);
+				border-radius: 50%;
+			}
+			.hero-content {
+				position: relative;
+				z-index: 1;
+				max-width: 720px;
+			}
+			.hero-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 6px 16px 6px 8px;
+				background: var(--accent-light);
+				border: 1px solid rgba(45, 107, 74, 0.15);
+				border-radius: 100px;
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: var(--accent);
+				margin-bottom: 28px;
+			}
+			.hero-badge-dot {
+				width: 8px;
+				height: 8px;
+				background: var(--accent);
+				border-radius: 50%;
+				animation: pulse-dot 2s infinite;
+			}
+			@keyframes pulse-dot {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0.4;
+				}
+			}
+			.hero h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2.2rem, 5vw, 3.4rem);
+				font-weight: 800;
+				line-height: 1.12;
+				letter-spacing: -0.03em;
+				margin-bottom: 20px;
+			}
+			.hero h1 em {
+				font-style: normal;
+				background: linear-gradient(135deg, var(--accent), #3da066);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.hero-sub {
+				font-size: 1.12rem;
+				color: var(--text-secondary);
+				line-height: 1.7;
+				margin-bottom: 12px;
+				max-width: 560px;
+			}
+			.hero-commission {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				padding: 10px 20px;
+				background: var(--accent-warm-light);
+				border: 1px solid rgba(196, 149, 58, 0.2);
+				border-radius: var(--radius-sm);
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: #8b6914;
+				margin-bottom: 32px;
+			}
+			.hero-actions {
+				display: flex;
+				gap: 14px;
+				flex-wrap: wrap;
+			}
+			.stats {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 2px;
+				background: var(--border-light);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				margin-top: 56px;
+				position: relative;
+				z-index: 1;
+			}
+			.stat-item {
+				background: var(--bg-card);
+				padding: 28px 24px;
+				text-align: center;
+			}
+			.stat-number {
+				font-family: var(--font-display);
+				font-size: 1.7rem;
+				font-weight: 800;
+				color: var(--accent);
+				margin-bottom: 4px;
+			}
+			.stat-label {
+				font-size: 0.8rem;
+				color: var(--text-muted);
+				font-weight: 500;
+			}
 
-        /* =================================================================
+			/* =================================================================
            SECTION HEADER
            ================================================================= */
-        .section-header { margin-bottom: 48px; }
-        .section-header.center { text-align: center; }
-        .section-header h2 {
-            font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.3rem);
-            font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px;
-        }
-        .section-header p { color: var(--text-secondary); font-size: 1.02rem; max-width: 560px; }
-        .section-header.center p { margin: 0 auto; }
+			.section-header {
+				margin-bottom: 48px;
+			}
+			.section-header.center {
+				text-align: center;
+			}
+			.section-header h2 {
+				font-family: var(--font-display);
+				font-size: clamp(1.7rem, 3vw, 2.3rem);
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				margin-bottom: 12px;
+			}
+			.section-header p {
+				color: var(--text-secondary);
+				font-size: 1.02rem;
+				max-width: 560px;
+			}
+			.section-header.center p {
+				margin: 0 auto;
+			}
 
-        /* =================================================================
+			/* =================================================================
            HOW IT WORKS
            ================================================================= */
-        .how-it-works { background: var(--bg-primary); }
-        .steps-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-        .step-card {
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 28px 22px; text-align: center; transition: var(--transition);
-        }
-        .step-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .step-num { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--accent-light); margin-bottom: 12px; line-height: 1; }
-        .step-icon { font-size: 1.6rem; margin-bottom: 12px; }
-        .step-card h3 { font-family: var(--font-display); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-        .step-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+			.how-it-works {
+				background: var(--bg-primary);
+			}
+			.steps-grid {
+				display: grid;
+				grid-template-columns: repeat(5, 1fr);
+				gap: 16px;
+			}
+			.step-card {
+				background: var(--bg-card);
+				border: 1px solid var(--border-light);
+				border-radius: var(--radius-lg);
+				padding: 28px 22px;
+				text-align: center;
+				transition: var(--transition);
+			}
+			.step-card:hover {
+				transform: translateY(-3px);
+				box-shadow: var(--shadow-hover);
+				border-color: transparent;
+			}
+			.step-num {
+				font-family: var(--font-display);
+				font-size: 2rem;
+				font-weight: 800;
+				color: var(--accent-light);
+				margin-bottom: 12px;
+				line-height: 1;
+			}
+			.step-icon {
+				font-size: 1.6rem;
+				margin-bottom: 12px;
+			}
+			.step-card h3 {
+				font-family: var(--font-display);
+				font-size: 0.95rem;
+				font-weight: 700;
+				margin-bottom: 6px;
+			}
+			.step-card p {
+				font-size: 0.82rem;
+				color: var(--text-muted);
+				line-height: 1.5;
+			}
 
-        /* =================================================================
+			/* =================================================================
            ADVANTAGES
            ================================================================= */
-        .advantages { background: var(--bg-secondary); }
-        .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .adv-card {
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 32px 26px; transition: var(--transition);
-        }
-        .adv-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .adv-icon {
-            width: 48px; height: 48px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; margin-bottom: 18px;
-        }
-        .adv-icon.green { background: var(--accent-light); }
-        .adv-icon.warm { background: var(--accent-warm-light); }
-        .adv-icon.muted { background: var(--bg-secondary); }
-        .adv-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
-        .adv-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; }
+			.advantages {
+				background: var(--bg-secondary);
+			}
+			.advantages-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+			}
+			.adv-card {
+				background: var(--bg-card);
+				border: 1px solid var(--border-light);
+				border-radius: var(--radius-lg);
+				padding: 32px 26px;
+				transition: var(--transition);
+			}
+			.adv-card:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--shadow-hover);
+				border-color: transparent;
+			}
+			.adv-icon {
+				width: 48px;
+				height: 48px;
+				border-radius: var(--radius-md);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.3rem;
+				margin-bottom: 18px;
+			}
+			.adv-icon.green {
+				background: var(--accent-light);
+			}
+			.adv-icon.warm {
+				background: var(--accent-warm-light);
+			}
+			.adv-icon.muted {
+				background: var(--bg-secondary);
+			}
+			.adv-card h3 {
+				font-family: var(--font-display);
+				font-size: 1.1rem;
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+			.adv-card p {
+				font-size: 0.9rem;
+				color: var(--text-secondary);
+				line-height: 1.65;
+			}
 
-        /* =================================================================
+			/* =================================================================
            CATALOG
            ================================================================= */
-        .catalog { background: var(--bg-secondary); }
-        .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px; align-items: flex-end; }
-        .filter-group { display: flex; flex-direction: column; gap: 6px; }
-        .filter-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-        .filter-select, .filter-input {
-            padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm);
-            background: var(--bg-card); font-size: 0.9rem; color: var(--text-primary); transition: var(--transition); min-width: 155px;
-        }
-        .filter-select:focus, .filter-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,107,74,0.1); }
-        .filter-btn { padding: 10px 24px; background: var(--accent); color: white; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; transition: var(--transition); }
-        .filter-btn:hover { background: var(--accent-hover); }
-        .filter-reset { padding: 10px 16px; color: var(--text-muted); font-size: 0.86rem; font-weight: 500; transition: var(--transition); border-radius: var(--radius-sm); }
-        .filter-reset:hover { color: var(--text-primary); background: var(--bg-card); }
-        .results-count { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 20px; }
-        .results-count strong { color: var(--text-primary); }
+			.catalog {
+				background: var(--bg-secondary);
+			}
+			.filters {
+				display: flex;
+				gap: 12px;
+				flex-wrap: wrap;
+				margin-bottom: 28px;
+				align-items: flex-end;
+			}
+			.filter-group {
+				display: flex;
+				flex-direction: column;
+				gap: 6px;
+			}
+			.filter-label {
+				font-size: 0.75rem;
+				font-weight: 600;
+				color: var(--text-muted);
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			.filter-select,
+			.filter-input {
+				padding: 10px 14px;
+				border: 1px solid var(--border);
+				border-radius: var(--radius-sm);
+				background: var(--bg-card);
+				font-size: 0.9rem;
+				color: var(--text-primary);
+				transition: var(--transition);
+				min-width: 155px;
+			}
+			.filter-select:focus,
+			.filter-input:focus {
+				outline: none;
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px rgba(45, 107, 74, 0.1);
+			}
+			.filter-btn {
+				padding: 10px 24px;
+				background: var(--accent);
+				color: white;
+				border-radius: var(--radius-sm);
+				font-size: 0.9rem;
+				font-weight: 600;
+				transition: var(--transition);
+			}
+			.filter-btn:hover {
+				background: var(--accent-hover);
+			}
+			.filter-reset {
+				padding: 10px 16px;
+				color: var(--text-muted);
+				font-size: 0.86rem;
+				font-weight: 500;
+				transition: var(--transition);
+				border-radius: var(--radius-sm);
+			}
+			.filter-reset:hover {
+				color: var(--text-primary);
+				background: var(--bg-card);
+			}
+			.results-count {
+				font-size: 0.88rem;
+				color: var(--text-muted);
+				margin-bottom: 20px;
+			}
+			.results-count strong {
+				color: var(--text-primary);
+			}
 
-        .properties-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .prop-card {
-            background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden;
-            border: 1px solid var(--border-light); transition: var(--transition); cursor: pointer;
-        }
-        .prop-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: transparent; }
-        .prop-card-img { height: 210px; overflow: hidden; position: relative; }
-        .prop-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .prop-card:hover .prop-card-img img { transform: scale(1.04); }
-        .prop-badge {
-            position: absolute; top: 12px; left: 12px; padding: 4px 12px; border-radius: 100px;
-            font-size: 0.75rem; font-weight: 600; background: rgba(45,107,74,0.9); color: #fff; backdrop-filter: blur(8px);
-        }
-        .prop-badge.house { background: rgba(196,149,58,0.9); }
-        .prop-card-body { padding: 20px; }
-        .prop-price { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
-        .prop-price span { font-size: 0.82rem; font-weight: 400; color: var(--text-muted); }
-        .prop-address { font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 14px; }
-        .prop-meta { display: flex; gap: 14px; padding-top: 14px; border-top: 1px solid var(--border-light); }
-        .prop-meta-item { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; }
+			.properties-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 20px;
+			}
+			.prop-card {
+				background: var(--bg-card);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				border: 1px solid var(--border-light);
+				transition: var(--transition);
+				cursor: pointer;
+			}
+			.prop-card:hover {
+				transform: translateY(-4px);
+				box-shadow: var(--shadow-hover);
+				border-color: transparent;
+			}
+			.prop-card-img {
+				height: 210px;
+				overflow: hidden;
+				position: relative;
+			}
+			.prop-card-img img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transition: transform 0.4s ease;
+			}
+			.prop-card:hover .prop-card-img img {
+				transform: scale(1.04);
+			}
+			.prop-badge {
+				position: absolute;
+				top: 12px;
+				left: 12px;
+				padding: 4px 12px;
+				border-radius: 100px;
+				font-size: 0.75rem;
+				font-weight: 600;
+				background: rgba(45, 107, 74, 0.9);
+				color: #fff;
+				backdrop-filter: blur(8px);
+			}
+			.prop-badge.house {
+				background: rgba(196, 149, 58, 0.9);
+			}
+			.prop-card-body {
+				padding: 20px;
+			}
+			.prop-price {
+				font-family: var(--font-display);
+				font-size: 1.3rem;
+				font-weight: 700;
+				margin-bottom: 4px;
+			}
+			.prop-price span {
+				font-size: 0.82rem;
+				font-weight: 400;
+				color: var(--text-muted);
+			}
+			.prop-address {
+				font-size: 0.86rem;
+				color: var(--text-secondary);
+				margin-bottom: 14px;
+			}
+			.prop-meta {
+				display: flex;
+				gap: 14px;
+				padding-top: 14px;
+				border-top: 1px solid var(--border-light);
+			}
+			.prop-meta-item {
+				font-size: 0.8rem;
+				color: var(--text-muted);
+				display: flex;
+				align-items: center;
+				gap: 4px;
+			}
 
-        /* =================================================================
+			/* =================================================================
            PROPERTY DETAIL
            ================================================================= */
-        .prop-detail { padding-top: 96px; }
-        .prop-detail-back {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; cursor: pointer; transition: var(--transition);
-        }
-        .prop-detail-back:hover { color: var(--text-primary); }
-        .prop-detail-grid { display: grid; grid-template-columns: 1fr 380px; gap: 32px; }
-        .prop-gallery { border-radius: var(--radius-lg); overflow: hidden; position: relative; aspect-ratio: 16/10; }
-        .prop-gallery img { width: 100%; height: 100%; object-fit: cover; }
-        .gallery-arrows {
-            position: absolute; top: 50%; left: 0; right: 0;
-            display: flex; justify-content: space-between; padding: 0 12px; transform: translateY(-50%);
-        }
-        .gallery-arrow {
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.85); backdrop-filter: blur(8px);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; color: var(--text-primary); transition: var(--transition);
-        }
-        .gallery-arrow:hover { background: white; }
-        .gallery-nav { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
-        .gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; transition: var(--transition); }
-        .gallery-dot.active { background: white; width: 24px; border-radius: 4px; }
-        .prop-sidebar {
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 28px; height: fit-content; position: sticky; top: 96px;
-        }
-        .prop-sidebar-price { font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; margin-bottom: 4px; }
-        .prop-sidebar-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
-        .prop-sidebar-type {
-            display: inline-block; padding: 4px 12px; border-radius: 100px;
-            font-size: 0.78rem; font-weight: 600; margin-bottom: 20px;
-            background: var(--accent-light); color: var(--accent);
-        }
-        .prop-sidebar-type.house { background: var(--accent-warm-light); color: #8B6914; }
-        .prop-sidebar-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
-        .spec-item { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 11px 13px; }
-        .spec-label { font-size: 0.73rem; color: var(--text-muted); margin-bottom: 2px; }
-        .spec-value { font-weight: 600; font-size: 0.92rem; }
-        .deal-terms {
-            background: var(--accent-warm-light); border: 1px solid rgba(196,149,58,0.2);
-            border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px;
-        }
-        .deal-terms-title { font-size: 0.78rem; font-weight: 600; color: #8B6914; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
-        .deal-terms-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; padding: 4px 0; }
-        .deal-terms-row .label { color: var(--text-secondary); }
-        .deal-terms-row .value { font-weight: 600; }
-        .sidebar-contacts { display: flex; flex-direction: column; gap: 10px; }
-        .sidebar-contacts a { width: 100%; justify-content: center; }
-        .prop-info { margin-top: 32px; }
-        .prop-info h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 14px; }
-        .prop-info > p { color: var(--text-secondary); line-height: 1.75; margin-bottom: 28px; }
-        .prop-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-        .prop-feature {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 14px; background: var(--bg-secondary); border-radius: var(--radius-sm); font-size: 0.88rem;
-        }
+			.prop-detail {
+				padding-top: 96px;
+			}
+			.prop-detail-back {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-size: 0.9rem;
+				color: var(--text-muted);
+				margin-bottom: 24px;
+				cursor: pointer;
+				transition: var(--transition);
+			}
+			.prop-detail-back:hover {
+				color: var(--text-primary);
+			}
+			.prop-detail-grid {
+				display: grid;
+				grid-template-columns: 1fr 380px;
+				gap: 32px;
+			}
+			.prop-gallery {
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				position: relative;
+				aspect-ratio: 16/10;
+			}
+			.prop-gallery img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+			.gallery-arrows {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				right: 0;
+				display: flex;
+				justify-content: space-between;
+				padding: 0 12px;
+				transform: translateY(-50%);
+			}
+			.gallery-arrow {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.85);
+				backdrop-filter: blur(8px);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.1rem;
+				color: var(--text-primary);
+				transition: var(--transition);
+			}
+			.gallery-arrow:hover {
+				background: white;
+			}
+			.gallery-nav {
+				position: absolute;
+				bottom: 16px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				gap: 6px;
+			}
+			.gallery-dot {
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.5);
+				cursor: pointer;
+				transition: var(--transition);
+			}
+			.gallery-dot.active {
+				background: white;
+				width: 24px;
+				border-radius: 4px;
+			}
+			.prop-sidebar {
+				background: var(--bg-card);
+				border: 1px solid var(--border-light);
+				border-radius: var(--radius-lg);
+				padding: 28px;
+				height: fit-content;
+				position: sticky;
+				top: 96px;
+			}
+			.prop-sidebar-price {
+				font-family: var(--font-display);
+				font-size: 1.9rem;
+				font-weight: 800;
+				margin-bottom: 4px;
+			}
+			.prop-sidebar-price span {
+				font-size: 0.9rem;
+				font-weight: 400;
+				color: var(--text-muted);
+			}
+			.prop-sidebar-type {
+				display: inline-block;
+				padding: 4px 12px;
+				border-radius: 100px;
+				font-size: 0.78rem;
+				font-weight: 600;
+				margin-bottom: 20px;
+				background: var(--accent-light);
+				color: var(--accent);
+			}
+			.prop-sidebar-type.house {
+				background: var(--accent-warm-light);
+				color: #8b6914;
+			}
+			.prop-sidebar-specs {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
+				margin-bottom: 20px;
+			}
+			.spec-item {
+				background: var(--bg-secondary);
+				border-radius: var(--radius-sm);
+				padding: 11px 13px;
+			}
+			.spec-label {
+				font-size: 0.73rem;
+				color: var(--text-muted);
+				margin-bottom: 2px;
+			}
+			.spec-value {
+				font-weight: 600;
+				font-size: 0.92rem;
+			}
+			.deal-terms {
+				background: var(--accent-warm-light);
+				border: 1px solid rgba(196, 149, 58, 0.2);
+				border-radius: var(--radius-md);
+				padding: 16px;
+				margin-bottom: 20px;
+			}
+			.deal-terms-title {
+				font-size: 0.78rem;
+				font-weight: 600;
+				color: #8b6914;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				margin-bottom: 8px;
+			}
+			.deal-terms-row {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				font-size: 0.9rem;
+				padding: 4px 0;
+			}
+			.deal-terms-row .label {
+				color: var(--text-secondary);
+			}
+			.deal-terms-row .value {
+				font-weight: 600;
+			}
+			.sidebar-contacts {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.sidebar-contacts a {
+				width: 100%;
+				justify-content: center;
+			}
+			.prop-info {
+				margin-top: 32px;
+			}
+			.prop-info h2 {
+				font-family: var(--font-display);
+				font-size: 1.4rem;
+				font-weight: 700;
+				margin-bottom: 14px;
+			}
+			.prop-info > p {
+				color: var(--text-secondary);
+				line-height: 1.75;
+				margin-bottom: 28px;
+			}
+			.prop-features {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 10px;
+			}
+			.prop-feature {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				padding: 10px 14px;
+				background: var(--bg-secondary);
+				border-radius: var(--radius-sm);
+				font-size: 0.88rem;
+			}
 
-        /* =================================================================
+			/* =================================================================
            LANDLORD PAGE
            ================================================================= */
-        .landlord-hero {
-            padding: 140px 0 60px;
-            background: linear-gradient(165deg, var(--bg-primary) 0%, var(--accent-warm-light) 100%);
-        }
-        .landlord-hero h1 {
-            font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 16px; max-width: 640px;
-        }
-        .landlord-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-        .landlord-benefits { display: flex; flex-direction: column; gap: 20px; }
-        .landlord-benefit {
-            display: flex; gap: 16px; align-items: flex-start;
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 24px; transition: var(--transition);
-        }
-        .landlord-benefit:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-        .landlord-benefit-icon {
-            width: 44px; height: 44px; min-width: 44px; border-radius: var(--radius-sm);
-            background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-        }
-        .landlord-benefit h4 { font-size: 0.98rem; font-weight: 600; margin-bottom: 4px; }
-        .landlord-benefit p { font-size: 0.86rem; color: var(--text-muted); line-height: 1.55; }
-        .landlord-cta-card {
-            background: var(--bg-dark); border-radius: var(--radius-xl);
-            padding: 40px; color: white; position: sticky; top: 96px;
-        }
-        .landlord-cta-card h3 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-        .landlord-cta-card > p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.7; margin-bottom: 28px; }
-        .landlord-cta-card .contact-bar { flex-direction: column; }
-        .landlord-cta-card .contact-bar a { width: 100%; justify-content: center; }
-        .landlord-cta-card .btn-phone { border-color: rgba(255,255,255,0.2); color: white; }
-        .landlord-cta-card .btn-phone:hover { border-color: rgba(255,255,255,0.5); }
-        .landlord-cta-card .btn-bot { background: rgba(255,255,255,0.1); }
-        .landlord-cta-card .btn-bot:hover { background: rgba(255,255,255,0.15); }
-        .commission-explainer {
-            background: var(--accent-warm-light); border: 1px solid rgba(196,149,58,0.2);
-            border-radius: var(--radius-lg); padding: 32px; margin-top: 48px;
-        }
-        .commission-explainer h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; color: #7A5C10; }
-        .commission-list { display: flex; flex-direction: column; gap: 10px; }
-        .commission-list-item { display: flex; gap: 12px; align-items: flex-start; font-size: 0.9rem; color: var(--text-secondary); }
-        .commission-list-item .check {
-            width: 22px; height: 22px; min-width: 22px;
-            background: rgba(45,107,74,0.12); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.7rem; color: var(--accent); font-weight: 700;
-        }
+			.landlord-hero {
+				padding: 140px 0 60px;
+				background: linear-gradient(165deg, var(--bg-primary) 0%, var(--accent-warm-light) 100%);
+			}
+			.landlord-hero h1 {
+				font-family: var(--font-display);
+				font-size: clamp(2rem, 4vw, 3rem);
+				font-weight: 800;
+				line-height: 1.12;
+				letter-spacing: -0.03em;
+				margin-bottom: 16px;
+				max-width: 640px;
+			}
+			.landlord-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 48px;
+				align-items: start;
+			}
+			.landlord-benefits {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+			}
+			.landlord-benefit {
+				display: flex;
+				gap: 16px;
+				align-items: flex-start;
+				background: var(--bg-card);
+				border: 1px solid var(--border-light);
+				border-radius: var(--radius-lg);
+				padding: 24px;
+				transition: var(--transition);
+			}
+			.landlord-benefit:hover {
+				box-shadow: var(--shadow-md);
+				transform: translateY(-2px);
+			}
+			.landlord-benefit-icon {
+				width: 44px;
+				height: 44px;
+				min-width: 44px;
+				border-radius: var(--radius-sm);
+				background: var(--accent-light);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2rem;
+			}
+			.landlord-benefit h4 {
+				font-size: 0.98rem;
+				font-weight: 600;
+				margin-bottom: 4px;
+			}
+			.landlord-benefit p {
+				font-size: 0.86rem;
+				color: var(--text-muted);
+				line-height: 1.55;
+			}
+			.landlord-cta-card {
+				background: var(--bg-dark);
+				border-radius: var(--radius-xl);
+				padding: 40px;
+				color: white;
+				position: sticky;
+				top: 96px;
+			}
+			.landlord-cta-card h3 {
+				font-family: var(--font-display);
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 12px;
+			}
+			.landlord-cta-card > p {
+				color: rgba(255, 255, 255, 0.65);
+				font-size: 0.95rem;
+				line-height: 1.7;
+				margin-bottom: 28px;
+			}
+			.landlord-cta-card .contact-bar {
+				flex-direction: column;
+			}
+			.landlord-cta-card .contact-bar a {
+				width: 100%;
+				justify-content: center;
+			}
+			.landlord-cta-card .btn-phone {
+				border-color: rgba(255, 255, 255, 0.2);
+				color: white;
+			}
+			.landlord-cta-card .btn-phone:hover {
+				border-color: rgba(255, 255, 255, 0.5);
+			}
+			.landlord-cta-card .btn-bot {
+				background: rgba(255, 255, 255, 0.1);
+			}
+			.landlord-cta-card .btn-bot:hover {
+				background: rgba(255, 255, 255, 0.15);
+			}
+			.commission-explainer {
+				background: var(--accent-warm-light);
+				border: 1px solid rgba(196, 149, 58, 0.2);
+				border-radius: var(--radius-lg);
+				padding: 32px;
+				margin-top: 48px;
+			}
+			.commission-explainer h3 {
+				font-family: var(--font-display);
+				font-size: 1.2rem;
+				font-weight: 700;
+				margin-bottom: 16px;
+				color: #7a5c10;
+			}
+			.commission-list {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.commission-list-item {
+				display: flex;
+				gap: 12px;
+				align-items: flex-start;
+				font-size: 0.9rem;
+				color: var(--text-secondary);
+			}
+			.commission-list-item .check {
+				width: 22px;
+				height: 22px;
+				min-width: 22px;
+				background: rgba(45, 107, 74, 0.12);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.7rem;
+				color: var(--accent);
+				font-weight: 700;
+			}
 
-        /* =================================================================
+			/* =================================================================
            ABOUT
            ================================================================= */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-        .about-visual {
-            background: var(--bg-dark); border-radius: var(--radius-xl);
-            padding: 48px; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end;
-            position: relative; overflow: hidden;
-        }
-        .about-visual::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(45,107,74,0.15), rgba(196,149,58,0.1)); }
-        .about-visual > * { position: relative; z-index: 1; }
-        .about-visual h3 { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: white; line-height: 1.2; margin-bottom: 14px; }
-        .about-visual p { color: rgba(255,255,255,0.65); font-size: 0.95rem; line-height: 1.7; }
-        .about-text h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 18px; }
-        .about-text > p { color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; margin-bottom: 14px; }
-        .about-values { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
-        .about-value { display: flex; gap: 14px; align-items: flex-start; }
-        .about-value-icon {
-            width: 38px; height: 38px; min-width: 38px; background: var(--accent-light);
-            border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1rem;
-        }
-        .about-value h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 2px; }
-        .about-value p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+			.about-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 56px;
+				align-items: center;
+			}
+			.about-visual {
+				background: var(--bg-dark);
+				border-radius: var(--radius-xl);
+				padding: 48px;
+				min-height: 380px;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				position: relative;
+				overflow: hidden;
+			}
+			.about-visual::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(135deg, rgba(45, 107, 74, 0.15), rgba(196, 149, 58, 0.1));
+			}
+			.about-visual > * {
+				position: relative;
+				z-index: 1;
+			}
+			.about-visual h3 {
+				font-family: var(--font-display);
+				font-size: 2rem;
+				font-weight: 800;
+				color: white;
+				line-height: 1.2;
+				margin-bottom: 14px;
+			}
+			.about-visual p {
+				color: rgba(255, 255, 255, 0.65);
+				font-size: 0.95rem;
+				line-height: 1.7;
+			}
+			.about-text h2 {
+				font-family: var(--font-display);
+				font-size: clamp(1.7rem, 3vw, 2.3rem);
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				margin-bottom: 18px;
+			}
+			.about-text > p {
+				color: var(--text-secondary);
+				font-size: 0.98rem;
+				line-height: 1.75;
+				margin-bottom: 14px;
+			}
+			.about-values {
+				margin-top: 28px;
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+			}
+			.about-value {
+				display: flex;
+				gap: 14px;
+				align-items: flex-start;
+			}
+			.about-value-icon {
+				width: 38px;
+				height: 38px;
+				min-width: 38px;
+				background: var(--accent-light);
+				border-radius: var(--radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1rem;
+			}
+			.about-value h4 {
+				font-size: 0.92rem;
+				font-weight: 600;
+				margin-bottom: 2px;
+			}
+			.about-value p {
+				font-size: 0.85rem;
+				color: var(--text-muted);
+				margin: 0;
+			}
 
-        /* =================================================================
+			/* =================================================================
            CONTACTS PAGE
            ================================================================= */
-        .contacts-page { background: var(--bg-secondary); }
-        .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-        .contact-card {
-            background: var(--bg-card); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 32px; transition: var(--transition);
-        }
-        .contact-card:hover { box-shadow: var(--shadow-md); }
-        .contact-card-icon {
-            width: 48px; height: 48px; border-radius: var(--radius-sm);
-            display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px;
-        }
-        .contact-card-icon.tg { background: #E3F4FC; }
-        .contact-card-icon.bot { background: var(--bg-secondary); }
-        .contact-card-icon.phone { background: var(--accent-light); }
-        .contact-card-icon.addr { background: var(--accent-warm-light); }
-        .contact-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
-        .contact-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 16px; }
-        .contact-card a.contact-link {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-weight: 600; font-size: 0.95rem; color: var(--accent); transition: var(--transition);
-        }
-        .contact-card a.contact-link:hover { color: var(--accent-hover); }
+			.contacts-page {
+				background: var(--bg-secondary);
+			}
+			.contacts-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 32px;
+			}
+			.contact-card {
+				background: var(--bg-card);
+				border: 1px solid var(--border-light);
+				border-radius: var(--radius-lg);
+				padding: 32px;
+				transition: var(--transition);
+			}
+			.contact-card:hover {
+				box-shadow: var(--shadow-md);
+			}
+			.contact-card-icon {
+				width: 48px;
+				height: 48px;
+				border-radius: var(--radius-sm);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.3rem;
+				margin-bottom: 16px;
+			}
+			.contact-card-icon.tg {
+				background: #e3f4fc;
+			}
+			.contact-card-icon.bot {
+				background: var(--bg-secondary);
+			}
+			.contact-card-icon.phone {
+				background: var(--accent-light);
+			}
+			.contact-card-icon.addr {
+				background: var(--accent-warm-light);
+			}
+			.contact-card h4 {
+				font-size: 1rem;
+				font-weight: 600;
+				margin-bottom: 6px;
+			}
+			.contact-card p {
+				font-size: 0.9rem;
+				color: var(--text-secondary);
+				line-height: 1.6;
+				margin-bottom: 16px;
+			}
+			.contact-card a.contact-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-weight: 600;
+				font-size: 0.95rem;
+				color: var(--accent);
+				transition: var(--transition);
+			}
+			.contact-card a.contact-link:hover {
+				color: var(--accent-hover);
+			}
 
-        /* =================================================================
+			/* =================================================================
            FOOTER
            ================================================================= */
-        .footer { background: var(--bg-dark); color: var(--text-on-dark); padding: 56px 0 32px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-        .footer-brand p { color: rgba(241,240,236,0.45); font-size: 0.88rem; line-height: 1.7; margin-top: 12px; max-width: 280px; }
-        .footer h4 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(241,240,236,0.35); margin-bottom: 16px; }
-        .footer-links { display: flex; flex-direction: column; gap: 10px; }
-        .footer-links a { font-size: 0.88rem; color: rgba(241,240,236,0.6); transition: var(--transition); cursor: pointer; }
-        .footer-links a:hover { color: white; }
-        .footer-bottom { border-top: 1px solid rgba(241,240,236,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; }
-        .footer-bottom p { font-size: 0.8rem; color: rgba(241,240,236,0.3); }
+			.footer {
+				background: var(--bg-dark);
+				color: var(--text-on-dark);
+				padding: 56px 0 32px;
+			}
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 2fr 1fr 1fr 1fr;
+				gap: 40px;
+				margin-bottom: 40px;
+			}
+			.footer-brand p {
+				color: rgba(241, 240, 236, 0.45);
+				font-size: 0.88rem;
+				line-height: 1.7;
+				margin-top: 12px;
+				max-width: 280px;
+			}
+			.footer h4 {
+				font-size: 0.75rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: rgba(241, 240, 236, 0.35);
+				margin-bottom: 16px;
+			}
+			.footer-links {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.footer-links a {
+				font-size: 0.88rem;
+				color: rgba(241, 240, 236, 0.6);
+				transition: var(--transition);
+				cursor: pointer;
+			}
+			.footer-links a:hover {
+				color: white;
+			}
+			.footer-bottom {
+				border-top: 1px solid rgba(241, 240, 236, 0.08);
+				padding-top: 24px;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.footer-bottom p {
+				font-size: 0.8rem;
+				color: rgba(241, 240, 236, 0.3);
+			}
 
-        /* ===== Page visibility ===== */
-        .page { display: none; }
-        .page.active { display: block; }
+			/* ===== Page visibility ===== */
+			.page {
+				display: none;
+			}
+			.page.active {
+				display: block;
+			}
 
-        /* ===== Animations ===== */
-        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .stagger-1 { transition-delay: 0.05s; } .stagger-2 { transition-delay: 0.1s; }
-        .stagger-3 { transition-delay: 0.15s; } .stagger-4 { transition-delay: 0.2s; }
-        .stagger-5 { transition-delay: 0.25s; }
+			/* ===== Animations ===== */
+			.fade-in {
+				opacity: 0;
+				transform: translateY(20px);
+				transition:
+					opacity 0.5s ease,
+					transform 0.5s ease;
+			}
+			.fade-in.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			.stagger-1 {
+				transition-delay: 0.05s;
+			}
+			.stagger-2 {
+				transition-delay: 0.1s;
+			}
+			.stagger-3 {
+				transition-delay: 0.15s;
+			}
+			.stagger-4 {
+				transition-delay: 0.2s;
+			}
+			.stagger-5 {
+				transition-delay: 0.25s;
+			}
 
-        /* =================================================================
+			/* =================================================================
            RESPONSIVE
            ================================================================= */
-        @media (max-width: 1024px) {
-            .properties-grid { grid-template-columns: repeat(2, 1fr); }
-            .prop-detail-grid { grid-template-columns: 1fr; }
-            .prop-sidebar { position: static; }
-            .about-grid, .landlord-grid, .contacts-grid { grid-template-columns: 1fr; }
-            .landlord-cta-card { position: static; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .steps-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 768px) {
-            .nav { display: none; }
-            .burger { display: flex; }
-            .hero, .landlord-hero { padding: 120px 0 56px; }
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .advantages-grid, .properties-grid { grid-template-columns: 1fr; }
-            .steps-grid { grid-template-columns: 1fr; }
-            .filters { flex-direction: column; }
-            .filter-select, .filter-input { min-width: 100%; }
-            .prop-features { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-            .hero-actions { flex-direction: column; }
-            .hero-actions > * { text-align: center; justify-content: center; width: 100%; }
-            .contact-bar { flex-direction: column; }
-            .contact-bar > * { width: 100%; justify-content: center; }
-        }
-        @media (max-width: 480px) { .container { padding: 0 16px; } .section-padding { padding: 52px 0; } }
-    </style>
-</head>
-<body>
+			@media (max-width: 1024px) {
+				.properties-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.prop-detail-grid {
+					grid-template-columns: 1fr;
+				}
+				.prop-sidebar {
+					position: static;
+				}
+				.about-grid,
+				.landlord-grid,
+				.contacts-grid {
+					grid-template-columns: 1fr;
+				}
+				.landlord-cta-card {
+					position: static;
+				}
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+				.steps-grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+			}
+			@media (max-width: 768px) {
+				.nav {
+					display: none;
+				}
+				.burger {
+					display: flex;
+				}
+				.hero,
+				.landlord-hero {
+					padding: 120px 0 56px;
+				}
+				.stats {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.advantages-grid,
+				.properties-grid {
+					grid-template-columns: 1fr;
+				}
+				.steps-grid {
+					grid-template-columns: 1fr;
+				}
+				.filters {
+					flex-direction: column;
+				}
+				.filter-select,
+				.filter-input {
+					min-width: 100%;
+				}
+				.prop-features {
+					grid-template-columns: 1fr;
+				}
+				.footer-grid {
+					grid-template-columns: 1fr;
+					gap: 28px;
+				}
+				.footer-bottom {
+					flex-direction: column;
+					gap: 12px;
+					text-align: center;
+				}
+				.hero-actions {
+					flex-direction: column;
+				}
+				.hero-actions > * {
+					text-align: center;
+					justify-content: center;
+					width: 100%;
+				}
+				.contact-bar {
+					flex-direction: column;
+				}
+				.contact-bar > * {
+					width: 100%;
+					justify-content: center;
+				}
+			}
+			@media (max-width: 480px) {
+				.container {
+					padding: 0 16px;
+				}
+				.section-padding {
+					padding: 52px 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ====== HEADER ====== -->
+		<header class="header">
+			<div class="container header-inner">
+				<div class="logo" onclick="navigate('home')">
+					<div class="logo-mark">BZ</div>
+					<div>BZRL</div>
+				</div>
+				<nav class="nav">
+					<a class="nav-link active" onclick="navigate('home')" data-page="home">Главная</a>
+					<a class="nav-link" onclick="navigate('catalog')" data-page="catalog">Недвижимость</a>
+					<a class="nav-link" onclick="navigate('landlords')" data-page="landlords">Арендодателям</a>
+					<a class="nav-link" onclick="navigate('about')" data-page="about">О проекте</a>
+					<a class="nav-link" onclick="navigate('contacts')" data-page="contacts">Контакты</a>
+					<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+							/>
+						</svg>
+						Написать
+					</a>
+				</nav>
+				<button class="burger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+			</div>
+		</header>
+		<div class="mobile-nav" id="mobileNav">
+			<a class="nav-link" onclick="navigate('home'); closeMobileNav()">Главная</a>
+			<a class="nav-link" onclick="navigate('catalog'); closeMobileNav()">Недвижимость</a>
+			<a class="nav-link" onclick="navigate('landlords'); closeMobileNav()">Арендодателям</a>
+			<a class="nav-link" onclick="navigate('about'); closeMobileNav()">О проекте</a>
+			<a class="nav-link" onclick="navigate('contacts'); closeMobileNav()">Контакты</a>
+			<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
+		</div>
 
-<!-- ====== HEADER ====== -->
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo" onclick="navigate('home')">
-            <div class="logo-mark">BZ</div>
-            <div>BZRL</div>
-        </div>
-        <nav class="nav">
-            <a class="nav-link active" onclick="navigate('home')" data-page="home">Главная</a>
-            <a class="nav-link" onclick="navigate('catalog')" data-page="catalog">Недвижимость</a>
-            <a class="nav-link" onclick="navigate('landlords')" data-page="landlords">Арендодателям</a>
-            <a class="nav-link" onclick="navigate('about')" data-page="about">О проекте</a>
-            <a class="nav-link" onclick="navigate('contacts')" data-page="contacts">Контакты</a>
-            <a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                Написать
-            </a>
-        </nav>
-        <button class="burger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
-    </div>
-</header>
-<div class="mobile-nav" id="mobileNav">
-    <a class="nav-link" onclick="navigate('home'); closeMobileNav()">Главная</a>
-    <a class="nav-link" onclick="navigate('catalog'); closeMobileNav()">Недвижимость</a>
-    <a class="nav-link" onclick="navigate('landlords'); closeMobileNav()">Арендодателям</a>
-    <a class="nav-link" onclick="navigate('about'); closeMobileNav()">О проекте</a>
-    <a class="nav-link" onclick="navigate('contacts'); closeMobileNav()">Контакты</a>
-    <a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
-</div>
+		<!-- ====== PAGE: HOME ====== -->
+		<div class="page active" id="page-home">
+			<section class="hero">
+				<div class="container">
+					<div class="hero-content">
+						<div class="hero-badge fade-in">
+							<div class="hero-badge-dot"></div>
+							Казань · Долгосрочная аренда
+						</div>
+						<h1 class="fade-in stagger-1">Находим жильё <em>честно</em> и ведём сделку до ключей</h1>
+						<p class="hero-sub fade-in stagger-2">
+							Мы — сервис-посредник по аренде квартир и домов. Проверяем объекты, отбираем арендаторов,
+							сопровождаем сделку. Прозрачные условия для обеих сторон.
+						</p>
+						<div class="hero-commission fade-in stagger-3">
+							💰 Фиксированная комиссия — <strong style="margin-left: 4px">20% от месячной аренды</strong>
+						</div>
+						<div class="hero-actions fade-in stagger-3">
+							<button class="btn-primary" onclick="navigate('catalog')">
+								Смотреть объекты
+								<svg
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.5"
+									stroke-linecap="round"
+								>
+									<path d="M5 12h14M12 5l7 7-7 7" />
+								</svg>
+							</button>
+							<a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener"
+								>✈ Написать в Telegram</a
+							>
+						</div>
+					</div>
+					<div class="stats fade-in stagger-4">
+						<div class="stat-item">
+							<div class="stat-number">20%</div>
+							<div class="stat-label">Фиксированная комиссия</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">150+</div>
+							<div class="stat-label">Объектов в базе</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">800+</div>
+							<div class="stat-label">Успешных сделок</div>
+						</div>
+						<div class="stat-item">
+							<div class="stat-number">1 день</div>
+							<div class="stat-label">Среднее время подбора</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="how-it-works section-padding">
+				<div class="container">
+					<div class="section-header center">
+						<h2>Как мы работаем</h2>
+						<p>Пять шагов от первого звонка до ключей</p>
+					</div>
+					<div class="steps-grid">
+						<div class="step-card fade-in stagger-1">
+							<div class="step-num">01</div>
+							<div class="step-icon">🔍</div>
+							<h3>Анализ объекта</h3>
+							<p>Проверяем документы, собственника, состояние жилья</p>
+						</div>
+						<div class="step-card fade-in stagger-2">
+							<div class="step-num">02</div>
+							<div class="step-icon">📸</div>
+							<h3>Подготовка</h3>
+							<p>Реальные фото, описание, размещение в каталоге</p>
+						</div>
+						<div class="step-card fade-in stagger-3">
+							<div class="step-num">03</div>
+							<div class="step-icon">👥</div>
+							<h3>Отбор арендаторов</h3>
+							<p>Фильтрация по платёжеспособности и документам</p>
+						</div>
+						<div class="step-card fade-in stagger-4">
+							<div class="step-num">04</div>
+							<div class="step-icon">📋</div>
+							<h3>Договор</h3>
+							<p>Подписываем договор до передачи денег</p>
+						</div>
+						<div class="step-card fade-in stagger-5">
+							<div class="step-num">05</div>
+							<div class="step-icon">🔑</div>
+							<h3>Передача ключей</h3>
+							<p>Фиксируем состояние, передаём ключи</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section class="advantages section-padding">
+				<div class="container">
+					<div class="section-header center">
+						<h2>Почему работают с нами</h2>
+						<p>Самая низкая и прозрачная комиссия на рынке Казани</p>
+					</div>
+					<div class="advantages-grid">
+						<div class="adv-card fade-in stagger-1">
+							<div class="adv-icon warm">💰</div>
+							<h3>Комиссия 20% — и точка</h3>
+							<p>Фиксированная ставка без скрытых платежей. У большинства агентств — от 50% до 100%.</p>
+						</div>
+						<div class="adv-card fade-in stagger-2">
+							<div class="adv-icon green">🛡️</div>
+							<h3>Проверенные объекты</h3>
+							<p>Документы собственника, реальные фото, актуальная цена. Никаких фейков и субаренд.</p>
+						</div>
+						<div class="adv-card fade-in stagger-3">
+							<div class="adv-icon muted">📋</div>
+							<h3>Договор до денег</h3>
+							<p>Сначала подписываем договор — потом передаём деньги. Защита для обеих сторон.</p>
+						</div>
+						<div class="adv-card fade-in stagger-4">
+							<div class="adv-icon green">🏠</div>
+							<h3>Квартиры и дома</h3>
+							<p>В каталоге не только квартиры — есть частные дома для долгосрочной аренды.</p>
+						</div>
+						<div class="adv-card fade-in stagger-5">
+							<div class="adv-icon warm">⚡</div>
+							<h3>Быстрая связь</h3>
+							<p>Никаких форм. Пишете в Telegram или звоните — отвечаем в течение часа.</p>
+						</div>
+						<div class="adv-card fade-in stagger-1">
+							<div class="adv-icon muted">🤝</div>
+							<h3>Баланс интересов</h3>
+							<p>Мы посредник, который держит баланс и отвечает за процесс — не за одну сторону.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: HOME ====== -->
-<div class="page active" id="page-home">
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge fade-in"><div class="hero-badge-dot"></div>Казань · Долгосрочная аренда</div>
-                <h1 class="fade-in stagger-1">Находим жильё <em>честно</em> и ведём сделку до ключей</h1>
-                <p class="hero-sub fade-in stagger-2">Мы — сервис-посредник по аренде квартир и домов. Проверяем объекты, отбираем арендаторов, сопровождаем сделку. Прозрачные условия для обеих сторон.</p>
-                <div class="hero-commission fade-in stagger-3">💰 Фиксированная комиссия — <strong style="margin-left:4px;">20% от месячной аренды</strong></div>
-                <div class="hero-actions fade-in stagger-3">
-                    <button class="btn-primary" onclick="navigate('catalog')">Смотреть объекты <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-                    <a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
-                </div>
-            </div>
-            <div class="stats fade-in stagger-4">
-                <div class="stat-item"><div class="stat-number">20%</div><div class="stat-label">Фиксированная комиссия</div></div>
-                <div class="stat-item"><div class="stat-number">150+</div><div class="stat-label">Объектов в базе</div></div>
-                <div class="stat-item"><div class="stat-number">800+</div><div class="stat-label">Успешных сделок</div></div>
-                <div class="stat-item"><div class="stat-number">1 день</div><div class="stat-label">Среднее время подбора</div></div>
-            </div>
-        </div>
-    </section>
-    <section class="how-it-works section-padding">
-        <div class="container">
-            <div class="section-header center"><h2>Как мы работаем</h2><p>Пять шагов от первого звонка до ключей</p></div>
-            <div class="steps-grid">
-                <div class="step-card fade-in stagger-1"><div class="step-num">01</div><div class="step-icon">🔍</div><h3>Анализ объекта</h3><p>Проверяем документы, собственника, состояние жилья</p></div>
-                <div class="step-card fade-in stagger-2"><div class="step-num">02</div><div class="step-icon">📸</div><h3>Подготовка</h3><p>Реальные фото, описание, размещение в каталоге</p></div>
-                <div class="step-card fade-in stagger-3"><div class="step-num">03</div><div class="step-icon">👥</div><h3>Отбор арендаторов</h3><p>Фильтрация по платёжеспособности и документам</p></div>
-                <div class="step-card fade-in stagger-4"><div class="step-num">04</div><div class="step-icon">📋</div><h3>Договор</h3><p>Подписываем договор до передачи денег</p></div>
-                <div class="step-card fade-in stagger-5"><div class="step-num">05</div><div class="step-icon">🔑</div><h3>Передача ключей</h3><p>Фиксируем состояние, передаём ключи</p></div>
-            </div>
-        </div>
-    </section>
-    <section class="advantages section-padding">
-        <div class="container">
-            <div class="section-header center"><h2>Почему работают с нами</h2><p>Самая низкая и прозрачная комиссия на рынке Казани</p></div>
-            <div class="advantages-grid">
-                <div class="adv-card fade-in stagger-1"><div class="adv-icon warm">💰</div><h3>Комиссия 20% — и точка</h3><p>Фиксированная ставка без скрытых платежей. У большинства агентств — от 50% до 100%.</p></div>
-                <div class="adv-card fade-in stagger-2"><div class="adv-icon green">🛡️</div><h3>Проверенные объекты</h3><p>Документы собственника, реальные фото, актуальная цена. Никаких фейков и субаренд.</p></div>
-                <div class="adv-card fade-in stagger-3"><div class="adv-icon muted">📋</div><h3>Договор до денег</h3><p>Сначала подписываем договор — потом передаём деньги. Защита для обеих сторон.</p></div>
-                <div class="adv-card fade-in stagger-4"><div class="adv-icon green">🏠</div><h3>Квартиры и дома</h3><p>В каталоге не только квартиры — есть частные дома для долгосрочной аренды.</p></div>
-                <div class="adv-card fade-in stagger-5"><div class="adv-icon warm">⚡</div><h3>Быстрая связь</h3><p>Никаких форм. Пишете в Telegram или звоните — отвечаем в течение часа.</p></div>
-                <div class="adv-card fade-in stagger-1"><div class="adv-icon muted">🤝</div><h3>Баланс интересов</h3><p>Мы посредник, который держит баланс и отвечает за процесс — не за одну сторону.</p></div>
-            </div>
-        </div>
-    </section>
-</div>
+		<!-- ====== PAGE: CATALOG ====== -->
+		<div class="page" id="page-catalog">
+			<section class="catalog section-padding" style="padding-top: 120px">
+				<div class="container">
+					<div class="section-header">
+						<h2>Недвижимость в Казани</h2>
+						<p>Проверенные объекты · Долгосрочная аренда · Комиссия 20%</p>
+					</div>
+					<div class="filters">
+						<div class="filter-group">
+							<label class="filter-label">Тип</label
+							><select class="filter-select" id="filterPropertyType">
+								<option value="">Все объекты</option>
+								<option value="apartment">Квартиры</option>
+								<option value="house">Дома</option>
+							</select>
+						</div>
+						<div class="filter-group">
+							<label class="filter-label">Комнаты</label
+							><select class="filter-select" id="filterRooms">
+								<option value="">Все</option>
+								<option value="1">1 комната</option>
+								<option value="2">2 комнаты</option>
+								<option value="3">3 комнаты</option>
+								<option value="4">4+ комнат</option>
+							</select>
+						</div>
+						<div class="filter-group">
+							<label class="filter-label">Район</label
+							><select class="filter-select" id="filterDistrict">
+								<option value="">Все районы</option>
+							</select>
+						</div>
+						<div class="filter-group">
+							<label class="filter-label">Цена от</label
+							><input
+								class="filter-input"
+								id="filterPriceMin"
+								type="number"
+								placeholder="15 000"
+								style="width: 125px"
+							/>
+						</div>
+						<div class="filter-group">
+							<label class="filter-label">Цена до</label
+							><input
+								class="filter-input"
+								id="filterPriceMax"
+								type="number"
+								placeholder="80 000"
+								style="width: 125px"
+							/>
+						</div>
+						<div class="filter-group" style="justify-content: flex-end">
+							<button class="filter-btn" onclick="applyFilters()">Найти</button>
+						</div>
+						<div class="filter-group" style="justify-content: flex-end">
+							<button class="filter-reset" onclick="resetFilters()">Сбросить</button>
+						</div>
+					</div>
+					<div class="results-count" id="resultsCount"></div>
+					<div class="properties-grid" id="propertiesGrid"></div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: CATALOG ====== -->
-<div class="page" id="page-catalog">
-    <section class="catalog section-padding" style="padding-top:120px;">
-        <div class="container">
-            <div class="section-header"><h2>Недвижимость в Казани</h2><p>Проверенные объекты · Долгосрочная аренда · Комиссия 20%</p></div>
-            <div class="filters">
-                <div class="filter-group"><label class="filter-label">Тип</label><select class="filter-select" id="filterPropertyType"><option value="">Все объекты</option><option value="apartment">Квартиры</option><option value="house">Дома</option></select></div>
-                <div class="filter-group"><label class="filter-label">Комнаты</label><select class="filter-select" id="filterRooms"><option value="">Все</option><option value="1">1 комната</option><option value="2">2 комнаты</option><option value="3">3 комнаты</option><option value="4">4+ комнат</option></select></div>
-                <div class="filter-group"><label class="filter-label">Район</label><select class="filter-select" id="filterDistrict"><option value="">Все районы</option></select></div>
-                <div class="filter-group"><label class="filter-label">Цена от</label><input class="filter-input" id="filterPriceMin" type="number" placeholder="15 000" style="width:125px;"></div>
-                <div class="filter-group"><label class="filter-label">Цена до</label><input class="filter-input" id="filterPriceMax" type="number" placeholder="80 000" style="width:125px;"></div>
-                <div class="filter-group" style="justify-content:flex-end;"><button class="filter-btn" onclick="applyFilters()">Найти</button></div>
-                <div class="filter-group" style="justify-content:flex-end;"><button class="filter-reset" onclick="resetFilters()">Сбросить</button></div>
-            </div>
-            <div class="results-count" id="resultsCount"></div>
-            <div class="properties-grid" id="propertiesGrid"></div>
-        </div>
-    </section>
-</div>
+		<!-- ====== PAGE: PROPERTY DETAIL ====== -->
+		<div class="page" id="page-property">
+			<section class="prop-detail section-padding">
+				<div class="container">
+					<div class="prop-detail-back" onclick="navigate('catalog')">← Назад к каталогу</div>
+					<div class="prop-detail-grid">
+						<div>
+							<div class="prop-gallery" id="propGallery">
+								<img id="propMainImage" src="" alt="" />
+								<div class="gallery-arrows">
+									<button class="gallery-arrow" onclick="prevImage()">‹</button
+									><button class="gallery-arrow" onclick="nextImage()">›</button>
+								</div>
+								<div class="gallery-nav" id="galleryDots"></div>
+							</div>
+							<div class="prop-info" id="propInfo"></div>
+						</div>
+						<div class="prop-sidebar" id="propSidebar"></div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: PROPERTY DETAIL ====== -->
-<div class="page" id="page-property">
-    <section class="prop-detail section-padding">
-        <div class="container">
-            <div class="prop-detail-back" onclick="navigate('catalog')">← Назад к каталогу</div>
-            <div class="prop-detail-grid">
-                <div>
-                    <div class="prop-gallery" id="propGallery">
-                        <img id="propMainImage" src="" alt="">
-                        <div class="gallery-arrows"><button class="gallery-arrow" onclick="prevImage()">‹</button><button class="gallery-arrow" onclick="nextImage()">›</button></div>
-                        <div class="gallery-nav" id="galleryDots"></div>
-                    </div>
-                    <div class="prop-info" id="propInfo"></div>
-                </div>
-                <div class="prop-sidebar" id="propSidebar"></div>
-            </div>
-        </div>
-    </section>
-</div>
+		<!-- ====== PAGE: LANDLORDS ====== -->
+		<div class="page" id="page-landlords">
+			<section class="landlord-hero">
+				<div class="container">
+					<div class="hero-badge fade-in">
+						<div class="hero-badge-dot"></div>
+						Для собственников
+					</div>
+					<h1 class="fade-in stagger-1">Сдайте квартиру или дом <em>без головной боли</em></h1>
+					<p class="hero-sub fade-in stagger-2">
+						Мы берём на себя подбор арендаторов, показы, договор и контроль. Вы получаете надёжного жильца.
+						Комиссия — <strong>всего 20%</strong>.
+					</p>
+				</div>
+			</section>
+			<section class="section-padding">
+				<div class="container">
+					<div class="landlord-grid">
+						<div class="landlord-benefits">
+							<div class="landlord-benefit fade-in stagger-1">
+								<div class="landlord-benefit-icon">💰</div>
+								<div>
+									<h4>Фиксированная комиссия 20%</h4>
+									<p>
+										Ровно 20% от месячной аренды — за полный цикл работы. Самая низкая ставка на
+										рынке Казани.
+									</p>
+								</div>
+							</div>
+							<div class="landlord-benefit fade-in stagger-2">
+								<div class="landlord-benefit-icon">👥</div>
+								<div>
+									<h4>Проверка арендаторов</h4>
+									<p>
+										Отбираем жильцов по платёжеспособности, целям аренды и документам. Вы
+										утверждаете финального кандидата.
+									</p>
+								</div>
+							</div>
+							<div class="landlord-benefit fade-in stagger-3">
+								<div class="landlord-benefit-icon">📋</div>
+								<div>
+									<h4>Договор и юридическая защита</h4>
+									<p>
+										Составляем типовой договор, фиксируем состояние квартиры. Всё прозрачно и
+										законно.
+									</p>
+								</div>
+							</div>
+							<div class="landlord-benefit fade-in stagger-4">
+								<div class="landlord-benefit-icon">⏱️</div>
+								<div>
+									<h4>Экономия вашего времени</h4>
+									<p>
+										Фотосъёмка, размещение, показы и переговоры — на нас. Вам нужно только утвердить
+										арендатора.
+									</p>
+								</div>
+							</div>
+							<div class="landlord-benefit fade-in stagger-5">
+								<div class="landlord-benefit-icon">🔍</div>
+								<div>
+									<h4>Минимум вовлечённости</h4>
+									<p>
+										Показы с вашим участием или без. Держим в курсе через Telegram на каждом шаге.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="landlord-cta-card fade-in">
+							<h3>Хотите сдать объект?</h3>
+							<p>Напишите нам — обсудим условия, сроки и следующие шаги. Без обязательств.</p>
+							<div class="contact-bar">
+								<a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener"
+									>✈ Написать в Telegram</a
+								>
+								<a class="btn-phone" href="tel:+79991323141">📞 +7 999 132-31-41</a>
+							</div>
+						</div>
+					</div>
+					<div class="commission-explainer fade-in">
+						<h3>За что вы платите 20%?</h3>
+						<div class="commission-list">
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Профессиональная фотосъёмка и описание объекта</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Размещение в каталоге и продвижение</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Приём и фильтрация обращений арендаторов</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Организация и проведение показов</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Проверка платёжеспособности и документов</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Составление договора аренды</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Акт приёма-передачи с фиксацией состояния</span>
+							</div>
+							<div class="commission-list-item">
+								<div class="check">✓</div>
+								<span>Сопровождение сделки до передачи ключей</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: LANDLORDS ====== -->
-<div class="page" id="page-landlords">
-    <section class="landlord-hero">
-        <div class="container">
-            <div class="hero-badge fade-in"><div class="hero-badge-dot"></div>Для собственников</div>
-            <h1 class="fade-in stagger-1">Сдайте квартиру или дом <em>без головной боли</em></h1>
-            <p class="hero-sub fade-in stagger-2">Мы берём на себя подбор арендаторов, показы, договор и контроль. Вы получаете надёжного жильца. Комиссия — <strong>всего 20%</strong>.</p>
-        </div>
-    </section>
-    <section class="section-padding">
-        <div class="container">
-            <div class="landlord-grid">
-                <div class="landlord-benefits">
-                    <div class="landlord-benefit fade-in stagger-1"><div class="landlord-benefit-icon">💰</div><div><h4>Фиксированная комиссия 20%</h4><p>Ровно 20% от месячной аренды — за полный цикл работы. Самая низкая ставка на рынке Казани.</p></div></div>
-                    <div class="landlord-benefit fade-in stagger-2"><div class="landlord-benefit-icon">👥</div><div><h4>Проверка арендаторов</h4><p>Отбираем жильцов по платёжеспособности, целям аренды и документам. Вы утверждаете финального кандидата.</p></div></div>
-                    <div class="landlord-benefit fade-in stagger-3"><div class="landlord-benefit-icon">📋</div><div><h4>Договор и юридическая защита</h4><p>Составляем типовой договор, фиксируем состояние квартиры. Всё прозрачно и законно.</p></div></div>
-                    <div class="landlord-benefit fade-in stagger-4"><div class="landlord-benefit-icon">⏱️</div><div><h4>Экономия вашего времени</h4><p>Фотосъёмка, размещение, показы и переговоры — на нас. Вам нужно только утвердить арендатора.</p></div></div>
-                    <div class="landlord-benefit fade-in stagger-5"><div class="landlord-benefit-icon">🔍</div><div><h4>Минимум вовлечённости</h4><p>Показы с вашим участием или без. Держим в курсе через Telegram на каждом шаге.</p></div></div>
-                </div>
-                <div class="landlord-cta-card fade-in">
-                    <h3>Хотите сдать объект?</h3>
-                    <p>Напишите нам — обсудим условия, сроки и следующие шаги. Без обязательств.</p>
-                    <div class="contact-bar">
-                        <a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
-                        <a class="btn-bot" href="https://t.me/ChatGptVip_bot" target="_blank" rel="noopener">🤖 Написать боту</a>
-                        <a class="btn-phone" href="tel:+79991323141">📞 +7 999 132-31-41</a>
-                    </div>
-                </div>
-            </div>
-            <div class="commission-explainer fade-in">
-                <h3>За что вы платите 20%?</h3>
-                <div class="commission-list">
-                    <div class="commission-list-item"><div class="check">✓</div><span>Профессиональная фотосъёмка и описание объекта</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Размещение в каталоге и продвижение</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Приём и фильтрация обращений арендаторов</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Организация и проведение показов</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Проверка платёжеспособности и документов</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Составление договора аренды</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Акт приёма-передачи с фиксацией состояния</span></div>
-                    <div class="commission-list-item"><div class="check">✓</div><span>Сопровождение сделки до передачи ключей</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+		<!-- ====== PAGE: ABOUT ====== -->
+		<div class="page" id="page-about">
+			<section class="section-padding" style="padding-top: 120px; background: var(--bg-primary)">
+				<div class="container">
+					<div class="about-grid">
+						<div class="about-visual fade-in">
+							<h3>Мы отвечаем за процесс и баланс интересов</h3>
+							<p>
+								Не просто сводим людей — ведём сделку от звонка до ключей. Посредник, который работает
+								на обе стороны одинаково честно.
+							</p>
+						</div>
+						<div class="about-text">
+							<h2>Прозрачная аренда в Казани</h2>
+							<p>
+								BZRL — сервис-посредник по аренде квартир и домов в Казани. Мы не скрываем свою роль:
+								наша задача — сделать аренду безопасной и понятной для обеих сторон.
+							</p>
+							<p>Фиксированная комиссия 20% — самая низкая на рынке. Нет сделки — нет оплаты.</p>
+							<p>
+								Каждый объект проверяется лично. Каждый арендатор проходит отбор. Договор — до передачи
+								денег.
+							</p>
+							<div class="about-values">
+								<div class="about-value fade-in stagger-1">
+									<div class="about-value-icon">🔍</div>
+									<div>
+										<h4>Проверка каждого объекта</h4>
+										<p>Документы, собственник, фото, цена — всё реальное</p>
+									</div>
+								</div>
+								<div class="about-value fade-in stagger-2">
+									<div class="about-value-icon">📋</div>
+									<div>
+										<h4>Договор до денег</h4>
+										<p>Сначала подпись — потом оплата. Никак иначе</p>
+									</div>
+								</div>
+								<div class="about-value fade-in stagger-3">
+									<div class="about-value-icon">⚖️</div>
+									<div>
+										<h4>Баланс интересов</h4>
+										<p>Защищаем и арендатора, и собственника одинаково</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: ABOUT ====== -->
-<div class="page" id="page-about">
-    <section class="section-padding" style="padding-top:120px; background:var(--bg-primary);">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-visual fade-in">
-                    <h3>Мы отвечаем за процесс и баланс интересов</h3>
-                    <p>Не просто сводим людей — ведём сделку от звонка до ключей. Посредник, который работает на обе стороны одинаково честно.</p>
-                </div>
-                <div class="about-text">
-                    <h2>Прозрачная аренда в Казани</h2>
-                    <p>BZRL — сервис-посредник по аренде квартир и домов в Казани. Мы не скрываем свою роль: наша задача — сделать аренду безопасной и понятной для обеих сторон.</p>
-                    <p>Фиксированная комиссия 20% — самая низкая на рынке. Нет сделки — нет оплаты.</p>
-                    <p>Каждый объект проверяется лично. Каждый арендатор проходит отбор. Договор — до передачи денег.</p>
-                    <div class="about-values">
-                        <div class="about-value fade-in stagger-1"><div class="about-value-icon">🔍</div><div><h4>Проверка каждого объекта</h4><p>Документы, собственник, фото, цена — всё реальное</p></div></div>
-                        <div class="about-value fade-in stagger-2"><div class="about-value-icon">📋</div><div><h4>Договор до денег</h4><p>Сначала подпись — потом оплата. Никак иначе</p></div></div>
-                        <div class="about-value fade-in stagger-3"><div class="about-value-icon">⚖️</div><div><h4>Баланс интересов</h4><p>Защищаем и арендатора, и собственника одинаково</p></div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+		<!-- ====== PAGE: CONTACTS ====== -->
+		<div class="page" id="page-contacts">
+			<section class="contacts-page section-padding" style="padding-top: 120px">
+				<div class="container">
+					<div class="section-header">
+						<h2>Контакты</h2>
+						<p>Свяжитесь любым удобным способом — без форм и ожиданий</p>
+					</div>
+					<div class="contacts-grid">
+						<div class="contact-card fade-in stagger-1">
+							<div class="contact-card-icon tg">✈</div>
+							<h4>Telegram</h4>
+							<p>Основной способ связи. Отвечаем в течение часа.</p>
+							<a class="contact-link" href="https://t.me/yusdanil" target="_blank" rel="noopener"
+								>@yusdanil →</a
+							>
+						</div>
+						<div class="contact-card fade-in stagger-3">
+							<div class="contact-card-icon phone">📞</div>
+							<h4>Телефон</h4>
+							<p>Для срочных вопросов. Пн–Сб, 9:00–20:00.</p>
+							<a class="contact-link" href="tel:+79991323141">+7 999 132-31-41 →</a>
+						</div>
+						<div class="contact-card fade-in stagger-4">
+							<div class="contact-card-icon addr">📍</div>
+							<h4>Казань</h4>
+							<p>Работаем по всем районам. Квартиры и дома.</p>
+							<span style="font-size: 0.9rem; color: var(--text-muted)">Встречи по договорённости</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
 
-<!-- ====== PAGE: CONTACTS ====== -->
-<div class="page" id="page-contacts">
-    <section class="contacts-page section-padding" style="padding-top:120px;">
-        <div class="container">
-            <div class="section-header"><h2>Контакты</h2><p>Свяжитесь любым удобным способом — без форм и ожиданий</p></div>
-            <div class="contacts-grid">
-                <div class="contact-card fade-in stagger-1"><div class="contact-card-icon tg">✈</div><h4>Telegram</h4><p>Основной способ связи. Отвечаем в течение часа.</p><a class="contact-link" href="https://t.me/yusdanil" target="_blank" rel="noopener">@yusdanil →</a></div>
-                <div class="contact-card fade-in stagger-2"><div class="contact-card-icon bot">🤖</div><h4>Бот-помощник</h4><p>Быстрые вопросы, подбор объектов, информация.</p><a class="contact-link" href="https://t.me/ChatGptVip_bot" target="_blank" rel="noopener">@ChatGptVip_bot →</a></div>
-                <div class="contact-card fade-in stagger-3"><div class="contact-card-icon phone">📞</div><h4>Телефон</h4><p>Для срочных вопросов. Пн–Сб, 9:00–20:00.</p><a class="contact-link" href="tel:+79991323141">+7 999 132-31-41 →</a></div>
-                <div class="contact-card fade-in stagger-4"><div class="contact-card-icon addr">📍</div><h4>Казань</h4><p>Работаем по всем районам. Квартиры и дома.</p><span style="font-size:0.9rem;color:var(--text-muted);">Встречи по договорённости</span></div>
-            </div>
-        </div>
-    </section>
-</div>
+		<!-- ====== FOOTER ====== -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-grid">
+					<div class="footer-brand">
+						<div class="logo" onclick="navigate('home')" style="color: white">
+							<div class="logo-mark">BZ</div>
+							<div>BZRL</div>
+						</div>
+						<p>Сервис-посредник по аренде недвижимости в Казани. Квартиры и дома · Комиссия 20%.</p>
+					</div>
+					<div>
+						<h4>Навигация</h4>
+						<div class="footer-links">
+							<a onclick="navigate('home')">Главная</a><a onclick="navigate('catalog')">Недвижимость</a
+							><a onclick="navigate('landlords')">Арендодателям</a
+							><a onclick="navigate('about')">О проекте</a><a onclick="navigate('contacts')">Контакты</a>
+						</div>
+					</div>
+					<div>
+						<h4>Связаться</h4>
+						<div class="footer-links">
+							<a href="https://t.me/yusdanil" target="_blank">Telegram: @yusdanil</a
+							><a href="tel:+79991323141">+7 999 132-31-41</a>
+						</div>
+					</div>
+					<div>
+						<h4>Информация</h4>
+						<div class="footer-links">
+							<a href="#">Типовой договор</a><a href="#">Частые вопросы</a
+							><a href="#">Политика конфиденциальности</a>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>© 2025 BZRL. Все права защищены.</p>
+					<p>Казань · Аренда недвижимости</p>
+				</div>
+			</div>
+		</footer>
 
-<!-- ====== FOOTER ====== -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="logo" onclick="navigate('home')" style="color:white;"><div class="logo-mark">BZ</div><div>BZRL</div></div>
-                <p>Сервис-посредник по аренде недвижимости в Казани. Квартиры и дома · Комиссия 20%.</p>
-            </div>
-            <div><h4>Навигация</h4><div class="footer-links"><a onclick="navigate('home')">Главная</a><a onclick="navigate('catalog')">Недвижимость</a><a onclick="navigate('landlords')">Арендодателям</a><a onclick="navigate('about')">О проекте</a><a onclick="navigate('contacts')">Контакты</a></div></div>
-            <div><h4>Связаться</h4><div class="footer-links"><a href="https://t.me/yusdanil" target="_blank">Telegram: @yusdanil</a><a href="https://t.me/ChatGptVip_bot" target="_blank">Бот: @ChatGptVip_bot</a><a href="tel:+79991323141">+7 999 132-31-41</a></div></div>
-            <div><h4>Информация</h4><div class="footer-links"><a href="#">Типовой договор</a><a href="#">Частые вопросы</a><a href="#">Политика конфиденциальности</a></div></div>
-        </div>
-        <div class="footer-bottom"><p>© 2025 BZRL. Все права защищены.</p><p>Казань · Аренда недвижимости</p></div>
-    </div>
-</footer>
-
-<!-- ====== JAVASCRIPT ====== -->
-<script>
-/* ==================================================================
+		<!-- ====== JAVASCRIPT ====== -->
+		<script>
+			/* ==================================================================
    CONTACTS CONFIG — единственный источник контактных данных
    Меняем здесь → обновляется в JS (sidebar, etc.)
    ================================================================== */
-const CONTACTS = {
-    telegram: { handle: '@yusdanil', url: 'https://t.me/yusdanil' },
-    bot:      { handle: '@ChatGptVip_bot', url: 'https://t.me/ChatGptVip_bot' },
-    phone:    { display: '+7 999 132-31-41', url: 'tel:+79991323141' }
-};
+			const CONTACTS = {
+				telegram: { handle: '@yusdanil', url: 'https://t.me/yusdanil' },
+				phone: { display: '+7 999 132-31-41', url: 'tel:+79991323141' },
+			}
 
-/* ==================================================================
+			/* ==================================================================
    DATA MODEL — ВСЕ ОБЪЕКТЫ НЕДВИЖИМОСТИ
    ------------------------------------------------------------------
    Чтобы добавить новый объект:
@@ -759,173 +1954,343 @@ const CONTACTS = {
    - images (string[])     — URL фотографий (первая = обложка)
    - features (string[])   — удобства
    ================================================================== */
-const PROPERTIES = [
-    {
-        id: 1, propertyType: 'apartment', rooms: 1, area: 38, floor: 5, totalFloors: 16,
-        price: 22000, deposit: '1 месяц', district: 'Ново-Савиновский',
-        address: 'ул. Амирхана, 17', title: '1-комнатная, ул. Амирхана',
-        description: 'Светлая квартира с отличным ремонтом рядом с парком Победы. Полностью меблирована: кухня со встроенной техникой, двуспальная кровать, рабочий стол. Метро «Козья Слобода» в пешей доступности.',
-        images: ['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Стиральная машина','Кондиционер','Балкон','Парковка','Метро 7 мин']
-    },
-    {
-        id: 2, propertyType: 'apartment', rooms: 2, area: 56, floor: 8, totalFloors: 22,
-        price: 35000, deposit: '1 месяц', district: 'Вахитовский',
-        address: 'ул. Пушкина, 32', title: '2-комнатная, центр',
-        description: 'Просторная двушка в 5 минутах от Кремля. Панорамные окна, дизайнерский ремонт, два санузла. Полностью оборудованная кухня, Smart TV.',
-        images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Посудомоечная машина','Smart TV','2 санузла','Центр города','Лифт']
-    },
-    {
-        id: 3, propertyType: 'apartment', rooms: 3, area: 78, floor: 3, totalFloors: 10,
-        price: 45000, deposit: '1 месяц', district: 'Советский',
-        address: 'ул. Мусина, 68', title: '3-комнатная, ул. Мусина',
-        description: 'Семейная квартира с отдельными комнатами, просторной кухней-гостиной и двумя балконами. Рядом школа, детсад, парк. Тихий район.',
-        images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Стиральная машина','Посудомойка','2 балкона','Кладовая','Школа рядом']
-    },
-    {
-        id: 4, propertyType: 'apartment', rooms: 2, area: 52, floor: 15, totalFloors: 20,
-        price: 28000, deposit: '1 месяц', district: 'Приволжский',
-        address: 'ул. Гарифьянова, 25', title: '2-комнатная, Горки',
-        description: 'Современная квартира в ЖК «Горки Парк» с видом на Казанку. Евроремонт 2023, новая мебель и техника. Подземная парковка включена.',
-        images: ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Подземная парковка','Кондиционер','Вид на реку','Новая мебель','ТЦ «Мега» рядом']
-    },
-    {
-        id: 5, propertyType: 'apartment', rooms: 1, area: 40, floor: 6, totalFloors: 9,
-        price: 18000, deposit: '1 месяц', district: 'Авиастроительный',
-        address: 'ул. Копылова, 14', title: '1-комнатная, ул. Копылова',
-        description: 'Бюджетный вариант в спокойном районе. Косметический ремонт, вся мебель и техника. Рядом транспорт и магазины.',
-        images: ['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Стиральная машина','Новый ламинат','Магазины рядом','Трамвай 3 мин','Тихий двор']
-    },
-    {
-        id: 6, propertyType: 'apartment', rooms: 4, area: 95, floor: 4, totalFloors: 12,
-        price: 65000, deposit: '2 месяца', district: 'Вахитовский',
-        address: 'ул. Островского, 7', title: '4-комнатная, центр, премиум',
-        description: 'Элитная квартира с авторским ремонтом. Итальянская мебель, техника Miele. Четыре комнаты, гардеробная, два санузла с тёплым полом. Консьерж, паркинг.',
-        images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Консьерж','Тёплый пол','Гардеробная','Паркинг','Техника Miele']
-    },
-    {
-        id: 7, propertyType: 'house', rooms: 3, area: 120, floor: 1, totalFloors: 2,
-        price: 55000, deposit: '2 месяца', district: 'Приволжский',
-        address: 'пос. Константиновка, ул. Озёрная, 14', title: 'Дом 120 м², Константиновка',
-        description: 'Двухэтажный кирпичный дом. Первый этаж: кухня-гостиная 30 м², санузел. Второй: три спальни, ванная. Участок 6 соток, баня, парковка на 2 машины. Газ, центральная вода.',
-        images: ['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop'],
-        features: ['Участок 6 соток','Баня','Газовое отопление','Парковка 2 авто','Центральная вода','Тихий район']
-    },
-    {
-        id: 8, propertyType: 'house', rooms: 4, area: 180, floor: 1, totalFloors: 2,
-        price: 85000, deposit: '2 месяца', district: 'Советский',
-        address: 'пос. Вознесенское, ул. Дачная, 22', title: 'Дом 180 м², Вознесенское',
-        description: 'Просторный дом для большой семьи. Четыре спальни, два санузла, кабинет. Большая кухня-столовая с террасой. Участок 10 соток, гараж, детская площадка. Охраняемый посёлок.',
-        images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop'],
-        features: ['Участок 10 соток','Гараж на 2 авто','Терраса','Охрана посёлка','Детская площадка','Кабинет']
-    },
-    {
-        id: 9, propertyType: 'apartment', rooms: 1, area: 34, floor: 12, totalFloors: 25,
-        price: 25000, deposit: '1 месяц', district: 'Ново-Савиновский',
-        address: 'пр. Ямашева, 103', title: '1-комнатная, пр. Ямашева',
-        description: 'Хороший ремонт в новом доме. Компактная функциональная планировка. Высокий этаж с видом на город. Метро в 10 минутах.',
-        images: ['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop','https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop'],
-        features: ['Wi-Fi','Стиральная машина','Вид на город','Метро 10 мин','Лифт','Консьерж']
-    }
-];
+			const PROPERTIES = [
+				{
+					id: 1,
+					propertyType: 'apartment',
+					rooms: 1,
+					area: 38,
+					floor: 5,
+					totalFloors: 16,
+					price: 22000,
+					deposit: '1 месяц',
+					district: 'Ново-Савиновский',
+					address: 'ул. Амирхана, 17',
+					title: '1-комнатная, ул. Амирхана',
+					description:
+						'Светлая квартира с отличным ремонтом рядом с парком Победы. Полностью меблирована: кухня со встроенной техникой, двуспальная кровать, рабочий стол. Метро «Козья Слобода» в пешей доступности.',
+					images: [
+						'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop',
+					],
+					features: ['Wi-Fi', 'Стиральная машина', 'Кондиционер', 'Балкон', 'Парковка', 'Метро 7 мин'],
+				},
+				{
+					id: 2,
+					propertyType: 'apartment',
+					rooms: 2,
+					area: 56,
+					floor: 8,
+					totalFloors: 22,
+					price: 35000,
+					deposit: '1 месяц',
+					district: 'Вахитовский',
+					address: 'ул. Пушкина, 32',
+					title: '2-комнатная, центр',
+					description:
+						'Просторная двушка в 5 минутах от Кремля. Панорамные окна, дизайнерский ремонт, два санузла. Полностью оборудованная кухня, Smart TV.',
+					images: [
+						'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=800&h=500&fit=crop',
+					],
+					features: ['Wi-Fi', 'Посудомоечная машина', 'Smart TV', '2 санузла', 'Центр города', 'Лифт'],
+				},
+				{
+					id: 3,
+					propertyType: 'apartment',
+					rooms: 3,
+					area: 78,
+					floor: 3,
+					totalFloors: 10,
+					price: 45000,
+					deposit: '1 месяц',
+					district: 'Советский',
+					address: 'ул. Мусина, 68',
+					title: '3-комнатная, ул. Мусина',
+					description:
+						'Семейная квартира с отдельными комнатами, просторной кухней-гостиной и двумя балконами. Рядом школа, детсад, парк. Тихий район.',
+					images: [
+						'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop',
+					],
+					features: ['Wi-Fi', 'Стиральная машина', 'Посудомойка', '2 балкона', 'Кладовая', 'Школа рядом'],
+				},
+				{
+					id: 4,
+					propertyType: 'apartment',
+					rooms: 2,
+					area: 52,
+					floor: 15,
+					totalFloors: 20,
+					price: 28000,
+					deposit: '1 месяц',
+					district: 'Приволжский',
+					address: 'ул. Гарифьянова, 25',
+					title: '2-комнатная, Горки',
+					description:
+						'Современная квартира в ЖК «Горки Парк» с видом на Казанку. Евроремонт 2023, новая мебель и техника. Подземная парковка включена.',
+					images: [
+						'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=500&fit=crop',
+					],
+					features: [
+						'Wi-Fi',
+						'Подземная парковка',
+						'Кондиционер',
+						'Вид на реку',
+						'Новая мебель',
+						'ТЦ «Мега» рядом',
+					],
+				},
+				{
+					id: 5,
+					propertyType: 'apartment',
+					rooms: 1,
+					area: 40,
+					floor: 6,
+					totalFloors: 9,
+					price: 18000,
+					deposit: '1 месяц',
+					district: 'Авиастроительный',
+					address: 'ул. Копылова, 14',
+					title: '1-комнатная, ул. Копылова',
+					description:
+						'Бюджетный вариант в спокойном районе. Косметический ремонт, вся мебель и техника. Рядом транспорт и магазины.',
+					images: [
+						'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&h=500&fit=crop',
+					],
+					features: [
+						'Wi-Fi',
+						'Стиральная машина',
+						'Новый ламинат',
+						'Магазины рядом',
+						'Трамвай 3 мин',
+						'Тихий двор',
+					],
+				},
+				{
+					id: 6,
+					propertyType: 'apartment',
+					rooms: 4,
+					area: 95,
+					floor: 4,
+					totalFloors: 12,
+					price: 65000,
+					deposit: '2 месяца',
+					district: 'Вахитовский',
+					address: 'ул. Островского, 7',
+					title: '4-комнатная, центр, премиум',
+					description:
+						'Элитная квартира с авторским ремонтом. Итальянская мебель, техника Miele. Четыре комнаты, гардеробная, два санузла с тёплым полом. Консьерж, паркинг.',
+					images: [
+						'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&h=500&fit=crop',
+					],
+					features: ['Wi-Fi', 'Консьерж', 'Тёплый пол', 'Гардеробная', 'Паркинг', 'Техника Miele'],
+				},
+				{
+					id: 7,
+					propertyType: 'house',
+					rooms: 3,
+					area: 120,
+					floor: 1,
+					totalFloors: 2,
+					price: 55000,
+					deposit: '2 месяца',
+					district: 'Приволжский',
+					address: 'пос. Константиновка, ул. Озёрная, 14',
+					title: 'Дом 120 м², Константиновка',
+					description:
+						'Двухэтажный кирпичный дом. Первый этаж: кухня-гостиная 30 м², санузел. Второй: три спальни, ванная. Участок 6 соток, баня, парковка на 2 машины. Газ, центральная вода.',
+					images: [
+						'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=500&fit=crop',
+					],
+					features: [
+						'Участок 6 соток',
+						'Баня',
+						'Газовое отопление',
+						'Парковка 2 авто',
+						'Центральная вода',
+						'Тихий район',
+					],
+				},
+				{
+					id: 8,
+					propertyType: 'house',
+					rooms: 4,
+					area: 180,
+					floor: 1,
+					totalFloors: 2,
+					price: 85000,
+					deposit: '2 месяца',
+					district: 'Советский',
+					address: 'пос. Вознесенское, ул. Дачная, 22',
+					title: 'Дом 180 м², Вознесенское',
+					description:
+						'Просторный дом для большой семьи. Четыре спальни, два санузла, кабинет. Большая кухня-столовая с террасой. Участок 10 соток, гараж, детская площадка. Охраняемый посёлок.',
+					images: [
+						'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=500&fit=crop',
+					],
+					features: [
+						'Участок 10 соток',
+						'Гараж на 2 авто',
+						'Терраса',
+						'Охрана посёлка',
+						'Детская площадка',
+						'Кабинет',
+					],
+				},
+				{
+					id: 9,
+					propertyType: 'apartment',
+					rooms: 1,
+					area: 34,
+					floor: 12,
+					totalFloors: 25,
+					price: 25000,
+					deposit: '1 месяц',
+					district: 'Ново-Савиновский',
+					address: 'пр. Ямашева, 103',
+					title: '1-комнатная, пр. Ямашева',
+					description:
+						'Хороший ремонт в новом доме. Компактная функциональная планировка. Высокий этаж с видом на город. Метро в 10 минутах.',
+					images: [
+						'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&h=500&fit=crop',
+						'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&h=500&fit=crop',
+					],
+					features: ['Wi-Fi', 'Стиральная машина', 'Вид на город', 'Метро 10 мин', 'Лифт', 'Консьерж'],
+				},
+			]
 
+			/* ====== ROUTER ====== */
+			let currentPage = 'home'
+			let currentProperty = null
+			let currentImageIndex = 0
 
-/* ====== ROUTER ====== */
-let currentPage = 'home';
-let currentProperty = null;
-let currentImageIndex = 0;
+			function navigate(page, data) {
+				document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+				const target = document.getElementById('page-' + page)
+				if (target) {
+					target.classList.add('active')
+					currentPage = page
+				}
+				document
+					.querySelectorAll('.nav-link[data-page]')
+					.forEach(l => l.classList.toggle('active', l.dataset.page === page))
+				if (page === 'catalog') {
+					populateDistrictFilter()
+					renderCatalog()
+				}
+				if (page === 'property' && data) renderProperty(data)
+				window.scrollTo({ top: 0, behavior: 'smooth' })
+				setTimeout(observeAnimations, 100)
+			}
 
-function navigate(page, data) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('page-' + page);
-    if (target) { target.classList.add('active'); currentPage = page; }
-    document.querySelectorAll('.nav-link[data-page]').forEach(l => l.classList.toggle('active', l.dataset.page === page));
-    if (page === 'catalog') { populateDistrictFilter(); renderCatalog(); }
-    if (page === 'property' && data) renderProperty(data);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    setTimeout(observeAnimations, 100);
-}
+			/* ====== CATALOG ====== */
+			function populateDistrictFilter() {
+				const s = document.getElementById('filterDistrict')
+				if (s.options.length > 1) return
+				;[...new Set(PROPERTIES.map(p => p.district))].sort().forEach(d => {
+					const o = document.createElement('option')
+					o.value = d
+					o.textContent = d
+					s.appendChild(o)
+				})
+			}
 
-/* ====== CATALOG ====== */
-function populateDistrictFilter() {
-    const s = document.getElementById('filterDistrict');
-    if (s.options.length > 1) return;
-    [...new Set(PROPERTIES.map(p => p.district))].sort().forEach(d => {
-        const o = document.createElement('option'); o.value = d; o.textContent = d; s.appendChild(o);
-    });
-}
+			function getFiltered() {
+				const pt = document.getElementById('filterPropertyType')?.value
+				const rm = document.getElementById('filterRooms')?.value
+				const di = document.getElementById('filterDistrict')?.value
+				const mn = document.getElementById('filterPriceMin')?.value
+				const mx = document.getElementById('filterPriceMax')?.value
+				return PROPERTIES.filter(p => {
+					if (pt && p.propertyType !== pt) return false
+					if (rm) {
+						const r = parseInt(rm)
+						if (r === 4 ? p.rooms < 4 : p.rooms !== r) return false
+					}
+					if (di && p.district !== di) return false
+					if (mn && p.price < parseInt(mn)) return false
+					if (mx && p.price > parseInt(mx)) return false
+					return true
+				})
+			}
 
-function getFiltered() {
-    const pt = document.getElementById('filterPropertyType')?.value;
-    const rm = document.getElementById('filterRooms')?.value;
-    const di = document.getElementById('filterDistrict')?.value;
-    const mn = document.getElementById('filterPriceMin')?.value;
-    const mx = document.getElementById('filterPriceMax')?.value;
-    return PROPERTIES.filter(p => {
-        if (pt && p.propertyType !== pt) return false;
-        if (rm) { const r = parseInt(rm); if (r === 4 ? p.rooms < 4 : p.rooms !== r) return false; }
-        if (di && p.district !== di) return false;
-        if (mn && p.price < parseInt(mn)) return false;
-        if (mx && p.price > parseInt(mx)) return false;
-        return true;
-    });
-}
+			function renderCatalog() {
+				const list = getFiltered()
+				const grid = document.getElementById('propertiesGrid')
+				const n = list.length
+				let w = 'объектов'
+				if (n % 10 === 1 && n % 100 !== 11) w = 'объект'
+				else if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) w = 'объекта'
+				document.getElementById('resultsCount').innerHTML = `Найдено: <strong>${n}</strong> ${w}`
 
-function renderCatalog() {
-    const list = getFiltered();
-    const grid = document.getElementById('propertiesGrid');
-    const n = list.length;
-    let w = 'объектов';
-    if (n%10===1 && n%100!==11) w='объект';
-    else if ([2,3,4].includes(n%10) && ![12,13,14].includes(n%100)) w='объекта';
-    document.getElementById('resultsCount').innerHTML = `Найдено: <strong>${n}</strong> ${w}`;
-
-    grid.innerHTML = list.map((p,i) => {
-        const h = p.propertyType==='house';
-        return `<div class="prop-card fade-in stagger-${(i%5)+1}" onclick="navigate('property',${p.id})">
-            <div class="prop-card-img"><img src="${p.images[0]}" alt="${p.title}" loading="lazy"><span class="prop-badge ${h?'house':''}">${h?'Дом':'Квартира'}</span></div>
+				grid.innerHTML = list
+					.map((p, i) => {
+						const h = p.propertyType === 'house'
+						return `<div class="prop-card fade-in stagger-${(i % 5) + 1}" onclick="navigate('property',${p.id})">
+            <div class="prop-card-img"><img src="${p.images[0]}" alt="${p.title}" loading="lazy"><span class="prop-badge ${h ? 'house' : ''}">${h ? 'Дом' : 'Квартира'}</span></div>
             <div class="prop-card-body">
                 <div class="prop-price">${p.price.toLocaleString('ru-RU')} ₽ <span>/ мес</span></div>
                 <div class="prop-address">${p.district}, ${p.address}</div>
                 <div class="prop-meta">
                     <span class="prop-meta-item">◻ ${p.rooms}-комн.</span>
                     <span class="prop-meta-item">▭ ${p.area} м²</span>
-                    <span class="prop-meta-item">▲ ${h ? p.totalFloors+' эт.' : p.floor+'/'+p.totalFloors+' эт.'}</span>
+                    <span class="prop-meta-item">▲ ${h ? p.totalFloors + ' эт.' : p.floor + '/' + p.totalFloors + ' эт.'}</span>
                 </div>
-            </div></div>`;
-    }).join('');
-    setTimeout(observeAnimations, 50);
-}
+            </div></div>`
+					})
+					.join('')
+				setTimeout(observeAnimations, 50)
+			}
 
-function applyFilters() { renderCatalog(); }
-function resetFilters() {
-    ['filterPropertyType','filterRooms','filterDistrict','filterPriceMin','filterPriceMax'].forEach(id => document.getElementById(id).value = '');
-    renderCatalog();
-}
+			function applyFilters() {
+				renderCatalog()
+			}
+			function resetFilters() {
+				;['filterPropertyType', 'filterRooms', 'filterDistrict', 'filterPriceMin', 'filterPriceMax'].forEach(
+					id => (document.getElementById(id).value = ''),
+				)
+				renderCatalog()
+			}
 
-/* ====== PROPERTY DETAIL ====== */
-function renderProperty(id) {
-    const p = PROPERTIES.find(x => x.id === id);
-    if (!p) return;
-    currentProperty = p; currentImageIndex = 0;
-    document.getElementById('propMainImage').src = p.images[0];
-    document.getElementById('galleryDots').innerHTML = p.images.map((_,i) => `<div class="gallery-dot ${i===0?'active':''}" onclick="goToImage(${i})"></div>`).join('');
+			/* ====== PROPERTY DETAIL ====== */
+			function renderProperty(id) {
+				const p = PROPERTIES.find(x => x.id === id)
+				if (!p) return
+				currentProperty = p
+				currentImageIndex = 0
+				document.getElementById('propMainImage').src = p.images[0]
+				document.getElementById('galleryDots').innerHTML = p.images
+					.map(
+						(_, i) =>
+							`<div class="gallery-dot ${i === 0 ? 'active' : ''}" onclick="goToImage(${i})"></div>`,
+					)
+					.join('')
 
-    const h = p.propertyType==='house';
-    const comm = Math.round(p.price * 0.2).toLocaleString('ru-RU');
+				const h = p.propertyType === 'house'
+				const comm = Math.round(p.price * 0.2).toLocaleString('ru-RU')
 
-    document.getElementById('propSidebar').innerHTML = `
+				document.getElementById('propSidebar').innerHTML = `
         <div class="prop-sidebar-price">${p.price.toLocaleString('ru-RU')} ₽ <span>/ мес</span></div>
-        <span class="prop-sidebar-type ${h?'house':''}">${h?'Дом':'Квартира'} · Долгосрочная аренда</span>
+        <span class="prop-sidebar-type ${h ? 'house' : ''}">${h ? 'Дом' : 'Квартира'} · Долгосрочная аренда</span>
         <div class="prop-sidebar-specs">
             <div class="spec-item"><div class="spec-label">Комнаты</div><div class="spec-value">${p.rooms}</div></div>
             <div class="spec-item"><div class="spec-label">Площадь</div><div class="spec-value">${p.area} м²</div></div>
-            <div class="spec-item"><div class="spec-label">${h?'Этажность':'Этаж'}</div><div class="spec-value">${h?p.totalFloors+' эт.':p.floor+' / '+p.totalFloors}</div></div>
+            <div class="spec-item"><div class="spec-label">${h ? 'Этажность' : 'Этаж'}</div><div class="spec-value">${h ? p.totalFloors + ' эт.' : p.floor + ' / ' + p.totalFloors}</div></div>
             <div class="spec-item"><div class="spec-label">Район</div><div class="spec-value">${p.district}</div></div>
         </div>
         <div class="deal-terms">
@@ -936,30 +2301,49 @@ function renderProperty(id) {
         </div>
         <div class="sidebar-contacts">
             <a class="btn-telegram" href="${CONTACTS.telegram.url}" target="_blank" rel="noopener">✈ Написать в Telegram</a>
-            <a class="btn-bot" href="${CONTACTS.bot.url}" target="_blank" rel="noopener">🤖 Написать боту</a>
             <a class="btn-phone" href="${CONTACTS.phone.url}">📞 ${CONTACTS.phone.display}</a>
-        </div>`;
+        </div>`
 
-    document.getElementById('propInfo').innerHTML = `
+				document.getElementById('propInfo').innerHTML = `
         <h2>${p.title}</h2><p>${p.description}</p>
         <h2 style="font-size:1.15rem;margin-bottom:14px;">Удобства</h2>
-        <div class="prop-features">${p.features.map(f => `<div class="prop-feature"><span style="color:var(--accent);font-weight:700;">✓</span> ${f}</div>`).join('')}</div>`;
-}
+        <div class="prop-features">${p.features.map(f => `<div class="prop-feature"><span style="color:var(--accent);font-weight:700;">✓</span> ${f}</div>`).join('')}</div>`
+			}
 
-function goToImage(i) { if(!currentProperty)return; currentImageIndex=i; document.getElementById('propMainImage').src=currentProperty.images[i]; document.querySelectorAll('.gallery-dot').forEach((d,j)=>d.classList.toggle('active',j===i)); }
-function nextImage() { if(currentProperty) goToImage((currentImageIndex+1)%currentProperty.images.length); }
-function prevImage() { if(currentProperty) goToImage((currentImageIndex-1+currentProperty.images.length)%currentProperty.images.length); }
+			function goToImage(i) {
+				if (!currentProperty) return
+				currentImageIndex = i
+				document.getElementById('propMainImage').src = currentProperty.images[i]
+				document.querySelectorAll('.gallery-dot').forEach((d, j) => d.classList.toggle('active', j === i))
+			}
+			function nextImage() {
+				if (currentProperty) goToImage((currentImageIndex + 1) % currentProperty.images.length)
+			}
+			function prevImage() {
+				if (currentProperty)
+					goToImage((currentImageIndex - 1 + currentProperty.images.length) % currentProperty.images.length)
+			}
 
-/* ====== MOBILE NAV ====== */
-function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
-function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+			/* ====== MOBILE NAV ====== */
+			function toggleMobileNav() {
+				document.getElementById('mobileNav').classList.toggle('open')
+			}
+			function closeMobileNav() {
+				document.getElementById('mobileNav').classList.remove('open')
+			}
 
-/* ====== ANIMATIONS ====== */
-function observeAnimations() {
-    const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => obs.observe(el));
-}
-document.addEventListener('DOMContentLoaded', observeAnimations);
-</script>
-</body>
+			/* ====== ANIMATIONS ====== */
+			function observeAnimations() {
+				const obs = new IntersectionObserver(
+					es =>
+						es.forEach(e => {
+							if (e.isIntersecting) e.target.classList.add('visible')
+						}),
+					{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' },
+				)
+				document.querySelectorAll('.fade-in:not(.visible)').forEach(el => obs.observe(el))
+			}
+			document.addEventListener('DOMContentLoaded', observeAnimations)
+		</script>
+	</body>
 </html>
