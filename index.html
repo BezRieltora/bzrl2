@@ -1407,16 +1407,22 @@
 		<!-- ====== HEADER ====== -->
 		<header class="header">
 			<div class="container header-inner">
-				<div class="logo" onclick="navigate('home')">
+				<a class="logo" href="#home" onclick="navigate('home')">
 					<div class="logo-mark">BZ</div>
 					<div>BZRL</div>
-				</div>
+				</a>
 				<nav class="nav">
-					<a class="nav-link active" onclick="navigate('home')" data-page="home">Главная</a>
-					<a class="nav-link" onclick="navigate('catalog')" data-page="catalog">Недвижимость</a>
-					<a class="nav-link" onclick="navigate('landlords')" data-page="landlords">Арендодателям</a>
-					<a class="nav-link" onclick="navigate('about')" data-page="about">О проекте</a>
-					<a class="nav-link" onclick="navigate('contacts')" data-page="contacts">Контакты</a>
+					<a class="nav-link active" href="#home" onclick="navigate('home')" data-page="home">Главная</a>
+					<a class="nav-link" href="#catalog" onclick="navigate('catalog')" data-page="catalog"
+						>Недвижимость</a
+					>
+					<a class="nav-link" href="#landlords" onclick="navigate('landlords')" data-page="landlords"
+						>Арендодателям</a
+					>
+					<a class="nav-link" href="#about" onclick="navigate('about')" data-page="about">О проекте</a>
+					<a class="nav-link" href="#contacts" onclick="navigate('contacts')" data-page="contacts"
+						>Контакты</a
+					>
 					<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">
 						<svg viewBox="0 0 24 24" fill="currentColor">
 							<path
@@ -1430,11 +1436,11 @@
 			</div>
 		</header>
 		<div class="mobile-nav" id="mobileNav">
-			<a class="nav-link" onclick="navigate('home'); closeMobileNav()">Главная</a>
-			<a class="nav-link" onclick="navigate('catalog'); closeMobileNav()">Недвижимость</a>
-			<a class="nav-link" onclick="navigate('landlords'); closeMobileNav()">Арендодателям</a>
-			<a class="nav-link" onclick="navigate('about'); closeMobileNav()">О проекте</a>
-			<a class="nav-link" onclick="navigate('contacts'); closeMobileNav()">Контакты</a>
+			<a class="nav-link" href="#home" onclick="navigate('home'); closeMobileNav()">Главная</a>
+			<a class="nav-link" href="#catalog" onclick="navigate('catalog'); closeMobileNav()">Недвижимость</a>
+			<a class="nav-link" href="#landlords" onclick="navigate('landlords'); closeMobileNav()">Арендодателям</a>
+			<a class="nav-link" href="#about" onclick="navigate('about'); closeMobileNav()">О проекте</a>
+			<a class="nav-link" href="#contacts" onclick="navigate('contacts'); closeMobileNav()">Контакты</a>
 			<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
 		</div>
 
@@ -1456,7 +1462,7 @@
 							💰 Фиксированная комиссия — <strong style="margin-left: 4px">20% от месячной аренды</strong>
 						</div>
 						<div class="hero-actions fade-in stagger-3">
-							<button class="btn-primary" onclick="navigate('catalog')">
+							<a class="btn-primary" href="#catalog" onclick="navigate('catalog')">
 								Смотреть объекты
 								<svg
 									width="18"
@@ -1469,7 +1475,7 @@
 								>
 									<path d="M5 12h14M12 5l7 7-7 7" />
 								</svg>
-							</button>
+							</a>
 							<a class="btn-telegram" href="https://t.me/yusdanil" target="_blank" rel="noopener"
 								>✈ Написать в Telegram</a
 							>
@@ -1647,7 +1653,7 @@
 		<div class="page" id="page-property">
 			<section class="prop-detail section-padding">
 				<div class="container">
-					<div class="prop-detail-back" onclick="navigate('catalog')">← Назад к каталогу</div>
+					<a class="prop-detail-back" href="#catalog" onclick="navigate('catalog')">← Назад к каталогу</a>
 					<div class="prop-detail-grid">
 						<div>
 							<div class="prop-gallery" id="propGallery">
@@ -1878,18 +1884,20 @@
 			<div class="container">
 				<div class="footer-grid">
 					<div class="footer-brand">
-						<div class="logo" onclick="navigate('home')" style="color: white">
+						<a class="logo" href="#home" onclick="navigate('home')" style="color: white">
 							<div class="logo-mark">BZ</div>
 							<div>BZRL</div>
-						</div>
+						</a>
 						<p>Сервис-посредник по аренде недвижимости в Казани. Квартиры и дома · Комиссия 20%.</p>
 					</div>
 					<div>
 						<h4>Навигация</h4>
 						<div class="footer-links">
-							<a onclick="navigate('home')">Главная</a><a onclick="navigate('catalog')">Недвижимость</a
-							><a onclick="navigate('landlords')">Арендодателям</a
-							><a onclick="navigate('about')">О проекте</a><a onclick="navigate('contacts')">Контакты</a>
+							<a href="#home" onclick="navigate('home')">Главная</a
+							><a href="#catalog" onclick="navigate('catalog')">Недвижимость</a
+							><a href="#landlords" onclick="navigate('landlords')">Арендодателям</a
+							><a href="#about" onclick="navigate('about')">О проекте</a
+							><a href="#contacts" onclick="navigate('contacts')">Контакты</a>
 						</div>
 					</div>
 					<div>
@@ -2174,7 +2182,34 @@
 			let currentProperty = null
 			let currentImageIndex = 0
 
-			function navigate(page, data) {
+			function setHash(page, data) {
+				if (page === 'home') {
+					location.hash = 'home'
+					return
+				}
+				if (page === 'property' && data) {
+					location.hash = `property=${data}`
+					return
+				}
+				location.hash = page
+			}
+
+			function handleHash() {
+				const hash = window.location.hash.replace('#', '')
+				if (!hash) {
+					navigate('home', null, true)
+					setHash('home')
+					return
+				}
+				if (hash.startsWith('property=')) {
+					const id = parseInt(hash.split('=')[1], 10)
+					if (id) navigate('property', id, true)
+					return
+				}
+				navigate(hash, null, true)
+			}
+
+			function navigate(page, data, fromHash) {
 				document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
 				const target = document.getElementById('page-' + page)
 				if (target) {
@@ -2191,6 +2226,7 @@
 				if (page === 'property' && data) renderProperty(data)
 				window.scrollTo({ top: 0, behavior: 'smooth' })
 				setTimeout(observeAnimations, 100)
+				if (!fromHash) setHash(page, data)
 			}
 
 			/* ====== CATALOG ====== */
@@ -2338,7 +2374,11 @@
 				)
 				document.querySelectorAll('.fade-in:not(.visible)').forEach(el => obs.observe(el))
 			}
-			document.addEventListener('DOMContentLoaded', observeAnimations)
+			window.addEventListener('hashchange', handleHash)
+			document.addEventListener('DOMContentLoaded', () => {
+				handleHash()
+				observeAnimations()
+			})
 		</script>
 	</body>
 </html>
