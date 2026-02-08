@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BZRL — О проекте</title>
+		<meta name="description" content="Прозрачная аренда в Казани. Мы отвечаем за процесс и баланс интересов." />
+		<link rel="icon" type="image/png" href="../assets/favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Onest:wght@300;400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="assets/bzrl.css" />
+	</head>
+	<body data-page="about">
+		<header class="header">
+			<div class="container header-inner">
+				<a class="logo" href="../index.html">
+					<div class="logo-mark">BZ</div>
+					<div>BZRL</div>
+				</a>
+				<nav class="nav">
+					<a class="nav-link" href="../index.html" data-page="home">Главная</a>
+					<a class="nav-link" href="catalog.html" data-page="catalog">Недвижимость</a>
+					<a class="nav-link" href="landlords.html" data-page="landlords">Арендодателям</a>
+					<a class="nav-link" href="about.html" data-page="about">О проекте</a>
+					<a class="nav-link" href="contacts.html" data-page="contacts">Контакты</a>
+					<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">
+						<svg viewBox="0 0 24 24" fill="currentColor">
+							<path
+								d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"
+							/>
+						</svg>
+						Написать
+					</a>
+				</nav>
+				<button class="burger" onclick="toggleMobileNav()"><span></span><span></span><span></span></button>
+			</div>
+		</header>
+		<div class="mobile-nav" id="mobileNav">
+			<a class="nav-link" href="../index.html" onclick="closeMobileNav()">Главная</a>
+			<a class="nav-link" href="catalog.html" onclick="closeMobileNav()">Недвижимость</a>
+			<a class="nav-link" href="landlords.html" onclick="closeMobileNav()">Арендодателям</a>
+			<a class="nav-link" href="about.html" onclick="closeMobileNav()">О проекте</a>
+			<a class="nav-link" href="contacts.html" onclick="closeMobileNav()">Контакты</a>
+			<a class="nav-cta" href="https://t.me/yusdanil" target="_blank" rel="noopener">✈ Написать в Telegram</a>
+		</div>
+
+		<main>
+			<section class="section-padding" style="padding-top: 120px; background: var(--bg-primary)">
+				<div class="container">
+					<div class="about-grid">
+						<div class="about-visual fade-in">
+							<h3>Мы отвечаем за процесс и баланс интересов</h3>
+							<p>
+								Не просто сводим людей — ведём сделку от звонка до ключей. Посредник, который работает
+								на обе стороны одинаково честно.
+							</p>
+						</div>
+						<div class="about-text">
+							<h2>Прозрачная аренда в Казани</h2>
+							<p>
+								BZRL — сервис-посредник по аренде квартир и домов в Казани. Мы не скрываем свою роль:
+								наша задача — сделать аренду безопасной и понятной для обеих сторон.
+							</p>
+							<p>Фиксированная комиссия 20% — самая низкая на рынке. Нет сделки — нет оплаты.</p>
+							<p>
+								Каждый объект проверяется лично. Каждый арендатор проходит отбор. Договор — до передачи
+								денег.
+							</p>
+							<div class="about-values">
+								<div class="about-value fade-in stagger-1">
+									<div class="about-value-icon">🔍</div>
+									<div>
+										<h4>Проверка каждого объекта</h4>
+										<p>Документы, собственник, фото, цена — всё реальное</p>
+									</div>
+								</div>
+								<div class="about-value fade-in stagger-2">
+									<div class="about-value-icon">📋</div>
+									<div>
+										<h4>Договор до денег</h4>
+										<p>Сначала подпись — потом оплата. Никак иначе</p>
+									</div>
+								</div>
+								<div class="about-value fade-in stagger-3">
+									<div class="about-value-icon">⚖️</div>
+									<div>
+										<h4>Баланс интересов</h4>
+										<p>Защищаем и арендатора, и собственника одинаково</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-grid">
+					<div class="footer-brand">
+						<a class="logo" href="../index.html" style="color: white">
+							<div class="logo-mark">BZ</div>
+							<div>BZRL</div>
+						</a>
+						<p>Сервис-посредник по аренде недвижимости в Казани. Квартиры и дома · Комиссия 20%.</p>
+					</div>
+					<div>
+						<h4>Навигация</h4>
+						<div class="footer-links">
+							<a href="../index.html">Главная</a><a href="catalog.html">Недвижимость</a>
+							<a href="landlords.html">Арендодателям</a><a href="about.html">О проекте</a>
+							<a href="contacts.html">Контакты</a>
+						</div>
+					</div>
+					<div>
+						<h4>Связаться</h4>
+						<div class="footer-links">
+							<a href="https://t.me/yusdanil" target="_blank">Telegram: @yusdanil</a>
+							<a href="tel:+79991323141">+7 999 132-31-41</a>
+						</div>
+					</div>
+					<div>
+						<h4>Информация</h4>
+						<div class="footer-links">
+							<a href="#">Типовой договор</a><a href="#">Частые вопросы</a>
+							<a href="#">Политика конфиденциальности</a>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>© 2025 BZRL. Все права защищены.</p>
+					<p>Казань · Аренда недвижимости</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="assets/bzrl.js" defer></script>
+	</body>
+</html>

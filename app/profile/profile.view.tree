@@ -4,8 +4,7 @@ $bog_bzrl_app_profile $mol_view
 	theme_auto $bog_theme_auto
 	profile_entity null
 	sub /
-		<= Panel $mol_pop
-			showed? <=> opened?
+		<= Panel $mol_pop_over
 			Anchor <= Button $mol_button_minor
 				click? <=> toggle?
 				sub /
