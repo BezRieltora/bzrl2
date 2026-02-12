@@ -1,0 +1,984 @@
+$mol_scroll $mol_view
+	scroll_top? 0
+	scroll_left? 0
+	attr *
+		^
+		tabindex <= tabindex -1
+	event *
+		^
+		scroll?event <=> event_scroll?event null
+
+$mol_page $mol_view
+	dom_name \article
+	attr *
+		^
+		tabIndex <= tabindex -1
+	sub /
+		<= Head $mol_view
+			minimal_height 64
+			dom_name \header
+			sub <= head /
+				<= Title $mol_view
+					dom_name \h1
+					sub <= title_content /
+						<= Logo null
+						<= title
+				<= Tools $mol_view
+					sub <= tools /$mol_view_content
+		<= Body $mol_scroll
+			scroll_top? => body_scroll_top?
+			sub <= body_content /
+				<= Body_content $mol_view
+					sub <= body /$mol_view
+		<= Foot $mol_view
+			dom_name \footer
+			sub <= foot /$mol_view
+
+$bog_theme_auto $mol_plugin
+	themes <= themes_default /
+	theme_light \$mol_theme_light
+	theme_dark \$mol_theme_dark
+	theme_next? null
+	theme_prev? null
+	theme_set? null
+	attr * mol_theme <= theme \
+
+$mol_image $mol_view
+	dom_name \img
+	attr *any
+		^
+		src <= uri \
+		title <= hint
+		alt <= title \
+		loading <= loading \lazy
+		decoding <= decoding \async
+		crossOrigin <= cors null
+		width <= natural_width 0
+		height <= natural_height 0
+	event *any
+		load? <=> load? null
+	minimal_width 16
+	minimal_height 16
+
+$mol_link $mol_view
+	uri \
+	dom_name \a
+	uri_off \
+	uri_native null
+	external false
+	attr *
+		^
+		href <= uri_toggle \
+		title <= hint_safe <= hint \
+		target <= target \_self
+		download <= file_name \
+		mol_link_current <= current false
+		rel <= relation \
+	sub /$mol_view_content
+		<= title
+	arg *
+	event *
+		^
+		click?event <=> click?event <=> event_click?event null
+
+$mol_speck $mol_view
+	theme \$mol_theme_accent
+	sub /
+		<= value null
+
+$mol_button $mol_view
+	enabled true
+	click?event null
+	event_click?event null
+	status? /
+	event *
+		^
+		click?event <=> activate?event <=> event_activate?event null
+		dblclick?event <=> clicks?event null
+		keydown?event <=> key_press?event <=> event_key_press?event null
+	attr *
+		^
+		disabled <= disabled false
+		role \button
+		tabindex <= tab_index 0
+		title <= hint_safe <= hint \
+	sub /$mol_view_content
+		<= title
+	Speck $mol_speck
+		value <= error \
+
+$mol_button_typed $mol_button
+	minimal_height 40
+	minimal_width 40
+
+$mol_button_minor $mol_button_typed
+
+$bog_bzrl_app_nav $mol_view
+	sub /
+		<= Rent_button $mol_link
+			arg *
+				tab \rent
+				section \rent
+			sub /
+				<= rent_label @ \Rent
+		<= Let_link $mol_link
+			arg *
+				tab \let
+				section \let
+			sub /
+				<= let_label @ \Let
+		<= Home_icon $mol_button_minor
+			sub /
+				<= home_icon_img $mol_image
+					uri \bog/bzrl/assets/HomeRent-Design-System-Frame-71.png
+
+$mol_svg $mol_view
+	dom_name \svg
+	dom_name_space \http://www.w3.org/2000/svg
+	font_size 16
+	font_family \
+	style_size *
+
+$mol_svg_root $mol_svg
+	dom_name \svg
+	attr *
+		^
+		viewBox <= view_box \0 0 100 100
+		preserveAspectRatio <= aspect \xMidYMid
+
+$mol_svg_path $mol_svg
+	dom_name \path
+	attr *
+		^
+		d <= geometry \
+
+
+$mol_icon $mol_svg_root
+	view_box \0 0 24 24
+	minimal_width 16
+	minimal_height 16
+	sub /
+		<= Path $mol_svg_path
+			geometry <= path \
+
+$mol_icon_upload $mol_icon path \M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z
+
+$mol_button_open $mol_button_minor
+	sub /
+		<= Icon $mol_icon_upload
+		<= Native $mol_button_open_native
+			files? <=> files_handled? <=> files? /File
+			accept <= accept \
+			multiple <= multiple true
+
+$mol_button_open_native $mol_view
+	dom_name \input
+	files? /File
+	attr *
+		type \file
+		accept <= accept \
+		multiple <= multiple true
+	event *
+		change?next <=> picked?next null
+
+$bog_bzrl_app_profile_avatar $mol_button_open
+	profile null
+	sub /
+		<= Image $mol_image
+			uri <= image_uri \
+		<= Native $mol_button_open_native
+			files? <=> files_handled? <=> files? /File
+			accept <= accept \
+			multiple <= multiple false
+
+$mol_ghost $mol_view
+	Sub $mol_view
+
+$mol_follower $mol_ghost
+	Anchor $mol_view
+	align /number
+		-.5
+		-.5
+	offset /number
+		0
+		0
+	style *
+		^
+		transform <= transform \
+
+$mol_pop $mol_view
+	showed? false
+	align_vert \
+	align_hor \
+	align \bottom_center
+	prefer \vert
+	auto /
+		<= bubble null
+	sub /
+		<= Anchor null
+	sub_visible /
+		<= Anchor
+		<= Follower $mol_follower
+			offset <= bubble_offset /number
+				0
+				1
+			align <= bubble_align /number
+				0
+				0
+			Anchor <= Anchor
+			Sub <= Bubble $mol_pop_bubble
+				content <= bubble_content /$mol_view_content
+				height_max <= height_max 9999
+
+$mol_pop_bubble $mol_view
+	sub <= content /$mol_view_content
+	style *
+		^
+		maxHeight <= height_max 9999
+	attr *
+		^
+		tabindex 0
+		popover \manual
+
+$mol_icon_brightness_4 $mol_icon path \M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z
+
+$mol_hotkey $mol_plugin
+	event *
+		^
+		keydown?event <=> keydown?event null
+	key *
+	mod_ctrl false
+	mod_alt false
+	mod_shift false
+
+$mol_string $mol_view
+	dom_name \input
+	enabled true
+	minimal_height 40
+	autocomplete false
+	selection? /number
+		0
+		0
+	auto /
+		<= selection_watcher null
+		<= error_report null
+	field *
+		^
+		disabled <= disabled false
+		value <= value_changed? <=> value? \
+		placeholder <= hint_visible <= hint \
+		spellcheck <= spellcheck true
+		autocomplete <= autocomplete_native \
+		selectionEnd <= selection_end 0
+		selectionStart <= selection_start 0
+		inputMode <= keyboard \text
+		enterkeyhint <= enter \go
+	attr *
+		^
+		maxlength <= length_max +Infinity
+		type <= type? \text
+	event *
+		^
+		input?event <=> event_change?event null
+	plugins /
+		<= Submit $mol_hotkey
+			mod_ctrl <= submit_with_ctrl false
+			key * enter?event <=> submit?event null
+
+$mol_list $mol_view
+	render_visible_only true
+	render_over 0.1
+	sub <= rows /$mol_view
+		<= Gap_before $mol_view style * paddingTop <= gap_before 0
+		<= Empty $mol_view
+		<= Gap_after $mol_view style * paddingTop <= gap_after 0
+	item_height_min* 1
+	item_width_min* 1
+	view_window_shift? 0
+	view_window /
+		0
+		0
+
+$bog_theme_picker_row $mol_button_minor
+	theme_name \
+	title <= theme_name
+	attr *
+		^
+		bog_theme_picker_row_focused <= focused_str \
+	event *
+		^
+		pointerenter?event <=> hover?event null
+
+$bog_theme_picker $mol_scroll
+	theme_auto $bog_theme_auto
+	close? null
+	query?val \
+	focused_index?val -1
+	Theme_row* $bog_theme_picker_row
+		theme_name <= theme_name* \
+		focused <= theme_focused* false
+		click?event <=> theme_select*?event null
+		hover?event <=> theme_hover*?event null
+	sub /
+		<= Content $mol_list rows /
+			<= Search $mol_string
+				value?val <=> query?val
+				hint @ \Just start typing
+			<= Theme_list $mol_list
+				rows <= theme_rows /
+	event *
+		^
+		keydown?event <=> key_down?event null
+
+$bog_theme_toggle $mol_pop
+	theme_auto $bog_theme_auto
+	showed?val false
+	align \bottom_right
+	Anchor $mol_button_minor
+		sub /
+			<= Icon $mol_icon_brightness_4
+		hint @ \Cycle through themes
+		click?event <=> clicked?event null
+		event *
+			^
+			pointerdown?event <=> press_start?event null
+			pointermove?event <=> press_move?event null
+			pointerup?event <=> press_end?event null
+			pointercancel?event <=> press_cancel?event null
+			lostpointercapture?event <=> press_lost?event null
+	bubble_content /
+		<= Backdrop $mol_view
+			event *
+				click?event <=> backdrop_click?event null
+		<= Picker $bog_theme_picker
+			theme_auto <= theme_auto
+			close? <=> picker_close? null
+
+$mol_string_button $mol_string
+
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit +Infinity
+	row_width 0
+	sub / <= title
+
+$mol_dimmer $mol_paragraph
+	haystack \
+	needle \
+	sub <= parts /$mol_view_content
+	Low* $mol_paragraph
+		sub /
+			<= string* \
+	High* $mol_paragraph
+		sub /
+			<= string* \
+
+$mol_card $mol_list
+	attr *
+		^
+		mol_card_status_type <= status \
+	rows /$mol_view
+		<= Content $mol_view
+			sub <= content /$mol_view_content
+				<= title
+		<= Status $mol_view
+			minimal_height 30
+			sub /
+				<= status_text <= status \
+
+$mol_pop_over $mol_pop
+	showed <= hovered? false
+	attr *
+		^
+		tabindex 0
+	event *
+		^
+		mouseenter?event <=> event_show?event null
+		mouseleave?event <=> event_hide?event null
+
+$bog_bzrl_app_profile $mol_view
+	opened? false
+	toggle? null
+	theme_auto $bog_theme_auto
+	profile_entity null
+	sub /
+		<= Panel $mol_pop_over
+			Anchor <= Button $mol_button_minor
+				click? <=> toggle?
+				sub /
+					<= Avatar $mol_image
+						uri <= avatar_uri \
+			bubble_content /
+				<= Card $mol_card
+					Content <= Menu $mol_list
+						rows /
+							<= Header $mol_view
+								sub /
+									<= Header_top $mol_view
+										sub /
+											<= Avatar_large $bog_bzrl_app_profile_avatar
+												profile <= profile_entity
+											<= Theme_toggle $bog_theme_toggle
+												theme_auto <= theme_auto
+									<= Name $mol_string_button
+										value? <=> name? \
+										hint @ \Click on me
+									<= Id $mol_dimmer
+										haystack <= profile_id \
+
+$mol_check $mol_button_minor
+	attr *
+		^
+		mol_check_checked <= checked? false
+		aria-checked <= aria_checked \false
+		role <= aria_role \checkbox
+	sub /$mol_view_content
+		<= Icon null
+		<= label /
+			<= Title $mol_view
+				sub /
+					<= title \
+
+$mol_pick $mol_pop
+	event *
+		^
+		keydown?event <=> keydown?event null
+	Anchor <= Trigger $mol_check
+		minimal_width 40
+		minimal_height 40
+		enabled <= trigger_enabled true
+		checked? <=> showed?
+		clicks? <=> clicks? null
+		sub <= trigger_content /$mol_view_content
+			<= title
+		hint <= hint \
+
+$mol_nav $mol_plugin
+	cycle? false
+	-
+	mod_ctrl false
+	mod_shift false
+	mod_alt false
+	-
+	keys_x? /
+	keys_y? /
+	-
+	current_x? null
+	current_y? null
+	-
+	event_up?event null
+	event_down?event null
+	event_left?event null
+	event_right?event null
+	event *
+		^
+		keydown?event <=> event_key?event null
+
+$mol_icon_close $mol_icon path \M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z
+
+$mol_search $mol_pop
+	query? \
+	suggests /string
+	plugins /$mol_plugin
+		^
+		<= Hotkey $mol_hotkey
+			key * escape? <=> clear? null
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y?component <=> nav_focused?component null
+	showed? <=> suggests_showed? false
+	align_hor \right
+	Anchor $mol_view
+		sub <= anchor_content /
+			<= Query $mol_string
+				value? <=> query? \
+				hint <= hint @ \Search...
+				submit?event <=> submit?event null
+				enabled <= enabled true
+				keyboard <= keyboard \search
+				enter <= enter \search
+				bring => bring
+			<= Clear $mol_button_minor
+				hint @ \Clear
+				enabled <= enabled true
+				click?event <=> clear?event null
+				sub /
+					<= Clear_icon $mol_icon_close
+	bubble_content /$mol_view_content
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_items /$mol_view
+	Suggest* $mol_button_minor
+		click?event <=> suggest_select*?event null
+		sub <= suggest_content* /$mol_view_content
+			<= Suggest_label* $mol_dimmer
+				haystack <= suggest_label* \
+				needle <= query? \
+
+$mol_icon_dots_vertical $mol_icon path \M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z
+
+$mol_select $mol_pick
+	dictionary? *
+	options /string
+	value? \
+	option_label_default \
+	Option_row* $mol_button_minor
+		enabled <= enabled true
+		event_click?event <=> event_select*?event null
+		sub <= option_content* /
+			<= Option_label* $mol_dimmer
+				haystack <= option_label* \
+				needle <= filter_pattern? \
+	No_options $mol_view
+		sub /
+			<= no_options_message @ \No options
+	plugins /
+		^
+		<= Nav $mol_nav
+			keys_y <= nav_components /$mol_view
+			current_y?component <=> option_focused?component null
+			cycle? <=> nav_cycle? true
+	hint @ \Pick..
+	bubble_content /
+		<= Filter
+		<= Bubble_pane $mol_scroll
+			sub /
+				<= Menu $mol_list
+					rows <= menu_content /$mol_view
+	Filter $mol_search
+		query? <=> filter_pattern? \
+		hint <= filter_hint @ \Filter..
+		submit?event <=> submit?event null
+		enabled <= enabled true
+	Trigger_icon $mol_icon_dots_vertical
+	trigger_enabled <= enabled
+
+$mol_check_list $mol_view
+	dictionary *
+	Option* $mol_check
+		checked? <=> option_checked*? false
+		label <= option_label* /
+			<= option_title* \
+		enabled <= option_enabled* <= enabled true
+		hint <= option_hint* \
+		minimal_height 24
+	options *
+	keys /string
+	sub <= items /$mol_check
+
+$mol_switch $mol_check_list
+	value? \
+
+$mol_button_major $mol_button_minor
+	theme \$mol_theme_base
+
+$bog_bzrl_app_filter $mol_view
+	sub /
+		<= District $mol_select
+			value? <=> district? \all
+			dictionary *
+				all @ \New builds
+				vahitovsky @ \Vakhitovsky
+				sovetsky @ \Sovetsky
+				novo_savinovsky @ \Novo-Savinovsky
+		<= Rooms $mol_switch
+			value? <=> rooms? \studio
+			options *
+				studio @ \Studio
+				r1 \1
+				r2 \2
+				r3 \3
+				r4 \4+
+		<= Price_from $mol_string
+			hint @ \Price from
+			value? <=> price_from? \
+		<= Search $mol_button_major
+			click? <=> search? null
+			sub /
+				<= search_label @ \View apartments
+
+$bog_bzrl_app_card $mol_view
+	attr *
+		^
+		bog_bzrl_app_card_district <= district \
+	sub /
+		<= Badge $mol_view
+			sub /
+				<= district_title \
+		<= Photo $mol_image
+			uri <= photo \
+		<= Info $mol_view
+			sub /
+				<= Details $mol_view
+					sub /
+						<= area \
+						<= floor \
+				<= Price $mol_view
+					sub /
+						<= price \
+
+$bog_bzrl_app_hero $mol_view
+	attr *
+		^
+		bog_bzrl_app_hero_variant <= variant \default
+	sub /
+		<= Content $mol_view
+			sub /
+				<= Icon? $mol_image
+					uri <= icon_uri \
+				<= Title $mol_paragraph
+					title <= title \
+				<= Description $mol_paragraph
+					title <= description \
+				<= Action $mol_button_minor
+					click? <=> action? null
+					sub /
+						<= action_label \
+		<= Media? $mol_view
+			sub /
+				<= Media_image $mol_image
+					uri <= media_uri \
+
+$bog_bzrl_app_hero_promo $bog_bzrl_app_hero
+	variant \promo
+	title @ \Apartments in Kazan without brokers
+	description @ \Only owner-listed apartments, arranged directly. We verify manually and handle data carefully.
+	action_label @ \View apartments
+	media_uri \bog/bzrl/assets/HomeRent-Design-System-Rectangle.png
+
+$bog_bzrl_app_hero_privacy $bog_bzrl_app_hero
+	variant \privacy
+	title @ \We value your personal data
+	description @ \All your personal information is securely encrypted on your device. We do not store it on our servers and access it only through your device.
+	icon_uri \bog/bzrl/assets/Solar-Lock-Keyhole-Bold-Duotone.png
+
+$bog_bzrl_app_hero_let $bog_bzrl_app_hero
+	title @ \Rent out your apartment without extra fees
+	description @ \We will collect the form, verify documents, and help find responsible tenants without intermediaries.
+	action_label @ \Submit a request
+
+$bog_bzrl_app_hero_team $mol_view
+	sub /
+		<= Photo $mol_image
+			uri <= photo \
+		<= Content $mol_view
+			sub /
+				<= Title $mol_paragraph
+					title @ \We are a team of enthusiasts from cities across Russia
+				<= Description $mol_paragraph
+					title @ \We are building a service that helps you rent in Kazan directly from owners, without unnecessary intermediaries, with manual verification and respect for privacy.
+
+$mol_icon_magnify $mol_icon path \M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z
+
+$mol_icon_email $mol_icon path \M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z
+
+$mol_icon_email_outline $mol_icon path \M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z
+
+$mol_icon_currency_rub $mol_icon path \M13.5 3H7V12H5V14H7V16H5V18H7V21H9V18H13V16H9V14H13.5C16.54 14 19 11.54 19 8.5S16.54 3 13.5 3M13.5 12H9V5H13.5C15.43 5 17 6.57 17 8.5S15.43 12 13.5 12Z
+
+$bog_bzrl_app_step $mol_view
+	sub /
+		<= Number $mol_view
+			sub /
+				<= number 0
+		<= Icon $mol_view
+			sub /
+				<= icon null
+		<= Title $mol_paragraph
+			title <= title \
+		<= Description $mol_paragraph
+			title <= description \
+
+$bog_bzrl_app_step_match $bog_bzrl_app_step
+	number 1
+	icon <= Icon_match $mol_icon_magnify
+	title @ \matching system
+	description @ \Browse all listings and mark what you like. Your profile (together with the renter) appears in the owner's candidate list.
+
+$bog_bzrl_app_step_request $bog_bzrl_app_step
+	number 2
+	icon <= Icon_request $mol_icon_email_outline
+	title @ \submit a request
+	description @ \We pass your details to the owner and arrange free contact. We charge the lowest commission on the market: 20% of one month's rent.
+
+$bog_bzrl_app_step_pay $bog_bzrl_app_step
+	number 3
+	icon <= Icon_pay $mol_icon_currency_rub
+	title @ \apartment payment
+	description @ \After payment, we pass your details to the landlord and help finalize the agreement.
+
+$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
+
+$mol_icon_chevron_left $mol_icon path \M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z
+
+$mol_icon_chevron_right $mol_icon path \M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z
+
+$bog_bzrl_app_slider_dot $mol_button_minor
+	attr *
+		^
+		bog_bzrl_app_slider_dot_active <= active false
+
+$bog_bzrl_app_slider $mol_view
+	sub /
+		<= Prev $mol_button_minor
+			click? <=> prev? null
+			sub / <= Prev_icon $mol_icon_chevron_left
+		<= Slides $mol_view
+			sub /
+				<= Slide $mol_image
+					uri <= current_slide_uri \
+		<= Next $mol_button_minor
+			click? <=> next? null
+			sub / <= Next_icon $mol_icon_chevron_right
+		<= Dots $mol_view
+			sub <= dots /
+				<= Dot* $bog_bzrl_app_slider_dot
+					active <= dot_active* false
+					click? <=> dot_select*? null
+
+$mol_icon_home $mol_icon path \M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z
+
+$mol_icon_home_account $mol_icon path \M12,3L2,12H5V20H19V12H22L12,3M12,8.75A2.25,2.25 0 0,1 14.25,11A2.25,2.25 0 0,1 12,13.25A2.25,2.25 0 0,1 9.75,11A2.25,2.25 0 0,1 12,8.75M12,15C13.5,15 16.5,15.75 16.5,17.25V18H7.5V17.25C7.5,15.75 10.5,15 12,15Z
+
+$mol_icon_lock $mol_icon path \M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z
+
+$mol_icon_lock_outline $mol_icon path \M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z
+
+$bog_bzrl_app_benefit $mol_view
+	sub /
+		<= Icon $mol_view
+			sub /
+				<= icon null
+		<= Title $mol_paragraph
+			title <= title \
+		<= Description $mol_paragraph
+			title <= description \
+
+$bog_bzrl_app_benefit_owners $bog_bzrl_app_benefit
+	icon <= Icon_owners $mol_icon_home_account
+	title @ \owners only
+	description @ \No brokers or chains
+
+$bog_bzrl_app_benefit_verified $bog_bzrl_app_benefit
+	icon <= Icon_verified $mol_icon_magnify
+	title @ \manual verification
+	description @ \Listings and landlords are verified by us
+
+$bog_bzrl_app_benefit_secure $bog_bzrl_app_benefit
+	icon <= Icon_secure $mol_icon_lock_outline
+	title @ \data security
+	description @ \Decentralized storage and encryption
+
+$bog_bzrl_app_footer $mol_view
+	sub /
+		<= Top $mol_view
+			sub /
+				<= Contact $mol_view
+					sub /
+						<= Email $mol_link
+							uri \mailto:example@example.com
+							sub /
+								\example@example.com
+						<= Email_hint $mol_paragraph
+							title @ \Feedback email
+						<= Phone $mol_link
+							uri \tel:+79876543211
+							sub /
+								\+7 987 654 32 11
+						<= Phone_hint $mol_paragraph
+							title @ \For rental inquiries
+				<= Social $mol_view
+					sub /
+						<= Ig $mol_link
+							uri \https://instagram.com
+							sub / <= Ig_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-82.png
+						<= Vk $mol_link
+							uri \https://vk.com
+							sub / <= Vk_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-83.png
+						<= Tg $mol_link
+							uri \https://t.me
+							sub / <= Tg_icon $mol_image
+								uri \bog/bzrl/assets/HomeRent-Design-System-Frame-84.png
+		<= Nav $mol_view
+			sub /
+				<= Nav_main $mol_view
+					sub /
+						<= nav_main_title @ \Navigation
+						<= Nav_main_links $mol_list
+							rows /
+								<= nav_home $mol_link
+									uri <= nav_home_link \
+									title @ \Home
+								<= nav_profile $mol_link
+									uri <= nav_profile_link \
+									title @ \Profile
+								<= nav_all $mol_link
+									uri <= nav_all_link \
+									title @ \All apartments
+								<= nav_rent $mol_link
+									uri <= nav_rent_link \
+									title @ \Rent out an apartment
+								<= nav_get $mol_link
+									uri <= nav_get_link \
+									title @ \Rent an apartment
+				<= Nav_catalog $mol_view
+					sub /
+						<= nav_catalog_title @ \Catalog
+						<= Nav_catalog_links $mol_list
+							rows /
+								<= nav_districts $mol_link
+									uri <= nav_districts_link \
+									title @ \Districts
+								<= nav_new $mol_link
+									uri <= nav_new_link \
+									title @ \New
+								<= nav_furnished $mol_link
+									uri <= nav_furnished_link \
+									title @ \Furnished
+								<= nav_pets $mol_link
+									uri <= nav_pets_link \
+									title @ \Pets allowed
+								<= nav_studio $mol_link
+									uri <= nav_studio_link \
+									title @ \Studios
+				<= Nav_docs $mol_view
+					sub /
+						<= nav_docs_title @ \Documents
+						<= Nav_docs_links $mol_list
+							rows /
+								<= nav_privacy $mol_link
+									uri <= nav_privacy_link \
+									title @ \Privacy policy
+								<= nav_terms $mol_link
+									uri <= nav_terms_link \
+									title @ \User agreement / offer
+								<= nav_consent $mol_link
+									uri <= nav_consent_link \
+									title @ \Consent to personal data processing
+								<= nav_cookies $mol_link
+									uri <= nav_cookies_link \
+									title @ \Cookies policy
+		<= Bottom $mol_view
+			sub /
+				<= Copyright $mol_paragraph
+					title <= copyright \© HomeRent, 2024
+				<= Address $mol_paragraph
+					title @ \123456, Moscow, Tverskaya St., 10, office 125
+
+$bog_bzrl_app_rent $mol_view
+	district? \all
+	rooms? \studio
+	price_from? \
+	search? null
+	apartments /
+	apartment_district* \
+	apartment_photo* \
+	apartment_area* \
+	apartment_floor* \
+	apartment_price* \
+	promo_action? null
+	sub /
+		<= Title_section $mol_paragraph
+			title @ \Rent in Kazan directly from owners
+		<= Filter $bog_bzrl_app_filter
+			district? <=> district? \all
+			rooms? <=> rooms? \studio
+			price_from? <=> price_from? \
+			search? <=> search? null
+		<= Apartments $mol_view
+			attr *
+				id \apartments
+			sub <= apartment_rows /$mol_view
+				<= Apartment* $bog_bzrl_app_card
+					district <= apartment_district* \
+					photo <= apartment_photo* \
+					area <= apartment_area* \
+					floor <= apartment_floor* \
+					price <= apartment_price* \
+		<= Promo $bog_bzrl_app_hero_promo
+			action? <=> promo_action? null
+		<= How_it_works $mol_view
+			attr *
+				id \how
+			sub /
+				<= How_title $mol_paragraph
+					title @ \how it works
+				<= Steps $mol_view
+					sub /
+						<= Step_match $bog_bzrl_app_step_match
+						<= Step_request $bog_bzrl_app_step_request
+						<= Step_pay $bog_bzrl_app_step_pay
+		<= Privacy $mol_view
+			attr *
+				id \privacy
+			sub /
+				<= Privacy_slider $bog_bzrl_app_slider
+				<= Privacy_content $bog_bzrl_app_hero_privacy
+		<= Benefits $mol_view
+			attr *
+				id \benefits
+			sub /
+				<= Benefits_title $mol_paragraph
+					title @ \benefits
+				<= Benefits_list $mol_view
+					sub /
+						<= Benefit_owners $bog_bzrl_app_benefit_owners
+						<= Benefit_verified $bog_bzrl_app_benefit_verified
+						<= Benefit_secure $bog_bzrl_app_benefit_secure
+		<= Team $bog_bzrl_app_hero_team
+			attr *
+				id \team
+			photo \bog/bzrl/assets/HomeRent-Design-System-Frame-77.png
+		<= Footer $bog_bzrl_app_footer
+			attr *
+				id \contact
+
+$bog_bzrl_app_let $mol_view
+	action? null
+	sub /
+		<= Let_hero $bog_bzrl_app_hero_let
+			action? <=> action? null
+		<= Footer $bog_bzrl_app_footer
+			attr *
+				id \contact
+
+$bog_bzrl_app $mol_page
+	title @ \HomeRent
+	plugins /
+		<= Theme $bog_theme_auto
+			theme_light \$mol_theme_homerent_light
+			theme_dark \$mol_theme_homerent_dark
+			themes_default /string
+				\$mol_theme_homerent_light
+				\$mol_theme_homerent_dark
+	head /
+		<= Logo $mol_view
+			sub /
+				<= Logo_icon $mol_image
+					uri \bog/bzrl/assets/favicon.png
+				<= Logo_text $mol_view
+					sub /
+						<= logo_home \home
+						<= l \ 
+						<= logo_rent \rent
+		<= Nav $bog_bzrl_app_nav
+		<= Actions $mol_view
+			sub /
+				<= Profile $bog_bzrl_app_profile
+					theme_auto <= Theme
+	body /
+		<= Rent_page? $bog_bzrl_app_rent
+			attr *
+				id \top
+			district? <=> filter_district? \all
+			rooms? <=> filter_rooms? \studio
+			price_from? <=> filter_price? \
+			search? <=> apartments_search? null
+			apartments <= apartments_filtered /
+			promo_action? <=> promo_action? null
+		<= Let_page? $bog_bzrl_app_let
+			action? <=> let_action? null
