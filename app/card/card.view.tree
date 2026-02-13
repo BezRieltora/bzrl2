@@ -2,18 +2,22 @@ $bog_bzrl_app_card $mol_view
 	attr *
 		^
 		bog_bzrl_app_card_district <= district \
+	area \
+	floor \
 	sub /
 		<= Badge $mol_view
 			sub /
 				<= district_title \
+		<= Checkmark $mol_view
+			sub /
+				<= checkmark_icon \✓
 		<= Photo $mol_image
 			uri <= photo \
 		<= Info $mol_view
 			sub /
 				<= Details $mol_view
 					sub /
-						<= area \
-						<= floor \
+						<= details_text \
 				<= Price $mol_view
 					sub /
 						<= price \

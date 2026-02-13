@@ -4,13 +4,6 @@ namespace $.$$ {
 			direction: 'column',
 		},
 		position: 'relative',
-		border: {
-			radius: $mol_gap.round,
-		},
-		overflow: 'hidden',
-		background: {
-			color: $mol_theme.card,
-		},
 
 		Badge: {
 			position: 'absolute',
@@ -25,16 +18,50 @@ namespace $.$$ {
 				weight: 500,
 			},
 			zIndex: 1,
+			background: {
+				color: '#FFF8E1',
+			},
+			color: '#4C4C4C',
+		},
+
+		Checkmark: {
+			position: 'absolute',
+			top: $mol_gap.block,
+			right: $mol_gap.block,
+			width: '1.25rem',
+			height: '1.25rem',
+			border: {
+				radius: '50%',
+			},
+			background: {
+				color: '#C8D84F',
+			},
+			color: '#fff',
+			display: 'flex',
+			justify: {
+				content: 'center',
+			},
+			align: {
+				items: 'center',
+			},
+			font: {
+				size: '.625rem',
+				weight: 700,
+			},
+			zIndex: 1,
 		},
 
 		Photo: {
 			width: '100%',
-			height: '180px',
+			height: '220px',
 			objectFit: 'cover',
+			border: {
+				radius: $mol_gap.round,
+			},
 		},
 
 		Info: {
-			padding: $mol_gap.block,
+			padding: [$mol_gap.text, 0],
 			flex: {
 				direction: 'column',
 			},
@@ -51,35 +78,6 @@ namespace $.$$ {
 		Price: {
 			font: {
 				weight: 600,
-			},
-		},
-
-		'@': {
-			bog_bzrl_app_card_district: {
-				vahitovsky: {
-					Badge: {
-						background: {
-							color: '#E8F5E9',
-						},
-						color: '#2E7D32',
-					},
-				},
-				sovetsky: {
-					Badge: {
-						background: {
-							color: '#E3F2FD',
-						},
-						color: '#1565C0',
-					},
-				},
-				novo_savinovsky: {
-					Badge: {
-						background: {
-							color: '#FFF3E0',
-						},
-						color: '#EF6C00',
-					},
-				},
 			},
 		},
 	})

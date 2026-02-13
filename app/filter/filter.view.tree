@@ -1,20 +1,25 @@
 $bog_bzrl_app_filter $mol_view
 	sub /
-		<= District $mol_select
-			value? <=> district? \all
-			dictionary *
-				all @ \New builds
-				vahitovsky @ \Vakhitovsky
-				sovetsky @ \Sovetsky
-				novo_savinovsky @ \Novo-Savinovsky
-		<= Rooms $mol_switch
-			value? <=> rooms? \studio
-			options *
-				studio @ \Studio
-				r1 \1
-				r2 \2
-				r3 \3
-				r4 \4+
+		<= District_group $bog_bzrl_app_filter_group
+			sub /
+				<= District $mol_select
+					value? <=> district? \all
+					Trigger_icon <= District_icon $mol_icon_chevron_down
+					dictionary *
+						all @ \New builds
+						vahitovsky @ \Vakhitovsky
+						sovetsky @ \Sovetsky
+						novo_savinovsky @ \Novo-Savinovsky
+		<= Rooms_group $bog_bzrl_app_filter_group
+			sub /
+				<= Rooms $mol_switch
+					value? <=> rooms? \studio
+					options *
+						studio @ \Studio
+						r1 \1
+						r2 \2
+						r3 \3
+						r4 \4+
 		<= Price_from $mol_string
 			hint @ \Price from
 			value? <=> price_from? \

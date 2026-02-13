@@ -4,43 +4,42 @@ namespace $.$$ {
 			wrap: 'wrap',
 		},
 		align: {
-			items: 'center',
+			items: 'stretch',
 		},
-		gap: $mol_gap.block,
-		padding: $mol_gap.block,
-		background: {
-			color: $mol_theme.card,
-		},
-		border: {
-			radius: $mol_gap.round,
-		},
+		gap: $mol_gap.text,
 
-		District: {
+		District_group: {
 			flex: {
 				shrink: 0,
+				grow: 1,
 			},
 		},
 
-		Rooms: {
+		Rooms_group: {
 			flex: {
 				shrink: 0,
+				grow: 1,
 			},
 		},
 
 		Price_from: {
 			flex: {
-				basis: '150px',
+				grow: 1,
+				basis: '10rem',
 			},
 		},
 
 		Search: {
-			margin: {
-				left: 'auto',
+			flex: {
+				grow: 1,
 			},
 			background: {
 				color: $mol_theme.control,
 			},
 			color: '#000',
+			border: {
+				radius: '2rem',
+			},
 		},
 	})
 }

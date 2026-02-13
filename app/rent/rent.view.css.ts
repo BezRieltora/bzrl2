@@ -26,7 +26,7 @@ namespace $.$$ {
 		Apartments: {
 			display: 'grid',
 			gridTemplateColumns: 'repeat(3, 1fr)',
-			gap: '1.5rem',
+			gap: '1rem',
 		},
 
 		How_it_works: {
