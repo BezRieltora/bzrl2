@@ -14,12 +14,7 @@ namespace $.$$ {
 			align: {
 				items: 'center',
 			},
-			flex: {
-				grow: 3,
-				shrink: 1,
-				basis: '30rem',
-			},
-			minHeight: '5.5rem',
+			maxHeight: '4rem',
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
 			},
@@ -29,20 +24,15 @@ namespace $.$$ {
 		},
 
 		Rooms_block: {
+			maxHeight: '4rem',
 			display: 'flex',
 			align: {
 				items: 'center',
-			},
-			flex: {
-				grow: 2,
-				shrink: 1,
-				basis: '22rem',
 			},
 			padding: {
 				left: '1.6rem',
 				right: '1.6rem',
 			},
-			minHeight: '5.5rem',
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
 			},
@@ -52,20 +42,15 @@ namespace $.$$ {
 		},
 
 		Price_block: {
+			maxHeight: '4rem',
 			display: 'flex',
 			align: {
 				items: 'center',
-			},
-			flex: {
-				grow: 1,
-				shrink: 1,
-				basis: '18rem',
 			},
 			padding: {
 				left: '1.2rem',
 				right: '1.2rem',
 			},
-			minHeight: '5.5rem',
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
 			},
