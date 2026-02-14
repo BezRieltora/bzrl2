@@ -1,6 +1,7 @@
 $bog_bzrl_app_filter $mol_view
+	search? null
 	sub /
-		<= District_group $bog_bzrl_app_filter_group
+		<= District_block $mol_view
 			sub /
 				<= District $mol_select
 					value? <=> district? \all
@@ -10,7 +11,7 @@ $bog_bzrl_app_filter $mol_view
 						vahitovsky @ \Vakhitovsky
 						sovetsky @ \Sovetsky
 						novo_savinovsky @ \Novo-Savinovsky
-		<= Rooms_group $bog_bzrl_app_filter_group
+		<= Rooms_block $mol_view
 			sub /
 				<= Rooms $mol_switch
 					value? <=> rooms? \studio
@@ -20,10 +21,8 @@ $bog_bzrl_app_filter $mol_view
 						r2 \2
 						r3 \3
 						r4 \4+
-		<= Price_from $mol_string
-			hint @ \Price from
-			value? <=> price_from? \
-		<= Search $mol_button_major
-			click? <=> search? null
+		<= Price_block $mol_view
 			sub /
-				<= search_label @ \View apartments
+				<= Price_from $mol_string
+					hint @ \Price from
+					value? <=> price_from? \

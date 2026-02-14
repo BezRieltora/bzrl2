@@ -28,19 +28,19 @@ namespace $.$$ {
 
 		@$mol_mem
 		filter_district(next?: string) {
-			if (next !== undefined) this.filter_applied(false)
+			if (next !== undefined) this.filter_applied(true)
 			return $mol_state_session.value(`${this}.filter_district()`, next) || 'all'
 		}
 
 		@$mol_mem
 		filter_rooms(next?: string) {
-			if (next !== undefined) this.filter_applied(false)
+			if (next !== undefined) this.filter_applied(true)
 			return $mol_state_session.value(`${this}.filter_rooms()`, next) || 'studio'
 		}
 
 		@$mol_mem
 		filter_price(next?: string) {
-			if (next !== undefined) this.filter_applied(false)
+			if (next !== undefined) this.filter_applied(true)
 			return $mol_state_session.value(`${this}.filter_price()`, next) || ''
 		}
 
