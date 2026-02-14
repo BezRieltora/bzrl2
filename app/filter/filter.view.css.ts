@@ -114,6 +114,9 @@ namespace $.$$ {
 				},
 				padding: '.4rem',
 				width: 'auto',
+				margin: {
+					top: '.5rem',
+				},
 			},
 			Bubble_pane: {
 				background: {
@@ -124,12 +127,17 @@ namespace $.$$ {
 				gap: '.2rem',
 				width: '100%',
 				display: 'flex',
-				alignItems: 'center',
+				align: {
+					items: 'stretch',
+				},
 			},
 			Option_row: {
 				width: '100%',
+				align: {
+					items: 'center',
+				},
 				justify: {
-					content: 'flex-start',
+					content: 'center',
 				},
 				background: {
 					color: 'transparent',
@@ -160,6 +168,8 @@ namespace $.$$ {
 			Option_label: {
 				padding: 0,
 				minHeight: 'unset',
+				width: 'auto',
+				textAlign: 'left',
 			},
 		},
 
