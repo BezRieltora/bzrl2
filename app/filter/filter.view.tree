@@ -5,6 +5,7 @@ $bog_bzrl_app_filter $mol_view
 			sub /
 				<= District $mol_select
 					value? <=> district? \all
+					Filter null
 					Trigger_icon <= District_icon $mol_icon_chevron_down
 					dictionary *
 						all @ \New builds

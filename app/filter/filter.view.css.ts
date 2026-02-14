@@ -97,6 +97,69 @@ namespace $.$$ {
 				background: {
 					color: 'transparent',
 				},
+				color: $mol_theme.text,
+				':hover': {
+					border: {
+						radius: $bog_bzrl_app_gap.roundMore,
+					},
+				},
+			},
+			Bubble: {
+				border: {
+					radius: $bog_bzrl_app_gap.roundMore,
+				},
+				boxShadow: '0 .4rem 1.2rem #0000001a',
+				background: {
+					color: $bog_theme.background,
+				},
+				padding: '.4rem',
+				width: 'auto',
+			},
+			Bubble_pane: {
+				background: {
+					color: 'transparent',
+				},
+			},
+			Menu: {
+				gap: '.2rem',
+				width: '100%',
+				display: 'flex',
+				alignItems: 'center',
+			},
+			Option_row: {
+				width: '100%',
+				justify: {
+					content: 'flex-start',
+				},
+				background: {
+					color: 'transparent',
+				},
+				border: {
+					radius: $bog_bzrl_app_gap.roundMore,
+				},
+				padding: {
+					left: '.9rem',
+					right: '.9rem',
+					top: '.65rem',
+					bottom: '.65rem',
+				},
+				color: $mol_theme.text,
+				':hover': {
+					border: {
+						radius: $bog_bzrl_app_gap.roundMore,
+					},
+					boxShadow: 'inset 0 0 0 100vmax #0000000a',
+				},
+				':focus-visible': {
+					border: {
+						radius: $bog_bzrl_app_gap.roundMore,
+					},
+					boxShadow: 'inset 0 0 0 100vmax #00000010',
+				},
+			},
+			Option_label: {
+				padding: 0,
+				minHeight: 'unset',
 			},
 		},
 
