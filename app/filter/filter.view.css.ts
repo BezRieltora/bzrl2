@@ -1,9 +1,8 @@
 namespace $.$$ {
 	$mol_style_define($bog_bzrl_app_filter, {
 		display: 'flex',
-		flex: {
-			wrap: 'wrap',
-		},
+		minHeight: '4rem',
+		flexWrap: 'wrap',
 		align: {
 			items: 'stretch',
 		},
@@ -56,6 +55,16 @@ namespace $.$$ {
 			},
 			background: {
 				color: $bog_theme.background,
+			},
+		},
+
+		Search_block: {
+			maxHeight: '4rem',
+			display: 'flex',
+			flex: {
+				grow: 2,
+				shrink: 1,
+				basis: '18rem',
 			},
 		},
 
@@ -194,6 +203,22 @@ namespace $.$$ {
 				left: '.6rem',
 				right: '.6rem',
 			},
+		},
+
+		Search: {
+			width: '100%',
+			height: '100%',
+			justify: {
+				content: 'center',
+			},
+			background: {
+				color: $mol_theme.control,
+			},
+			color: '#4c4c4c',
+			border: {
+				radius: $bog_bzrl_app_gap.roundMore,
+			},
+			boxShadow: 'none',
 		},
 	})
 }

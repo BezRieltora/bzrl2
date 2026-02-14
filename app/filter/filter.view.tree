@@ -27,3 +27,9 @@ $bog_bzrl_app_filter $mol_view
 				<= Price_from $mol_string
 					hint @ \Price from
 					value? <=> price_from? \
+		<= Search_block $mol_view
+			sub /
+				<= Search $mol_button_major
+					click? <=> search? null
+					sub /
+						<= search_label @ \View apartments
