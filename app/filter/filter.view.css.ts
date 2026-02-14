@@ -19,10 +19,6 @@ namespace $.$$ {
 				shrink: 1,
 				basis: '30rem',
 			},
-			padding: {
-				left: '1.6rem',
-				right: '1.6rem',
-			},
 			minHeight: '5.5rem',
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
@@ -80,15 +76,22 @@ namespace $.$$ {
 
 		District: {
 			width: '100%',
+			height: '100%',
 			align: {
 				self: 'stretch',
 			},
 			Trigger: {
+				width: '100%',
+				height: '100%',
 				flex: {
 					grow: 1,
 				},
 				justify: {
 					content: 'space-between',
+				},
+				padding: {
+					left: '1.6rem',
+					right: '1.6rem',
 				},
 				boxShadow: 'none',
 				background: {
