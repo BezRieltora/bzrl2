@@ -16,7 +16,7 @@ namespace $.$$ {
 			letterSpacing: '-0.03em',
 			textAlign: 'center',
 			color: '#4C4C4C',
-			maxWidth: '787px',
+			maxWidth: '850px',
 			margin: {
 				left: 'auto',
 				right: 'auto',
