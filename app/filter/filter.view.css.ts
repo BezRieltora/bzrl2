@@ -169,7 +169,11 @@ namespace $.$$ {
 
 		District_icon: {
 			margin: {
-				left: 'auto',
+				left: '1rem',
+				right: '.2rem',
+			},
+			align: {
+				self: 'center',
 			},
 			flex: {
 				shrink: 0,
