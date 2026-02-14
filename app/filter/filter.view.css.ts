@@ -9,11 +9,13 @@ namespace $.$$ {
 		gap: $mol_gap.block,
 
 		District_block: {
+			maxWidth: '20rem',
+			width: '100%',
 			display: 'flex',
 			align: {
 				items: 'center',
 			},
-			maxHeight: '4rem',
+			minHeight: '4rem',
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
 			},
@@ -23,7 +25,7 @@ namespace $.$$ {
 		},
 
 		Rooms_block: {
-			maxHeight: '4rem',
+			minHeight: '4rem',
 			display: 'flex',
 			align: {
 				items: 'center',
@@ -41,7 +43,7 @@ namespace $.$$ {
 		},
 
 		Price_block: {
-			maxHeight: '4rem',
+			minHeight: '4rem',
 			display: 'flex',
 			align: {
 				items: 'center',
@@ -59,7 +61,7 @@ namespace $.$$ {
 		},
 
 		Search_block: {
-			maxHeight: '4rem',
+			minHeight: '4rem',
 			display: 'flex',
 			flex: {
 				grow: 2,
@@ -211,14 +213,13 @@ namespace $.$$ {
 
 		Search: {
 			width: '100%',
-			height: '100%',
 			justify: {
 				content: 'center',
 			},
 			background: {
 				color: $mol_theme.control,
 			},
-			color: '#4c4c4c',
+			color: $mol_theme.text,
 			border: {
 				radius: $bog_bzrl_app_gap.roundMore,
 			},
