@@ -1319,7 +1319,7 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    const $bog_theme: Record<"image" | "line" | "text" | "field" | "current" | "hover" | "focus" | "back" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
+    const $bog_theme: Record<"image" | "line" | "text" | "field" | "current" | "hover" | "background" | "focus" | "back" | "card" | "special" | "control" | "shade" | "spirit", $mol_style_func<"var", unknown>>;
     const $bog_theme_names: readonly ["$mol_theme_light", "$mol_theme_dark", "$mol_theme_monefro_light", "$mol_theme_monefro_dark", "$mol_theme_homerent_light", "$mol_theme_homerent_dark", "$mol_theme_upwork", "$mol_theme_ainews_light", "$mol_theme_ainews_dark"];
     type $bog_theme_name = (typeof $bog_theme_names)[number];
 }
@@ -8434,7 +8434,7 @@ declare namespace $ {
         } ? $mol_type_merge<$mol_type_intersect<{ [key_3 in keyof T_1]: $mol_type_merge<Omit<{ readonly [k in Extract<keyof T_1, string>]: string; }, key_3> & { readonly [k_1 in key_3]: T_1[key_3] extends string ? T_1[key_3] : string; } & $mol_regexp_groups<T_1[key_3]>>; }[keyof T_1]>> : never : never : never>;
         static repeat<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
         static repeat_greedy<Source extends $mol_regexp_source>(source: Source, min?: number, max?: number): $mol_regexp<$mol_regexp_groups<Source>>;
-        static vary<Sources extends readonly $mol_regexp_source[]>(sources: Sources): $mol_regexp<$mol_regexp_groups<Sources[number]>>;
+        static vary<Sources extends readonly $mol_regexp_source[]>(sources: Sources, flags?: string): $mol_regexp<$mol_regexp_groups<Sources[number]>>;
         static optional<Source extends $mol_regexp_source>(source: Source): $mol_regexp<$mol_regexp_groups<Source>>;
         static force_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
         static forbid_after(source: $mol_regexp_source): $mol_regexp<Record<string, string>>;
@@ -14585,6 +14585,15 @@ declare namespace $.$$ {
 
 declare namespace $ {
 
+	export class $mol_icon_chevron_down extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=down.view.tree.d.ts.map
+declare namespace $ {
+
 	type $mol_check__checked_mol_check_list_1 = $mol_type_enforce<
 		ReturnType< $mol_check_list['option_checked'] >
 		,
@@ -14661,13 +14670,38 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    let $bog_bzrl_app_gap: {
+        readonly roundMore: $mol_style_func<"var", string[] | "--mol_gap_roundMore">;
+        readonly text: $mol_style_func<"var", unknown>;
+        readonly space: $mol_style_func<"var", unknown>;
+        readonly blur: $mol_style_func<"var", unknown>;
+        readonly page: $mol_style_func<"var", unknown>;
+        readonly block: $mol_style_func<"var", unknown>;
+        readonly round: $mol_style_func<"var", unknown>;
+    };
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
 
 	type $mol_select__value_bog_bzrl_app_filter_1 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_filter['district'] >
 		,
 		ReturnType< $mol_select['value'] >
 	>
-	type $mol_select__dictionary_bog_bzrl_app_filter_2 = $mol_type_enforce<
+	type $mol_select__Filter_bog_bzrl_app_filter_2 = $mol_type_enforce<
+		any
+		,
+		ReturnType< $mol_select['Filter'] >
+	>
+	type $mol_select__Trigger_icon_bog_bzrl_app_filter_3 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_filter['District_icon'] >
+		,
+		ReturnType< $mol_select['Trigger_icon'] >
+	>
+	type $mol_select__dictionary_bog_bzrl_app_filter_4 = $mol_type_enforce<
 		({ 
 			'all': string,
 			'vahitovsky': string,
@@ -14677,12 +14711,17 @@ declare namespace $ {
 		,
 		ReturnType< $mol_select['dictionary'] >
 	>
-	type $mol_switch__value_bog_bzrl_app_filter_3 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_filter_5 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_switch__value_bog_bzrl_app_filter_6 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_filter['rooms'] >
 		,
 		ReturnType< $mol_switch['value'] >
 	>
-	type $mol_switch__options_bog_bzrl_app_filter_4 = $mol_type_enforce<
+	type $mol_switch__options_bog_bzrl_app_filter_7 = $mol_type_enforce<
 		({ 
 			'studio': string,
 			'r1': string,
@@ -14693,36 +14732,56 @@ declare namespace $ {
 		,
 		ReturnType< $mol_switch['options'] >
 	>
-	type $mol_string__hint_bog_bzrl_app_filter_5 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_filter_8 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_string__hint_bog_bzrl_app_filter_9 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__value_bog_bzrl_app_filter_6 = $mol_type_enforce<
+	type $mol_string__value_bog_bzrl_app_filter_10 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_filter['price_from'] >
 		,
 		ReturnType< $mol_string['value'] >
 	>
-	type $mol_button_major__click_bog_bzrl_app_filter_7 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_filter_11 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_button_major__click_bog_bzrl_app_filter_12 = $mol_type_enforce<
 		ReturnType< $bog_bzrl_app_filter['search'] >
 		,
 		ReturnType< $mol_button_major['click'] >
 	>
-	type $mol_button_major__sub_bog_bzrl_app_filter_8 = $mol_type_enforce<
+	type $mol_button_major__sub_bog_bzrl_app_filter_13 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_button_major['sub'] >
 	>
+	type $mol_view__sub_bog_bzrl_app_filter_14 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
 	export class $bog_bzrl_app_filter extends $mol_view {
 		district( next?: string ): string
+		District_icon( ): $mol_icon_chevron_down
 		District( ): $mol_select
+		District_block( ): $mol_view
 		rooms( next?: string ): string
 		Rooms( ): $mol_switch
+		Rooms_block( ): $mol_view
 		price_from( next?: string ): string
 		Price_from( ): $mol_string
+		Price_block( ): $mol_view
 		search( next?: any ): any
 		search_label( ): string
 		Search( ): $mol_button_major
+		Search_block( ): $mol_view
 		sub( ): readonly(any)[]
 	}
 	
@@ -14744,15 +14803,15 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
-	type $mol_image__uri_bog_bzrl_app_card_2 = $mol_type_enforce<
-		ReturnType< $bog_bzrl_app_card['photo'] >
-		,
-		ReturnType< $mol_image['uri'] >
-	>
-	type $mol_view__sub_bog_bzrl_app_card_3 = $mol_type_enforce<
+	type $mol_view__sub_bog_bzrl_app_card_2 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_view['sub'] >
+	>
+	type $mol_image__uri_bog_bzrl_app_card_3 = $mol_type_enforce<
+		ReturnType< $bog_bzrl_app_card['photo'] >
+		,
+		ReturnType< $mol_image['uri'] >
 	>
 	type $mol_view__sub_bog_bzrl_app_card_4 = $mol_type_enforce<
 		readonly(any)[]
@@ -14764,14 +14823,20 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['sub'] >
 	>
+	type $mol_view__sub_bog_bzrl_app_card_6 = $mol_type_enforce<
+		readonly(any)[]
+		,
+		ReturnType< $mol_view['sub'] >
+	>
 	export class $bog_bzrl_app_card extends $mol_view {
 		district( ): string
 		district_title( ): string
 		Badge( ): $mol_view
+		checkmark_icon( ): string
+		Checkmark( ): $mol_view
 		photo( ): string
 		Photo( ): $mol_image
-		area( ): string
-		floor( ): string
+		details_text( ): string
 		Details( ): $mol_view
 		price( ): string
 		Price( ): $mol_view
@@ -14779,6 +14844,8 @@ declare namespace $ {
 		attr( ): ({ 
 			'bog_bzrl_app_card_district': ReturnType< $bog_bzrl_app_card['district'] >,
 		})  & ReturnType< $mol_view['attr'] >
+		area( ): string
+		floor( ): string
 		sub( ): readonly(any)[]
 	}
 	
@@ -14788,6 +14855,7 @@ declare namespace $ {
 declare namespace $.$$ {
     class $bog_bzrl_app_card extends $.$bog_bzrl_app_card {
         district_title(): string;
+        details_text(): string;
     }
 }
 

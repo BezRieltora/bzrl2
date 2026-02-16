@@ -427,6 +427,10 @@ $bog_bzrl_app_profile $mol_view
 									<= Id $mol_dimmer
 										haystack <= profile_id \
 
+$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
+
+$mol_icon_chevron_down $mol_icon path \M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z
+
 $mol_check $mol_button_minor
 	attr *
 		^
@@ -575,46 +579,61 @@ $mol_button_major $mol_button_minor
 	theme \$mol_theme_base
 
 $bog_bzrl_app_filter $mol_view
+	search? null
 	sub /
-		<= District $mol_select
-			value? <=> district? \all
-			dictionary *
-				all @ \New builds
-				vahitovsky @ \Vakhitovsky
-				sovetsky @ \Sovetsky
-				novo_savinovsky @ \Novo-Savinovsky
-		<= Rooms $mol_switch
-			value? <=> rooms? \studio
-			options *
-				studio @ \Studio
-				r1 \1
-				r2 \2
-				r3 \3
-				r4 \4+
-		<= Price_from $mol_string
-			hint @ \Price from
-			value? <=> price_from? \
-		<= Search $mol_button_major
-			click? <=> search? null
+		<= District_block $mol_view
 			sub /
-				<= search_label @ \View apartments
+				<= District $mol_select
+					value? <=> district? \all
+					Filter null
+					Trigger_icon <= District_icon $mol_icon_chevron_down
+					dictionary *
+						all @ \New builds
+						vahitovsky @ \Vakhitovsky
+						sovetsky @ \Sovetsky
+						novo_savinovsky @ \Novo-Savinovsky
+		<= Rooms_block $mol_view
+			sub /
+				<= Rooms $mol_switch
+					value? <=> rooms? \studio
+					options *
+						studio @ \Studio
+						r1 \1
+						r2 \2
+						r3 \3
+						r4 \4+
+		<= Price_block $mol_view
+			sub /
+				<= Price_from $mol_string
+					hint @ \Price from
+					value? <=> price_from? \
+		<= Search_block $mol_view
+			sub /
+				<= Search $mol_button_major
+					click? <=> search? null
+					sub /
+						<= search_label @ \View apartments
 
 $bog_bzrl_app_card $mol_view
 	attr *
 		^
 		bog_bzrl_app_card_district <= district \
+	area \
+	floor \
 	sub /
 		<= Badge $mol_view
 			sub /
 				<= district_title \
+		<= Checkmark $mol_view
+			sub /
+				<= checkmark_icon \✓
 		<= Photo $mol_image
 			uri <= photo \
 		<= Info $mol_view
 			sub /
 				<= Details $mol_view
 					sub /
-						<= area \
-						<= floor \
+						<= details_text \
 				<= Price $mol_view
 					sub /
 						<= price \
@@ -708,8 +727,6 @@ $bog_bzrl_app_step_pay $bog_bzrl_app_step
 	icon <= Icon_pay $mol_icon_currency_rub
 	title @ \apartment payment
 	description @ \After payment, we pass your details to the landlord and help finalize the agreement.
-
-$mol_icon_chevron $mol_icon path \M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z
 
 $mol_icon_chevron_left $mol_icon path \M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z
 
