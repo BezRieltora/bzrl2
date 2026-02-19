@@ -3197,6 +3197,8 @@ declare namespace $ {
         data(next?: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>;
         _ball: Uint8Array<ArrayBuffer>;
         ball(next?: Uint8Array<ArrayBuffer>): Uint8Array<ArrayBuffer>;
+        signed(): true;
+        hash(): $giper_baza_link;
         idea_seed(): number;
         dump(): {
             kind: "sand" | "gift" | "seal";
