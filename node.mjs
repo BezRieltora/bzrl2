@@ -8871,6 +8871,10 @@ var $;
                 }
             }
         }
+        empty() {
+            const first = this._free.next;
+            return first.next === null && first.from === 0;
+        }
         acquired() {
         }
     }
@@ -8922,8 +8926,10 @@ var $;
                         continue;
                     }
                     case 'land': {
-                        const faces = new $giper_baza_face_map;
                         const link = $giper_baza_link.from_bin(new Uint8Array(buf.buffer, buf.byteOffset + offset + 4, 18));
+                        part = parts.get(link.str);
+                        if (!part)
+                            parts.set(link.str, part = new $giper_baza_pack_part);
                         const size = this.uint16(offset + 22);
                         offset += 24;
                         for (let i = 0; i < size; ++i) {
@@ -8931,11 +8937,10 @@ var $;
                             const tick = this.uint16(offset + 6);
                             const time = this.uint32(offset + 8);
                             const summ = this.uint32(offset + 12);
-                            faces.peer_time(peer.str, time, tick);
-                            faces.peer_summ(peer.str, summ);
+                            part.faces.peer_time(peer.str, time, tick);
+                            part.faces.peer_summ(peer.str, summ);
                             offset += $giper_baza_face.length();
                         }
-                        parts.set(link.str, part = new $giper_baza_pack_part([], faces));
                         continue;
                     }
                     case 'pass': {
@@ -13019,7 +13024,7 @@ var $;
         }
         empty() {
             this.load_init();
-            return !this.sides[0].size();
+            return this.pool().empty();
         }
     }
     __decorate([
@@ -13035,9 +13040,6 @@ var $;
     __decorate([
         $mol_mem
     ], $giper_baza_mine_fs_yym.prototype, "save_init", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_mine_fs_yym.prototype, "empty", null);
     $.$giper_baza_mine_fs_yym = $giper_baza_mine_fs_yym;
     class $giper_baza_mine_fs extends $giper_baza_mine_temp {
         store() {
