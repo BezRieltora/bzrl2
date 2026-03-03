@@ -10819,7 +10819,8 @@ var $;
                     hint: 'Relax and wait for full peer resync',
                     peer,
                     mass,
-                    face,
+                    peer_face: face,
+                    self_face: this.faces.get(peer),
                 });
                 if (skipped_units)
                     for (const unit of skipped_units)
