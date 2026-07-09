@@ -16146,115 +16146,381 @@ var $;
 
 ;
 "use strict";
-var $;
-(function ($) {
-    class $giper_baza_app_home extends $giper_baza_flex_peer {
-        init() {
-            this.meta($giper_baza_flex_peer.meta);
-        }
-        tick() {
-            this.init();
-            this.stat(null).tick();
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_app_home.prototype, "init", null);
-    $.$giper_baza_app_home = $giper_baza_app_home;
-})($ || ($ = {}));
+// namespace $ {
+// 	$mol_report_bugsnag = '18acf016ed2a2a4cc4445daa9dd2dd3c'
+// }
 
 ;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_app_home_node extends $giper_baza_app_home {
-        init() {
-            super.init();
-            if (process.env.GIPER_BAZA_ADMIN) {
-                const pass = $giper_baza_auth_pass.from(process.env.GIPER_BAZA_ADMIN);
-                this.land().give(pass, $giper_baza_rank_rule);
+    /**
+     * Checks for some of given runtype or throws error.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_variant_demo
+     */
+    function $mol_data_variant(...sub) {
+        return $mol_data_setup((val) => {
+            const errors = [];
+            for (const type of sub) {
+                let hidden = $.$mol_fail_hidden;
+                try {
+                    $.$mol_fail = $.$mol_fail_hidden;
+                    return type(val);
+                }
+                catch (error) {
+                    $.$mol_fail = hidden;
+                    if (error instanceof $mol_data_error) {
+                        errors.push(error);
+                    }
+                    else {
+                        return $mol_fail_hidden(error);
+                    }
+                }
             }
-            const host = process.env.GIPER_BAZA_DOMAIN || $node.os.hostname();
-            this.name(host.replace(/\.ip\..*$/, ''));
-            this.urls([`https://${host}/`]);
-        }
+            return $mol_fail(new $mol_data_error(`${val} is not any of variants`, {}, ...errors));
+        }, sub);
     }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_app_home_node.prototype, "init", null);
-    $.$giper_baza_app_home_node = $giper_baza_app_home_node;
-    $.$giper_baza_app_home = $giper_baza_app_home_node;
+    $.$mol_data_variant = $mol_data_variant;
 })($ || ($ = {}));
 
 ;
 "use strict";
 var $;
 (function ($) {
-    class $giper_baza_app_node extends $mol_rest_resource_fs {
-        link() {
-            return new $giper_baza_app_node_link;
+    /**
+     * Checks for string and returns string type.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_string_demo
+     */
+    $.$mol_data_string = (val) => {
+        if (typeof val === 'string')
+            return val;
+        return $mol_fail(new $mol_data_error(`${val} is not a string`));
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Checks for undefined or passing given runtype.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_optional_demo
+     */
+    function $mol_data_optional(sub, fallback) {
+        return $mol_data_setup((val) => {
+            if (val === undefined) {
+                return fallback?.();
+            }
+            return sub(val);
+        }, { sub, fallback });
+    }
+    $.$mol_data_optional = $mol_data_optional;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Checks for record of given fields with by its runtypes and returns expected type.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_record_demo
+     */
+    function $mol_data_record(sub) {
+        return $mol_data_setup((val) => {
+            let res = {};
+            for (const field in sub) {
+                try {
+                    res[field] =
+                        sub[field](val[field]);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${JSON.stringify(field)}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            }
+            return res;
+        }, sub);
+    }
+    $.$mol_data_record = $mol_data_record;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Checks for array of given runtype and returns expected type.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_array_demo
+     */
+    function $mol_data_array(sub) {
+        return $mol_data_setup((val) => {
+            if (!Array.isArray(val))
+                return $mol_fail(new $mol_data_error(`${val} is not an array`));
+            return val.map((item, index) => {
+                try {
+                    return sub(item);
+                }
+                catch (error) {
+                    if (error instanceof Promise)
+                        return $mol_fail_hidden(error);
+                    error.message = `[${index}] ${error.message}`;
+                    return $mol_fail(error);
+                }
+            });
+        }, sub);
+    }
+    $.$mol_data_array = $mol_data_array;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /**
+     * Checks for boolean and returns boolean type.
+     * @see https://mol.hyoo.ru/#!section=demos/demo=mol_data_boolean_demo
+     */
+    $.$mol_data_boolean = (val) => {
+        if (typeof val === 'boolean')
+            return val;
+        return $mol_fail(new $mol_data_error(`${val} is not a boolean`));
+    };
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Creates lexer by dictionary of lexems. Lexem that started first wins. Then lexem that declared earlier wins. Use regexp capture to take parts of token. */
+    class $mol_syntax2 {
+        lexems;
+        constructor(lexems) {
+            this.lexems = lexems;
+            for (let name in lexems) {
+                this.rules.push({
+                    name: name,
+                    regExp: lexems[name],
+                    size: RegExp('^$|' + lexems[name].source).exec('').length - 1,
+                });
+            }
+            const parts = '(' + this.rules.map(rule => rule.regExp.source).join(')|(') + ')';
+            this.regexp = RegExp(`([\\s\\S]*?)(?:(${parts})|$(?![^]))`, 'gmu');
         }
-        _protocols = ['$giper_baza_yard'];
-        OPEN(msg) {
-            const protocol = super.OPEN(msg);
-            if (!protocol)
+        rules = [];
+        regexp;
+        tokenize(text, handle) {
+            let end = 0;
+            lexing: while (end < text.length) {
+                const start = end;
+                this.regexp.lastIndex = start;
+                var found = this.regexp.exec(text);
+                end = this.regexp.lastIndex;
+                if (start === end)
+                    throw new Error('Empty token');
+                var prefix = found[1];
+                if (prefix)
+                    handle('', prefix, [prefix], start);
+                var suffix = found[2];
+                if (!suffix)
+                    continue;
+                let offset = 4;
+                for (let rule of this.rules) {
+                    if (found[offset - 1]) {
+                        handle(rule.name, suffix, found.slice(offset, offset + rule.size), start + prefix.length);
+                        continue lexing;
+                    }
+                    offset += rule.size + 1;
+                }
+                $mol_fail(new Error('$mol_syntax2 is broken'));
+            }
+        }
+        parse(text, handlers) {
+            this.tokenize(text, (name, ...args) => handlers[name](...args));
+        }
+    }
+    $.$mol_syntax2 = $mol_syntax2;
+})($ || ($ = {}));
+
+;
+"use strict";
+
+;
+"use strict";
+var $;
+(function ($) {
+    const syntax = new $mol_syntax2({
+        'filter': /!?=/,
+        'range_separator': /@/,
+        'fetch_open': /\(/,
+        'fetch_separator': /[:;&\/?#]/,
+        'fetch_close': /\)/,
+    });
+    function $hyoo_harp_from_string(uri) {
+        let parent = {};
+        let prev = null;
+        let stack = [parent];
+        let range = null;
+        let values = null;
+        function fail_at(offset) {
+            const uri_marked = uri.substring(0, offset) + '\u035C' + uri.substring(offset);
+            $mol_fail(new Error(`Unexpected token at ${offset} of "${uri_marked}"`));
+        }
+        syntax.parse(uri, {
+            '': (text, chunks, offset) => {
+                if (values) {
+                    text = decodeURIComponent(text);
+                    range = (range && range.length > 1)
+                        ? [range[0], range[1] + text]
+                        : [(range?.[0] ?? '') + text];
+                }
+                else {
+                    let [, order, name] = /^([+-]?)(.*)$/.exec(text);
+                    prev = parent[decodeURIComponent(name)] = {};
+                    if (order)
+                        prev['+'] = order === '+';
+                    stack.push(parent);
+                }
+            },
+            'filter': (filter, chinks, offset) => {
+                if (values) {
+                    if (range) {
+                        if (filter === '!=')
+                            range.push(range.pop() + '!');
+                        values.push(range);
+                        range = null;
+                    }
+                    else {
+                        range = [filter];
+                    }
+                }
+                else if (prev) {
+                    values = prev[filter] = [];
+                }
+                else {
+                    values = [];
+                    parent[''] = values;
+                }
+            },
+            'range_separator': (found, chunks, offset) => {
+                if (!values)
+                    fail_at(offset);
+                range = [range?.[0] ?? '', ''];
+            },
+            'fetch_open': (found, chunks, offset) => {
+                if (range) {
+                    range[range.length - 1] += found;
+                }
+                else {
+                    if (!prev)
+                        fail_at(offset);
+                    parent = prev;
+                    values = null;
+                    prev = null;
+                }
+            },
+            'fetch_separator': (found, chunks, offset) => {
+                if (range) {
+                    values.push(range);
+                    range = null;
+                }
+                parent = stack.pop();
+                values = null;
+                prev = null;
+            },
+            'fetch_close': (found) => {
+                if (range) {
+                    range[range.length - 1] += found;
+                }
+                else {
+                    parent = stack.pop();
+                    values = null;
+                    prev = null;
+                }
+            },
+        });
+        if (range)
+            values.push(range);
+        return stack[0];
+    }
+    $.$hyoo_harp_from_string = $hyoo_harp_from_string;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    function $hyoo_harp_to_string(query) {
+        return Object.entries(query).map(([field, harp]) => {
+            if (field === '+')
                 return '';
-            this.$.$giper_baza_glob.yard().slaves.add(msg.port);
-            return protocol;
-        }
-        POST(msg) {
-            this.$.$giper_baza_glob.yard().port_income(msg.port, msg.bin());
-        }
-        CLOSE(msg) {
-            this.$.$giper_baza_glob.yard().slaves.delete(msg.port);
-            super.CLOSE(msg);
-        }
-        _auto() {
-            this._stat_update();
-            this.$.$giper_baza_glob.yard().sync();
-        }
-        _home() {
-            return this.$.$giper_baza_glob.home($giper_baza_app_home);
-        }
-        _stat_update() {
-            this._home().tick();
-        }
+            if (field === '=')
+                return '';
+            if (field === '!=')
+                return '';
+            if (!harp)
+                return '';
+            const harp2 = harp;
+            const order = harp2['+'] === true ? '+' : harp2['+'] === false ? '-' : '';
+            const filter = harp2['='] ? '=' : harp2['!='] ? '!=' : '';
+            const name = encodeURIComponent(field);
+            let values = (harp2['='] || harp2['!='] || []).map(([min, max]) => {
+                if (max === undefined || min === max)
+                    return encodeURIComponent(String(min)) + '=';
+                min = (min === undefined) ? '' : encodeURIComponent(String(min));
+                max = (max === undefined) ? '' : encodeURIComponent(String(max));
+                return `${min}@${max}=`;
+            }).join('');
+            let fetch = $hyoo_harp_to_string(harp);
+            if (fetch)
+                fetch = `(${fetch})`;
+            return `${order}${name}${filter}${values}${fetch}`;
+        }).filter(Boolean).join(';');
     }
-    __decorate([
-        $mol_memo.method
-    ], $giper_baza_app_node.prototype, "link", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_app_node.prototype, "_home", null);
-    __decorate([
-        $mol_mem
-    ], $giper_baza_app_node.prototype, "_stat_update", null);
-    $.$giper_baza_app_node = $giper_baza_app_node;
-    class $giper_baza_app_node_link extends $mol_rest_resource {
-        GET(msg) {
-            msg.reply(this.$.$giper_baza_auth.current().pass().lord().str);
-        }
-    }
-    $.$giper_baza_app_node_link = $giper_baza_app_node_link;
+    $.$hyoo_harp_to_string = $hyoo_harp_to_string;
 })($ || ($ = {}));
 
 ;
 "use strict";
 var $;
 (function ($) {
-    /** Entity dictionary Model with Title property included by default */
-    class $giper_baza_entity extends $giper_baza_dict.with({
-        /** Entity Title - default property for use */
-        Title: $giper_baza_atom_text,
-    }) {
-        title(next) {
-            return this.Title(next)?.val(next) ?? '';
-        }
+    const Int = $mol_data_pipe($mol_data_variant($mol_data_string, $mol_data_integer), Number);
+    function $hyoo_harp_scheme(sub, value = $mol_data_integer) {
+        const inner = $mol_data_optional($mol_data_record(sub));
+        const values = $mol_data_optional($mol_data_array($mol_data_array(value)));
+        const val = $mol_data_record({
+            ...sub,
+            '+': $mol_data_optional($mol_data_boolean),
+            '=': values,
+            '!=': values,
+            '_num': $mol_data_optional($mol_data_record({
+                '=': $mol_data_array($mol_data_array(Int))
+            })),
+            '_len': inner,
+            '_max': inner,
+            '_min': inner,
+            '_sum': inner,
+        });
+        return Object.assign(val, {
+            parse(str) {
+                return val($hyoo_harp_from_string(str));
+            },
+            build(query) {
+                return $hyoo_harp_to_string(query);
+            },
+        });
     }
-    __decorate([
-        $mol_mem
-    ], $giper_baza_entity.prototype, "title", null);
-    $.$giper_baza_entity = $giper_baza_entity;
+    $.$hyoo_harp_scheme = $hyoo_harp_scheme;
 })($ || ($ = {}));
 
 ;
@@ -16288,6 +16554,10 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    $.$giper_baza_file_query = $hyoo_harp_scheme({
+        BAZA: $hyoo_harp_scheme({}),
+        file: $hyoo_harp_scheme({}, $mol_data_string),
+    });
     class $giper_baza_file extends $giper_baza_dict.with({
         /** File name */
         Name: $giper_baza_atom_text,
@@ -16363,6 +16633,133 @@ var $;
         }
     }
     $.$giper_baza_file = $giper_baza_file;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_home extends $giper_baza_flex_peer {
+        init() {
+            this.meta($giper_baza_flex_peer.meta);
+        }
+        tick() {
+            this.init();
+            this.stat(null).tick();
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_home.prototype, "init", null);
+    $.$giper_baza_app_home = $giper_baza_app_home;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_home_node extends $giper_baza_app_home {
+        init() {
+            super.init();
+            if (process.env.GIPER_BAZA_ADMIN) {
+                const pass = $giper_baza_auth_pass.from(process.env.GIPER_BAZA_ADMIN);
+                this.land().give(pass, $giper_baza_rank_rule);
+            }
+            const host = process.env.GIPER_BAZA_DOMAIN || $node.os.hostname();
+            this.name(host.replace(/\.ip\..*$/, ''));
+            this.urls([`https://${host}/`]);
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_home_node.prototype, "init", null);
+    $.$giper_baza_app_home_node = $giper_baza_app_home_node;
+    $.$giper_baza_app_home = $giper_baza_app_home_node;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    class $giper_baza_app_node extends $mol_rest_resource_fs {
+        link() {
+            return new $giper_baza_app_node_link;
+        }
+        _protocols = ['$giper_baza_yard'];
+        GET(msg) {
+            let id;
+            try {
+                id = $giper_baza_file_query.parse(msg.uri().search).file['=']?.[0][0];
+            }
+            catch { }
+            if (!id)
+                return super.GET(msg);
+            const link = new $giper_baza_link(id);
+            const file = this.$.$giper_baza_glob.Pawn(link, $giper_baza_file);
+            msg.port.send_code(file.filled() ? 200 : 404);
+            msg.port.send_type(file.type());
+            msg.port.send_bin(file.buffer());
+        }
+        OPEN(msg) {
+            const protocol = super.OPEN(msg);
+            if (!protocol)
+                return '';
+            this.$.$giper_baza_glob.yard().slaves.add(msg.port);
+            return protocol;
+        }
+        POST(msg) {
+            this.$.$giper_baza_glob.yard().port_income(msg.port, msg.bin());
+        }
+        CLOSE(msg) {
+            this.$.$giper_baza_glob.yard().slaves.delete(msg.port);
+            super.CLOSE(msg);
+        }
+        _auto() {
+            this._stat_update();
+            this.$.$giper_baza_glob.yard().sync();
+        }
+        _home() {
+            return this.$.$giper_baza_glob.home($giper_baza_app_home);
+        }
+        _stat_update() {
+            this._home().tick();
+        }
+    }
+    __decorate([
+        $mol_memo.method
+    ], $giper_baza_app_node.prototype, "link", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_node.prototype, "_home", null);
+    __decorate([
+        $mol_mem
+    ], $giper_baza_app_node.prototype, "_stat_update", null);
+    $.$giper_baza_app_node = $giper_baza_app_node;
+    class $giper_baza_app_node_link extends $mol_rest_resource {
+        GET(msg) {
+            msg.reply(this.$.$giper_baza_auth.current().pass().lord().str);
+        }
+    }
+    $.$giper_baza_app_node_link = $giper_baza_app_node_link;
+})($ || ($ = {}));
+
+;
+"use strict";
+var $;
+(function ($) {
+    /** Entity dictionary Model with Title property included by default */
+    class $giper_baza_entity extends $giper_baza_dict.with({
+        /** Entity Title - default property for use */
+        Title: $giper_baza_atom_text,
+    }) {
+        title(next) {
+            return this.Title(next)?.val(next) ?? '';
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $giper_baza_entity.prototype, "title", null);
+    $.$giper_baza_entity = $giper_baza_entity;
 })($ || ($ = {}));
 
 ;
@@ -18164,12 +18561,6 @@ var $;
 	($mol_mem_key(($.$mol_dimmer.prototype), "Low"));
 	($mol_mem_key(($.$mol_dimmer.prototype), "High"));
 
-
-;
-"use strict";
-
-;
-"use strict";
 
 ;
 "use strict";
