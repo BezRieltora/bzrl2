@@ -162,6 +162,7 @@
     "$bog_bzrl_app_nav",
     "$mol_locale",
     "$mol_link",
+    "$mol_dom_safe",
     "$mol_button_minor",
     "$mol_button",
     "$mol_speck",
