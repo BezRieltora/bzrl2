@@ -323,6 +323,7 @@
     "$bog_theme_picker",
     "$mol_string",
     "$mol_hotkey",
+    "$mol_hotkey2",
     "$mol_list",
     "$mol_support_css",
     "$mol_support",
