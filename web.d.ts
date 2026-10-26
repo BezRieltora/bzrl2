@@ -36534,6 +36534,13 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    let $mol_file_extensions: Record<string, $mol_rest_port_mime>;
+    let $mol_file_extensions_mime: {
+        [k: string]: string;
+    };
+}
+
+declare namespace $ {
     type $mol_blob = Blob;
     let $mol_blob: {
         prototype: Blob;
@@ -38818,11 +38825,27 @@ declare namespace $ {
 
 //# sourceMappingURL=source.view.tree.d.ts.map
 declare namespace $ {
+    class $mol_dom_transfer extends $mol_object {
+        readonly native: DataTransfer;
+        static wrap(native: DataTransfer): $mol_dom_transfer;
+        constructor(native: DataTransfer);
+        get(type: string): string;
+        files(): {
+            [x: number]: File;
+            readonly length: number;
+            item: (index: number) => File | null;
+            [Symbol.iterator]: () => ArrayIterator<File>;
+        };
+    }
+}
+
+declare namespace $ {
     class $mol_dom_event<EventType extends Event> extends $mol_object {
         readonly native: EventType;
+        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
         constructor(native: EventType);
         prevented(next?: boolean): boolean;
-        static wrap<EventType extends Event>(event: EventType): $mol_dom_event<EventType>;
+        transfer(): $mol_dom_transfer | null;
     }
 }
 
@@ -41482,24 +41505,6 @@ declare namespace $ {
 
 declare namespace $ {
 
-	export class $mol_icon_undo extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=undo.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_redo extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=redo.view.tree.d.ts.map
-declare namespace $ {
-
 	export class $mol_icon_arrow_collapse extends $mol_icon {
 		path( ): string
 	}
@@ -41588,26 +41593,6 @@ declare namespace $ {
 }
 
 //# sourceMappingURL=marker.view.tree.d.ts.map
-declare namespace $ {
-
-	export class $mol_icon_magnify extends $mol_icon {
-		path( ): string
-	}
-	
-}
-
-//# sourceMappingURL=magnify.view.tree.d.ts.map
-declare namespace $ {
-}
-
-declare namespace $ {
-
-	export class $mol_check_icon extends $mol_check {
-	}
-	
-}
-
-//# sourceMappingURL=icon.view.tree.d.ts.map
 declare namespace $ {
 }
 
@@ -41728,6 +41713,22 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    /** Image processing. */
+    class $mol_picture extends $mol_object2 {
+        readonly canvas: HTMLCanvasElement;
+        constructor(canvas: HTMLCanvasElement);
+        get context(): CanvasRenderingContext2D | null;
+        get bitmap(): ImageData;
+        static fit(image: Exclude<CanvasImageSource, VideoFrame> | Blob | string, width?: number, height?: number): $mol_picture;
+        static make(image: Exclude<CanvasImageSource, VideoFrame>, width: number, height?: number): $mol_picture;
+        static sizes(image: Exclude<CanvasImageSource, VideoFrame>): number[];
+        static load(uri: string): Promise<HTMLImageElement>;
+        format(type: 'image/png' | 'image/jpeg' | 'image/webp', quality?: number): Blob | null;
+        url(type?: "image/png" | "image/jpeg" | "image/webp", quality?: number): string;
+    }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -41763,7 +41764,7 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['enabled'] >
 	>
 	type $mol_button_minor__click_giper_baza_rich_edit_4 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['undo'] >
+		ReturnType< $giper_baza_rich_edit['block_unwrap'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
@@ -41783,7 +41784,7 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['enabled'] >
 	>
 	type $mol_button_minor__click_giper_baza_rich_edit_8 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['redo'] >
+		ReturnType< $giper_baza_rich_edit['block_wrap'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
@@ -41803,7 +41804,7 @@ declare namespace $ {
 		ReturnType< $mol_button_minor['enabled'] >
 	>
 	type $mol_button_minor__click_giper_baza_rich_edit_12 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['block_unwrap'] >
+		ReturnType< $giper_baza_rich_edit['block_wrap'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
@@ -41872,45 +41873,45 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['sub'] >
 	>
-	type $mol_button_minor__hint_giper_baza_rich_edit_26 = $mol_type_enforce<
+	type $mol_button_minor__title_giper_baza_rich_edit_26 = $mol_type_enforce<
+		string
+		,
+		ReturnType< $mol_button_minor['title'] >
+	>
+	type $mol_button_minor__hint_giper_baza_rich_edit_27 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__enabled_giper_baza_rich_edit_27 = $mol_type_enforce<
+	type $mol_button_minor__enabled_giper_baza_rich_edit_28 = $mol_type_enforce<
 		ReturnType< $giper_baza_rich_edit['selected'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_minor__click_giper_baza_rich_edit_28 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['block_wrap'] >
+	type $mol_button_minor__click_giper_baza_rich_edit_29 = $mol_type_enforce<
+		ReturnType< $giper_baza_rich_edit['inline_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__sub_giper_baza_rich_edit_29 = $mol_type_enforce<
-		readonly(any)[]
+	type $mol_button_minor__title_giper_baza_rich_edit_30 = $mol_type_enforce<
+		string
 		,
-		ReturnType< $mol_button_minor['sub'] >
+		ReturnType< $mol_button_minor['title'] >
 	>
-	type $mol_button_minor__hint_giper_baza_rich_edit_30 = $mol_type_enforce<
+	type $mol_button_minor__hint_giper_baza_rich_edit_31 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_button_minor['hint'] >
 	>
-	type $mol_button_minor__enabled_giper_baza_rich_edit_31 = $mol_type_enforce<
+	type $mol_button_minor__enabled_giper_baza_rich_edit_32 = $mol_type_enforce<
 		ReturnType< $giper_baza_rich_edit['selected'] >
 		,
 		ReturnType< $mol_button_minor['enabled'] >
 	>
-	type $mol_button_minor__click_giper_baza_rich_edit_32 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['block_wrap'] >
+	type $mol_button_minor__click_giper_baza_rich_edit_33 = $mol_type_enforce<
+		ReturnType< $giper_baza_rich_edit['inline_toggle'] >
 		,
 		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__sub_giper_baza_rich_edit_33 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_button_minor['sub'] >
 	>
 	type $mol_button_minor__title_giper_baza_rich_edit_34 = $mol_type_enforce<
 		string
@@ -41972,109 +41973,59 @@ declare namespace $ {
 		,
 		ReturnType< $mol_button_minor['click'] >
 	>
-	type $mol_button_minor__title_giper_baza_rich_edit_46 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__hint_giper_baza_rich_edit_47 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__enabled_giper_baza_rich_edit_48 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['selected'] >
-		,
-		ReturnType< $mol_button_minor['enabled'] >
-	>
-	type $mol_button_minor__click_giper_baza_rich_edit_49 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['inline_toggle'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_button_minor__title_giper_baza_rich_edit_50 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['title'] >
-	>
-	type $mol_button_minor__hint_giper_baza_rich_edit_51 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_button_minor['hint'] >
-	>
-	type $mol_button_minor__enabled_giper_baza_rich_edit_52 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['selected'] >
-		,
-		ReturnType< $mol_button_minor['enabled'] >
-	>
-	type $mol_button_minor__click_giper_baza_rich_edit_53 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['inline_toggle'] >
-		,
-		ReturnType< $mol_button_minor['click'] >
-	>
-	type $mol_pick__hint_giper_baza_rich_edit_54 = $mol_type_enforce<
+	type $mol_pick__hint_giper_baza_rich_edit_46 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_pick['hint'] >
 	>
-	type $mol_pick__trigger_content_giper_baza_rich_edit_55 = $mol_type_enforce<
+	type $mol_pick__trigger_enabled_giper_baza_rich_edit_47 = $mol_type_enforce<
+		ReturnType< $giper_baza_rich_edit['selected'] >
+		,
+		ReturnType< $mol_pick['trigger_enabled'] >
+	>
+	type $mol_pick__trigger_content_giper_baza_rich_edit_48 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['trigger_content'] >
 	>
-	type $mol_pick__bubble_content_giper_baza_rich_edit_56 = $mol_type_enforce<
+	type $mol_pick__bubble_content_giper_baza_rich_edit_49 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_pick['bubble_content'] >
 	>
-	type $mol_check_icon__hint_giper_baza_rich_edit_57 = $mol_type_enforce<
-		string
-		,
-		ReturnType< $mol_check_icon['hint'] >
-	>
-	type $mol_check_icon__checked_giper_baza_rich_edit_58 = $mol_type_enforce<
-		ReturnType< $giper_baza_rich_edit['search_active'] >
-		,
-		ReturnType< $mol_check_icon['checked'] >
-	>
-	type $mol_check_icon__sub_giper_baza_rich_edit_59 = $mol_type_enforce<
-		readonly(any)[]
-		,
-		ReturnType< $mol_check_icon['sub'] >
-	>
-	type $mol_bar__sub_giper_baza_rich_edit_60 = $mol_type_enforce<
+	type $mol_bar__sub_giper_baza_rich_edit_50 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_bar['sub'] >
 	>
-	type $mol_string__hint_giper_baza_rich_edit_61 = $mol_type_enforce<
+	type $mol_string__hint_giper_baza_rich_edit_51 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_string__hint_giper_baza_rich_edit_62 = $mol_type_enforce<
+	type $mol_string__hint_giper_baza_rich_edit_52 = $mol_type_enforce<
 		string
 		,
 		ReturnType< $mol_string['hint'] >
 	>
-	type $mol_bar__sub_giper_baza_rich_edit_63 = $mol_type_enforce<
+	type $mol_bar__sub_giper_baza_rich_edit_53 = $mol_type_enforce<
 		readonly(any)[]
 		,
 		ReturnType< $mol_bar['sub'] >
 	>
-	type $mol_float__sub_giper_baza_rich_edit_64 = $mol_type_enforce<
+	type $mol_float__sub_giper_baza_rich_edit_54 = $mol_type_enforce<
 		ReturnType< $giper_baza_rich_edit['tools'] >
 		,
 		ReturnType< $mol_float['sub'] >
 	>
-	type $mol_view__attr_giper_baza_rich_edit_65 = $mol_type_enforce<
+	type $mol_view__attr_giper_baza_rich_edit_55 = $mol_type_enforce<
 		({ 
 			'contenteditable': ReturnType< $giper_baza_rich_edit['editable'] >,
 		}) 
 		,
 		ReturnType< $mol_view['attr'] >
 	>
-	type $mol_view__event_giper_baza_rich_edit_66 = $mol_type_enforce<
+	type $mol_view__event_giper_baza_rich_edit_56 = $mol_type_enforce<
 		({ 
 			input( next?: ReturnType< $giper_baza_rich_edit['save'] > ): ReturnType< $giper_baza_rich_edit['save'] >,
 			paste( next?: ReturnType< $giper_baza_rich_edit['paste'] > ): ReturnType< $giper_baza_rich_edit['paste'] >,
@@ -42083,7 +42034,7 @@ declare namespace $ {
 		,
 		ReturnType< $mol_view['event'] >
 	>
-	type $mol_view__sub_giper_baza_rich_edit_67 = $mol_type_enforce<
+	type $mol_view__sub_giper_baza_rich_edit_57 = $mol_type_enforce<
 		ReturnType< $giper_baza_rich_edit['content'] >
 		,
 		ReturnType< $mol_view['sub'] >
@@ -42100,10 +42051,6 @@ declare namespace $ {
 		redo( next?: any ): any
 		Hotkey( ): $mol_hotkey2
 		selected( next?: boolean ): boolean
-		Undo_icon( ): $mol_icon_undo
-		Undo_button( ): $mol_button_minor
-		Redo_icon( ): $mol_icon_redo
-		Redo_button( ): $mol_button_minor
 		Unwrap_icon( ): $mol_icon_arrow_collapse_left
 		Unwrap_button( ): $mol_button_minor
 		Section_icon( ): $mol_icon_format_size
@@ -42123,9 +42070,6 @@ declare namespace $ {
 		Del_button( ): $mol_button_minor
 		Code_button( ): $mol_button_minor
 		Inline_format_menu( ): $mol_pick
-		search_active( next?: boolean ): boolean
-		Search_icon( ): $mol_icon_magnify
-		Search_toggle( ): $mol_check_icon
 		Main( ): $mol_bar
 		Search_query( ): $mol_string
 		Search_replace( ): $mol_string
@@ -42165,11 +42109,13 @@ declare namespace $.$$ {
         selected(): boolean;
         selection_save(): void;
         selection_load(): void;
+        blocks_selected(): $mol_dom_range;
         block_wrap(Type: string, event: KeyboardEvent): void;
+        block_rewrap(event: KeyboardEvent): void;
         block_unwrap(event: KeyboardEvent): void;
         /** Wraps selecion to given element type. */
         inline_toggle(Type: string, event: KeyboardEvent): void;
-        paste(event?: ClipboardEvent): void;
+        paste(event: ClipboardEvent): void;
         hover(event: PointerEvent): void;
     }
 }
@@ -45205,6 +45151,17 @@ declare namespace $ {
 
 //# sourceMappingURL=play.view.tree.d.ts.map
 declare namespace $ {
+}
+
+declare namespace $ {
+
+	export class $mol_check_icon extends $mol_check {
+	}
+	
+}
+
+//# sourceMappingURL=icon.view.tree.d.ts.map
+declare namespace $ {
 
 	type $mol_string__hint_giper_baza_auth_slot_1 = $mol_type_enforce<
 		string
@@ -47668,6 +47625,15 @@ declare namespace $.$$ {
 declare namespace $.$$ {
 }
 
+declare namespace $ {
+
+	export class $mol_icon_magnify extends $mol_icon {
+		path( ): string
+	}
+	
+}
+
+//# sourceMappingURL=magnify.view.tree.d.ts.map
 declare namespace $ {
 
 	export class $mol_icon_email extends $mol_icon {

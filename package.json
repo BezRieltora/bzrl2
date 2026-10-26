@@ -349,6 +349,7 @@
     "$mol_pick",
     "$mol_check",
     "$mol_dom_event",
+    "$mol_dom_transfer",
     "$mol_nav",
     "$mol_search",
     "$mol_icon_close",
